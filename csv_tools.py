@@ -13,7 +13,9 @@ def parseCSV(csv_file):
             split_value.append(tmp)
 
         return split_value
-    dataRaw = open(csv_file,'r').read()
+    dataFile = open(csv_file)
+    dataRaw = dataFile.read()
+    dataFile.close()
     dataPerBaris = pisah(dataRaw,'\n')
     hasil = []
     headers = pisah(dataPerBaris[0],',')
@@ -25,5 +27,10 @@ def parseCSV(csv_file):
             dictData[header] = data[i]
             i += 1
         hasil.append(dictData)
+
     print(hasil)
+    return hasil
+
+def writeCSV(csv_file):
+    
     
