@@ -7,7 +7,7 @@ args = parser.parse_args()
 folderData = args.folderData
 
 #Dapatkan data CSV
-from csv_tools import parseCSV
+from function.csv_tools import parseCSV
 userData = parseCSV(folderData + "/user.csv")
 gadgetData = parseCSV(folderData + "/gadget.csv")
 consumableData = parseCSV(folderData + "/consumable.csv")
