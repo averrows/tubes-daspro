@@ -1,2 +1,2 @@
-id, nama, deskripsi, jumlah, rarity, tahun ditemukan
-G1, Pintu ke ITB, Siapapun yang masuk ke dalam pintu ini akan diteleport ke kolam Intel, 2, A, 2112
+id;nama;deskripsi;jumlah;rarity;tahun ditemukan
+G1;Pintu ke ITB;Siapapun yang masuk ke dalam pintu ini akan diteleport ke kolam Intel;2;A;2112

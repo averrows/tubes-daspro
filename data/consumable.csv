@@ -1,2 +1,2 @@
-id, nama, deskripsi, jumlah, rarity
-C1, kopi pahit, minuman yang memperkuat ketahanan mata, 10, A
+id;nama;deskripsi;jumlah;rarity
+C1;kopi pahit;minuman yang memperkuat ketahanan mata;10;A

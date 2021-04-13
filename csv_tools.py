@@ -18,7 +18,7 @@ def parseCSV(csv_file):
     dataFile.close()
     dataPerBaris = pisah(dataRaw,'\n')
     hasil = []
-    headers = pisah(dataPerBaris[0],',')
+    headers = pisah(dataPerBaris[0],';')
     for data in dataPerBaris[1:]:
         dictData = {}
         data = pisah(data,',')
@@ -31,6 +31,5 @@ def parseCSV(csv_file):
     print(hasil)
     return hasil
 
-def writeCSV(csv_file):
-    
+
     
