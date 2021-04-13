@@ -31,5 +31,8 @@ def parseCSV(csv_file):
     print(hasil)
     return hasil
 
+def writeCSV(csv_file):
+    
+
 
     
