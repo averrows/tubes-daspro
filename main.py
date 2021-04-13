@@ -1,6 +1,4 @@
-from parse import parseCSV
 
-userData = parseCSV(file)
 
 def main():
     print("Cek")
