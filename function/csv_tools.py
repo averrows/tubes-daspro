@@ -32,7 +32,7 @@ def parseCSV(csv_file):
     return hasil
 
 def writeCSV(csv_file):
-    
+    pass
 
 
     
