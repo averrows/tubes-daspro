@@ -27,4 +27,3 @@ def parseCSV(csv_file):
         hasil.append(dictData)
     print(hasil)
     
-parseCSV('./data/tes.csv')
