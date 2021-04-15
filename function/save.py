@@ -1,2 +1,2 @@
-def save(newData, csvfolder):
-    
+def save(folderData):
+    pass
