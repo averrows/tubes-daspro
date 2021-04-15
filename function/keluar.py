@@ -4,8 +4,11 @@ from save import save
 # Berisi prosedur untuk mengakhiri program main
 
 def Keluar(kondisi, folderData):
-    # parameter kondisi diisi dengan variabel kondisi mengulang pada while loop di program main,
-    # parameter folderData diisi dengan file yang akan disave
+    # I.S. kondisi looping terdefinisi, folderData terdefinisi;
+    # F.S. mengubah kondisi looping.
+    # KAMUS LOKAL
+        # kondisi : bool
+    # ALGORITMA
     prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
     while prompt not in "YyNn":  # validasi input
         prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
