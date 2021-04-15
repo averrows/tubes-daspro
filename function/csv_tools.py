@@ -10,7 +10,6 @@ def pisah(kalimat,pemisah):
                 tmp += c
         if tmp:
             split_value.append(tmp)
-        print(split_value)
         return split_value
 
 def parseCSV(csv_file):
@@ -32,6 +31,7 @@ def parseCSV(csv_file):
     return hasil
 
 def writeCSV(csv_file, newData):
+    #csv_file adalah file yang akan dioverwrite, dan newData (array of dict) adalah data baru yang menggantikan data sebelumnya
     dataFile = open(csv_file,'w')
     isiBaruFile = ""
     #proses new_data {array of dictionary} menjadi csv
