@@ -16,7 +16,7 @@ gadgetBorrowHistoryData = parseCSV(folderData + "/gadget_borrow_history.csv")
 gadgetReturnHistoryData = parseCSV(folderData + "/gadget_return_history.csv")
 
 def main():
-    print("Cek")
+    pass
 
 if __name__ == "__main__":
     main()
