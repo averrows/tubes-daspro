@@ -24,7 +24,7 @@ def cekSama(nama, listKamus, data):
     else:
         return False
 
-def register():
+def register(userData):
     # input nama user & mengganti kapitalisasi secara otomatis
     raw_nama_user = input("Masukkan nama: ")
     nama_user = gantiKapital(raw_nama_user)
@@ -46,5 +46,5 @@ def register():
     # penambahan data user baru
     new_user = {'nama': nama_user, 'username': username_user, 'password': password_user, 'alamat': alamat_user}
     userData.append(new_user)
-    writeCSV("user.csv", userData)
+    
     print(f"User {username_user} telah berhasil register ke dalam Kantong Ajaib.") 
