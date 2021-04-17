@@ -3,7 +3,7 @@ from simpan import simpan
 # Program Keluar
 # Berisi prosedur untuk mengakhiri program main
 
-def Keluar(kondisi, folderData):
+def Keluar(kondisi, newData, folderData):
     # I.S. kondisi looping terdefinisi, folderData terdefinisi;
     # F.S. mengubah kondisi looping.
     # KAMUS LOKAL
