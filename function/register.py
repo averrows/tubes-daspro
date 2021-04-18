@@ -1,3 +1,6 @@
+from CsvTools import parseCSV
+userData = parseCSV("data" + "/user.csv")
+
 def gantiKapital(nama):
     # untuk mengganti sebuah teks dengan kapitalisasi yang benar di awal kata
     nama_kapital = []
@@ -11,15 +14,16 @@ def gantiKapital(nama):
             nama_kapital.append(nama[i].upper())
         else:
             nama_kapital.append(nama[i].lower())
+    nama_kapital = "".join(nama_kapital)
     return nama_kapital
 
 def cekSama(nama, listKamus, data):
-    # untuk memeriksa apakah suatu nama sama dengna sebuah value dari data pada array of dictionary
+    # untuk memeriksa apakah suatu nama sama dengan sebuah value dari data pada array of dictionary
     count = 0
     for i in range (len(listKamus)):
         if (nama == listKamus[i][data]):
-            count = 1
-    if (count == 1):
+            count += 1
+    if (count > 0):
         return True
     else:
         return False
@@ -43,8 +47,8 @@ def register(userData):
     # input alamat
     alamat_user = input("Masukkan alamat: ")
     
-    # penambahan data user baru
+    # penggabungan data baru dan lama
     new_user = {'nama': nama_user, 'username': username_user, 'password': password_user, 'alamat': alamat_user}
     userData.append(new_user)
-    
-    print(f"User {username_user} telah berhasil register ke dalam Kantong Ajaib.") 
+
+    print(f"User {username_user} telah berhasil register ke dalam Kantong Ajaib.")
