@@ -22,8 +22,8 @@ def cekSama(nama, listKamus, data):
     count = 0
     for i in range (len(listKamus)):
         if (nama == listKamus[i][data]):
-            count = 1
-    if (count == 1):
+            count += 1
+    if (count > 0):
         return True
     else:
         return False
