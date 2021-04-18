@@ -1,3 +1,6 @@
+from CsvTools import parseCSV
+userData = parseCSV("data" + "/user.csv")
+
 def gantiKapital(nama):
     # untuk mengganti sebuah teks dengan kapitalisasi yang benar di awal kata
     nama_kapital = []
@@ -11,6 +14,7 @@ def gantiKapital(nama):
             nama_kapital.append(nama[i].upper())
         else:
             nama_kapital.append(nama[i].lower())
+    nama_kapital = "".join(nama_kapital)
     return nama_kapital
 
 def cekSama(nama, listKamus, data):
@@ -47,4 +51,4 @@ def register(userData):
     new_user = {'nama': nama_user, 'username': username_user, 'password': password_user, 'alamat': alamat_user}
     userData.append(new_user)
 
-    print(f"User {username_user} telah berhasil register ke dalam Kantong Ajaib.") 
+    print(f"User {username_user} telah berhasil register ke dalam Kantong Ajaib.")
