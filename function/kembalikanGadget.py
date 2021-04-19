@@ -4,6 +4,8 @@ gadgetData = parseCSV("data" + "/gadget.csv")
 gadgetBorrowHistoryData = parseCSV("data" + "/gadget_borrow_history.csv")
 gadgetReturnHistoryData = parseCSV("data" + "/gadget_return_history.csv")
 
+import datetime
+
 def daftarIDPinjamanUser(username, gadgetBorrowHistoryData):
     # membuat array berisi daftar ID gadget yang dipinjam seorang user
     daftarPinjaman = []
@@ -21,7 +23,48 @@ def convertDaftarIDKeNama(daftarPinjaman, gadgetData):
                 daftarNamaGadgetPinjaman.append(gadgetData[j]['nama'])
     return daftarNamaGadgetPinjaman
 
-def kembalikanGadget(daftarNamaGadgetPinjaman):
+def validasiTanggal(tanggal, bulan, tahun):
+    # kabisat = habis dibagi 4 dan tidak habis dibagi 100. atau habis dibagi 400
+    # kabisat bulan februarinya 29
+    if (bulan == 1) or (bulan == 3) or (bulan == 5) or (bulan == 7) or (bulan == 8) or (bulan == 10) or (bulan == 12):
+        if (tanggal >= 1) and (tanggal <= 31):
+            return True
+        else:
+            return False
+    elif (bulan == 4) or (bulan == 6) or (bulan == 9) or (bulan == 11):
+        if (tanggal >=1) and (tanggal <= 30):
+            return True
+        else:
+            return False
+    elif (bulan == 2):
+        if ((tahun % 4 == 0) and (tahun % 100 != 0)) or (tahun % 400 == 0):
+            if (tanggal >=1) and (tanggal <= 29):
+                return True
+            else:
+                return False
+        else:
+            if (tanggal >= 1) and (tanggal <= 28):
+                return True
+            else:
+                return False
+    else:
+        return False
+
+def cariIDGadget (nama_selected_gadget, gadgetData):
+    for i in range (len(gadgetData)):
+        if (nama_selected_gadget == gadgetData[i]['nama']):
+            id_selected_gadget = gadgetData[i]['id']
+    return id_selected_gadget
+
+def kurangiGadget(jumlahPengembalian, id_selected_gadget, gadgetBorrowHistoryData, gadgetData):
+    for i in range (len(gadgetBorrowHistoryData)):
+        if (id_selected_gadget == gadgetBorrowHistoryData[i]['id_gadget']):
+            gadgetBorrowHistoryData[i]['sisa_peminjaman'] -= jumlahPengembalian
+    for j in range (len(gadgetData)):
+        if (id_selected_gadget == gadgetData[j]['id']):
+            gadgetData[j]['jumlah'] += jumlahPengembalian      
+
+def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData):
     # mencetak daftar pinjaman gadget
     for i in range(len(daftarNamaGadgetPinjaman)):
         print(str(i+1) + ". " + daftarNamaGadgetPinjaman[i])
@@ -29,10 +72,34 @@ def kembalikanGadget(daftarNamaGadgetPinjaman):
 
     # memilih gadget yang ingin dikembalikan & jumlah yang ingin dikembalikan
     nomorGadget = int(input("Masukkan nomor peminjaman: "))
-    jumlahPengembalian = int(input(f"Masukkan jumlah {daftarNamaGadgetPinjaman[nomorGadget - 1]} yang ingin dikembalikan: "))
+    nama_selected_gadget = daftarNamaGadgetPinjaman[nomorGadget - 1]
+    id_selected_gadget = cariIDGadget(nama_selected_gadget, gadgetData)
+    for i in range (len(gadgetBorrowHistoryData)):
+        if (id_selected_gadget == gadgetBorrowHistoryData[i]['id_gadget']):
+            sisa_peminjaman = gadgetBorrowHistoryData[i]['sisa_peminjaman']
+    jumlahPengembalian = int(input(f"Masukkan jumlah {nama_selected_gadget} yang ingin dikembalikan: "))
+    while (jumlahPengembalian > sisa_peminjaman):
+        print("Jumlah peminjaman tidak mencukupi!")
+        jumlahPengembalian = int(input(f"Masukkan jumlah {nama_selected_gadget} yang ingin dikembalikan: "))
 
+    kurangiGadget(nama_selected_gadget, id_selected_gadget, gadgetBorrowHistoryData, gadgetData)
+    
+    # input dan validasi tanggal pengembalian
+    tanggal = int(input("Masukkan tanggal pengembalian: "))
+    bulan = int(input("Masukkan bulan pengembalian: "))
+    tahun = int(input("Masukkan tahun pengembalian: "))
+    while (validasiTanggal(tanggal, bulan, tahun) == False):
+        print("Tanggal tidak valid!")
+        tanggal = int(input("Masukkan tanggal pengembalian: "))
+        bulan = int(input("Masukkan bulan pengembalian: "))
+        tahun = int(input("Masukkan tahun pengembalian: "))
+    x = datetime.datetime(tahun, bulan, tanggal)
+    tanggal_pengembalian = x.strftime("%x")
 
-username = 'rojapthecat'
-daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
-daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
-kembalikanGadget(daftarNamaGadgetPinjaman)
+    # gadget berhasil dikembalikan
+    print(f"Item {nama_selected_gadget} (x{jumlahPengembalian}) telah dikembalikan.")
+
+    # penggabungan data baru dan lama
+    id_new_return_data = len(gadgetReturnHistoryData) - 1
+    new_return_data = {'id': id_new_return_data, 'id_peminjam': username, 'id_gadget': id_selected_gadget, 'tanggal_pengembalian': tanggal_pengembalian, 'jumlah_pengembalian': jumlahPengembalian}
+    gadgetReturnHistoryData.append(new_return_data)
