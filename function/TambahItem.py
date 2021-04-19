@@ -1,4 +1,4 @@
-from csv_tools import parseCSV
+from CsvTools import parseCSV
 gadgetData = parseCSV("data" + "/gadget.csv")
 consumableData = parseCSV("data" + "/consumable.csv")
 
