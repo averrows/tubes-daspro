@@ -1,23 +1,50 @@
-def temukanGadget(identifier,valueDesired):
-    return []
-
-def pinjamGadget(datas):
-    print("Pinjam Gadget")
-    identifier = input("identifier apa yang ingin dipakai? (Tekan 1 untuk id. Tekan 2 untuk nama)")
-    if identifier == 1:
-        pass
-    elif identifier == 2:
-        namaGadgetDiinginkan = input()
-        gadgetSesuai = temukanGadget("nama",namaGadgetDiinginkan)#mengembalikan sebuah array of dict
-        jumlahDitemukan = len(gadgetSesuai)    
-        for i in range(len(gadgetSesuai)):
-            print(i)
-            isi = ["id","nama","deskripsi","jumlah","rarity","tahun ditemukan"]
-            gadget = ("Nama            : {0}\n" + 
-                      "Deskripsi       : {1}\n" +
-                      "Jumlah          : {2}\n" +
-                      "Rarity          : {3}\n" +                
-                      "Tahun Ditemukan : {4}\n").format(gadgetSesuai[i]["nama"], gadgetSesuai[i]["deskripsi"], gadgetSesuai[i]["jumlah"],
-                      gadgetSesuai[i]["rarity"],gadgetSesuai[i]["tahun ditemukan"])
+from CsvTools import parseCSV
+gadgetData = parseCSV("data" + "/gadget.csv")
+historyData = parseCSV("data" + "/2_gadget_borrow_history.csv")
+from datetime import datetime
+waktuSekarang = datetime.now()
+def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
+    #Tanpa pemilihan nama dan id, hanya id saja
+    idItem = input("Masukkan ID item: ")
+    dataItem =isIdItemAda(idItem,dataGadget)
+    if dataItem["keberadaan"]:
+        # print("Tanggal Peminjaman: "+str(waktuSekarang.day)+"/"+str(waktuSekarang.month)+"/"+str(waktuSekarang.year))
+        jumlahTersedia = int(dataGadget[dataItem["indeks"]]["jumlah"])
+        namaGadget = dataGadget[dataItem["indeks"]]["nama"]
+        print("Gadget tersebut adalah "+namaGadget)
+        print(namaGadget + " tersedia sejumlah "+ str(jumlahTersedia))
+        jumlahPeminjaman = int(input("Jumlah peminjaman: "))
+        if jumlahTersedia >=  jumlahPeminjaman:
+            jadiPinjam = input("Apakah jadi meminjam?")
+            if jadiPinjam == "y" or jadiPinjam == "Y":
+                dataGadget[dataItem["indeks"]]["jumlah"] = str(jumlahTersedia - jumlahPeminjaman)
+                tanggal = str(waktuSekarang.day)+"/"+str(waktuSekarang.month)+"/"+str(waktuSekarang.year)
+                dataRiwayatBaru = {
+                    "id":dataRiwayat[len(dataRiwayat)-1]["id"][1:],
+                    "id_peminjam":idPeminjam,
+                    "id_gadget":idItem,
+                    "tanggal_peminjaman":tanggal,
+                    "jumlah":jumlahPeminjaman,
+                    "is_returned": 0
+                    }
+                historyData.append(dataRiwayatBaru)
+                print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
+                    namaGadget,str(jumlahPeminjaman),idPeminjam,tanggal
+                ))
+            else:
+                pass
+        else:
+            print("Jumlah tidak cukup")
     else:
-        pass
+        print("Gadget dengan ID tersebut tidak ada")
+def isIdItemAda(id,data):
+    #Input : id, data
+    #Output : dictionary
+    indeks = 0
+    for barang in data:
+        if barang["id"] == id:
+            return {"keberadaan":True,"indeks":indeks}
+        indeks += 1
+    return {"keberadaan":False}
+    
+pinjamGadget(gadgetData,historyData,"Ave")
