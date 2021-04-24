@@ -1,5 +1,5 @@
 id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah;sisa_peminjaman
-1;ibukos;Ibu Kos;G1;20/02/2100;1;1
-2;narutoh;Uzumaki Narto;G2;01/12/2100;20;20
+1;ibukos;G1;20/02/2100;1;1
+2;narutoh;G2;01/12/2100;20;20
 3;rojapthecat;G3;17/08/1945;10;10
 4;rojapthecat;G4;19/04/2021;5;5
