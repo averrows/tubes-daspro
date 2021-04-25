@@ -6,17 +6,6 @@ gadgetReturnHistoryData = parseCSV("data" + "/gadget_return_history.csv")
 
 import datetime
 
-def convertToInteger_BorrowHistory(gadgetBorrowHistoryData):
-    # mengubah nilai string angka ke data integer agar dapat dikalkulasikan
-    for i in range(len(gadgetBorrowHistoryData)):
-        gadgetBorrowHistoryData[i]['jumlah'] = int(gadgetBorrowHistoryData[i]['jumlah'])
-        gadgetBorrowHistoryData[i]['sisa_peminjaman'] = int(gadgetBorrowHistoryData[i]['sisa_peminjaman'])
-
-def convertToInteger_GadgetData(gadgetData):
-    # mengubah nilai string angka ke data integer agar dapat dikalkulasikan
-    for i in range(len(gadgetData)):
-        gadgetData[i]['jumlah'] = int(gadgetData[i]['jumlah'])
-
 def daftarIDPinjamanUser(username, gadgetBorrowHistoryData):
     # membuat array berisi daftar ID gadget yang dipinjam seorang user
     daftarPinjaman = []
@@ -113,9 +102,26 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData
     new_return_data = {'id': id_new_return_data, 'id_peminjam': username, 'id_gadget': id_selected_gadget, 'tanggal_pengembalian': tanggal_pengembalian, 'jumlah_pengembalian': str(jumlahPengembalian)}
     gadgetReturnHistoryData.append(new_return_data)
 
-# variabel username merupakan input dari user yang disimpan ketika proses login
-convertToInteger_BorrowHistory(gadgetBorrowHistoryData)
-convertToInteger_GadgetData(gadgetData)
-daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
-daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
-kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData)
+def kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetData):
+    # mengubah nilai string angka ke data integer untuk perhitungan
+    for i in range(len(gadgetBorrowHistoryData)):
+        gadgetBorrowHistoryData[i]['jumlah'] = int(gadgetBorrowHistoryData[i]['jumlah'])
+        gadgetBorrowHistoryData[i]['sisa_peminjaman'] = int(gadgetBorrowHistoryData[i]['sisa_peminjaman'])
+    for i in range(len(gadgetData)):
+        gadgetData[i]['jumlah'] = int(gadgetData[i]['jumlah'])
+    
+    # prosedur
+    daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
+    daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
+    kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData)
+
+    # mengubah kembali data integer ke string angka
+    for i in range(len(gadgetBorrowHistoryData)):
+        gadgetBorrowHistoryData[i]['jumlah'] = str(gadgetBorrowHistoryData[i]['jumlah'])
+        gadgetBorrowHistoryData[i]['sisa_peminjaman'] = str(gadgetBorrowHistoryData[i]['sisa_peminjaman'])
+    for i in range(len(gadgetData)):
+        gadgetData[i]['jumlah'] = str(gadgetData[i]['jumlah'])
+
+username = 'rojapthecat'
+kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetData)
+print(gadgetReturnHistoryData)
