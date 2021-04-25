@@ -57,7 +57,6 @@ def swap(data, indeks_1, indeks_2,header):
     data[indeks_2] = temp
 def sort(data,header):
     for i in range(len(data)):
-        print("sesuatu")
         maxArr = get_min(data, i, header)
         maxIdx = get_idx(data, maxArr, header)  
         swap(data, i, maxIdx, header)
