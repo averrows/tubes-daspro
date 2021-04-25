@@ -1,4 +1,5 @@
 from CsvTools import parseCSV
+from urutDataBerdasarTanggal import *
 
 userData = parseCSV("data" + "/user.csv")
 gadgetData = parseCSV("data" + "/gadget.csv")
@@ -38,25 +39,28 @@ def susunanPrint(i, gadgetReturnHistoryData):
     print("Tanggal Pengembalian : " + gadgetReturnHistoryData[i]['tanggal_pengembalian'])
 
 def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData):
-    jumlahData = len(gadgetReturnHistoryData)
+    data = gadgetReturnHistoryData[:]
+    urutDataBerdasarTanggal(data)
+    jumlahData = len(data)
     if (jumlahData == 0):
         print("Belum ada pengembalian gadget dilakukan!")
     elif (jumlahData <= 5):
-        printDataDariAkhir(gadgetReturnHistoryData, jumlahData)
+        printDataDariAkhir(data, jumlahData)
     else:
-        printDataDariAkhir(gadgetReturnHistoryData, 5)
+        printDataDariAkhir(data, 5)
         printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
         while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
             print("Masukan invalid!")
             printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
         if (printSisa == 'Y') or (printSisa == 'y'):
-            gadgetReturnHistoryData_copy = gadgetReturnHistoryData[:]
-            del gadgetReturnHistoryData_copy[(jumlahData - 5):(jumlahData + 1)]
-            if ((len(gadgetReturnHistoryData_copy)) > 5):
-                printDataDariAkhir(gadgetReturnHistoryData_copy, 5)
+            data_copy = data[:]
+            del data_copy[(jumlahData - 5):(jumlahData + 1)]
+            print("")
+            if ((len(data_copy)) > 5):
+                printDataDariAkhir(data_copy, 5)
             else:
-                printDataDariAkhir(gadgetReturnHistoryData_copy, len(gadgetReturnHistoryData_copy))
+                printDataDariAkhir(data_copy, len(data_copy))
         else:
             pass
 
-# data belum di-sort
+lihatRiwayatKembalikanGadget(gadgetReturnHistoryData)
