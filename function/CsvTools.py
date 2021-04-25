@@ -12,12 +12,21 @@ def pisah(kalimat,pemisah):
             split_value.append(tmp)
         return split_value
 
+
+
 def parseCSV(csv_file):
     dataFile = open(csv_file)
     dataRaw = dataFile.read()
     dataFile.close()
     dataPerBaris = pisah(dataRaw,'\n')
     hasil = []
+    if len(dataPerBaris) == 0:
+        return hasil
+    elif len(dataPerBaris) == 1:
+        onlyHeaders = pisah(dataPerBaris[0],';')
+        dictData = {}
+        for header in onlyHeaders:
+            dictData[header] = None
     headers = pisah(dataPerBaris[0],';')
     for data in dataPerBaris[1:]:
         dictData = {}
@@ -32,29 +41,30 @@ def parseCSV(csv_file):
 
 def writeCSV(csv_file, newData):
     #csv_file adalah file yang akan dioverwrite, dan newData (array of dict) adalah data baru yang menggantikan data sebelumnya
-    dataFile = open(csv_file,'w')
-    isiBaruFile = ""
+    if newData == []:
+        pass
     #proses new_data {array of dictionary} menjadi csv
-    header = list(newData[0].keys()) #dapatkan header
-
-    def renderLine(line): #fungsi untuk merender suatu line ke dalam isiBaruFile
-        i = 0
-        global isiBaruFile
-        while i<len(line): 
-            if i == len(line) - 1:
-                isiBaruFile += line[i]
-                isiBaruFile += "\n"
-            else:
-                isiBaruFile += line[i]
-                isiBaruFile += ";"
-            i += 1
-
-    renderLine(header)#render header
-    for x in newData:#render isi
-        #x adalah sebuah dictionary
-        isi = list(x.values())
-        #render isi    
-        renderLine(isi)
-    dataFile.write(isiBaruFile)
-    dataFile.close()
+    else:
+        header = list(newData[0].keys()) #dapatkan header
+        def renderLine(line): #fungsi untuk merender suatu line ke dalam isiBaruFile
+            i = 0
+            isiBaruFile = ""
+            while i<len(line): 
+                if i == len(line) - 1:
+                    isiBaruFile += line[i]
+                    isiBaruFile += "\n"
+                else:
+                    isiBaruFile += line[i]
+                    isiBaruFile += ";"
+                i += 1
+            return isiBaruFile
+        dataFile = open(csv_file,'w')
+        isiBaruFile = renderLine(header)#render header
+        for x in newData:#render isi
+            #x adalah sebuah dictionary
+            isi = list(x.values())
+            #render isi    
+            isiBaruFile += renderLine(isi)
+        dataFile.write(isiBaruFile)
+        dataFile.close()
     
