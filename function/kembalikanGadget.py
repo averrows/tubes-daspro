@@ -155,6 +155,3 @@ def kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetReturnHistoryD
         gadgetBorrowHistoryData[i]['jumlah'] = str(gadgetBorrowHistoryData[i]['jumlah'])
     for i in range(len(gadgetData)):
         gadgetData[i]['jumlah'] = str(gadgetData[i]['jumlah'])
-
-username = 'rojapthecat'
-kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetReturnHistoryData, gadgetData)
