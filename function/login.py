@@ -29,4 +29,8 @@ def login(userData):
 
     # login berhasil
     print(f"Halo {username_login}! Selamat datang di Kantong Ajaib.")
-    return username_login
+    status_login = {
+        'username': username_login,
+        'role': 'user'
+        }
+    return status_login
