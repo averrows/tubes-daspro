@@ -92,7 +92,7 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData
         bulan = int(input("Masukkan bulan pengembalian: "))
         tahun = int(input("Masukkan tahun pengembalian: "))
     x = datetime.datetime(tahun, bulan, tanggal)
-    tanggal_pengembalian = x.strftime("%x")
+    tanggal_pengembalian = x.strftime("%d") + "/" + x.strftime("%m") + "/" + x.strftime("%Y")
 
     # gadget berhasil dikembalikan
     print(f"Item {nama_selected_gadget} (x{jumlahPengembalian}) telah dikembalikan.")
@@ -121,7 +121,3 @@ def kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetData):
         gadgetBorrowHistoryData[i]['sisa_peminjaman'] = str(gadgetBorrowHistoryData[i]['sisa_peminjaman'])
     for i in range(len(gadgetData)):
         gadgetData[i]['jumlah'] = str(gadgetData[i]['jumlah'])
-
-username = 'rojapthecat'
-kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetData)
-print(gadgetReturnHistoryData)
