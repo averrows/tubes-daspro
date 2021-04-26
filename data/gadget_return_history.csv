@@ -1,7 +1,5 @@
-id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned
-1;4;23/01/2020;3;2;False
-2;1;09/06/0170;1;0;True
-3;3;05/11/2000;4;6;False
-4;3;18/04/1912;2;4;True
-5;2;17/08/1945;11;9;True
-6;4;01/03/1980;2;0;True
+id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned
+ibukos;G1;20/02/2100;1;0
+narutoh;G2;01/12/2100;20;0
+rojapthecat;G3;17/08/1945;10;0
+rojapthecat;G4;19/04/2021;5;0

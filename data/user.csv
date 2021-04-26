@@ -1,6 +1,7 @@
-nama;username;password;alamat;role
-Admin;admin;password;ITB;admin
-Rojap Supriyadi;rojapthecat;cat;Jalan Bangka Raya nomor 14;user
-Heri Poter;heriganteng;poter;Hogwarts;user
-Naruto Uchiha;narutoh;uzumaki;Konoha;user
-Nurul Cantip;ibukos;abcde;Tempat Kos;user
+id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned
+4;23/01/2020;3;2;False
+1;09/06/0170;1;0;True
+3;05/11/2000;4;6;False
+3;18/04/1912;2;4;True
+2;17/08/1945;11;9;True
+4;01/03/1980;2;0;True

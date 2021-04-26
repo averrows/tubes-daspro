@@ -12,6 +12,8 @@ from function.CariRarity import CariRarity
 from function.load import load
 from function.bantuan import Bantuan
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
+import os
+clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
 import argparse
 parser = argparse.ArgumentParser()
@@ -24,6 +26,7 @@ folderData = args.folderData
 
 
 def main():
+    clear()
     (userData,
      gadgetData,
      consumableData,
@@ -48,11 +51,9 @@ def main():
         elif perintah == "riwayatpinjam":
             lihatRiwayatPinjamGadget(gadgetBorrowHistoryData)
         elif perintah == "riwayatkembali":
-            lihatRiwayatKembalikanGadget(gadgetReturnHistoryData)
+            lihatRiwayatKembalikanGadget(gadgetReturnHistoryData,userData,gadgetData,gadgetBorrowHistoryData)
         elif perintah == "riwayatambil":
             pass
-
-
     def userAllowedAction(perintah):
         if perintah == "carirarity":
             CariRarity(gadgetData)
@@ -65,7 +66,10 @@ def main():
                 user_status["username"], gadgetBorrowHistoryData, gadgetReturnHistoryData, gadgetData)
         elif perintah == "minta":
             pass
+    
     while kondisi:
+        print("="*25 + "MENU UTAMA" + "="*25)
+        print("masukkan login untuk masuk atau bantuan jika bingung")
         perintah = input()
         if perintah == "login":
             user_status = login(userData)

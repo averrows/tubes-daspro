@@ -1,4 +1,4 @@
-from urutDataBerdasarTanggal import *
+from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal #pylint: disable=import-error
 
 def printDataDariAkhir(gadgetReturnHistoryData, n, userData, gadgetData, gadgetBorrowHistoryData):
     jumlahData = len(gadgetReturnHistoryData)
