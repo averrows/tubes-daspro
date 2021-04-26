@@ -4,7 +4,15 @@
 # G3;Kunai Elektrik;Kunai bertenaga surya;20;B;1435
 
 # gadgetData = [{"id":"G1","nama":},{}]
+def lolol():
+    return ([1,2,3],[2,4,5],[2,4,5])
 
-saya = [[1,2,3,4],{"saya":"lala"}]
-print(saya[0])
-print(saya[1])
+def lalal():
+    kakak(saya)
+
+def kakak(mu):
+    print(mu)
+(saya,tidak,suka) = lolol()
+
+
+lalal()

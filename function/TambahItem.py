@@ -2,11 +2,10 @@
 # gadgetData = parseCSV("data" + "/gadget.csv")
 # consumableData = parseCSV("data" + "/consumable.csv")
 
-def tambahitem(datas):
+def tambahitem(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
     IDSama = len(ID)
     if ID[0] == "G":
-        gadgetData = datas["gadgetData"]
         for tiapgadget in gadgetData:
             ID1 = ID[1:]
             ID2 = tiapgadget["id"][1:]
@@ -38,7 +37,6 @@ def tambahitem(datas):
                     gadgettambahan["tahun"] = int(input())
                     gadgetData.append(gadgettambahan)
     elif ID[0] == "C":
-        consumableData = datas["consumableData"]
         for tiapconsumable in consumableData:
             ID1 = ID[1:]
             ID2 = tiapconsumable["id"][1:]
