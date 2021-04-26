@@ -1,10 +1,10 @@
 # Argparse
-from function.TambahItem import tambahitem
+from function.tambahItem import tambahitem
 from function.simpan import simpan
 from function.register import register
-from function.PinjamGadget import pinjamGadget
+from function.pinjamGadget import pinjamGadget
 from function.login import login
-from function.LihatRiwayatPinjamGadget import lihatRiwayatPinjamGadget
+from function.lihatRiwayatPinjamGadget import lihatRiwayatPinjamGadget
 from function.kembalikanGadget import kembalikanGadgetMain
 from function.keluar import Keluar
 from function.CariTahun import CariTahun
