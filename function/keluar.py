@@ -4,11 +4,11 @@ from function.simpan import simpan # pylint: disable=import-error
 # Berisi prosedur untuk mengakhiri program main
 
 def Keluar(kondisi, newData, folderData):
-    # I.S. kondisi looping terdefinisi, folderData terdefinisi;
-    # F.S. mengubah kondisi looping.
-    # KAMUS LOKAL
-        # kondisi : bool
-    # ALGORITMA
+# I.S. kondisi looping terdefinisi, folderData terdefinisi;
+# F.S. mengubah kondisi looping.
+# KAMUS LOKAL
+    # kondisi : bool
+# ALGORITMA
     prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
     while prompt not in "YyNn":  # validasi input
         prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
