@@ -12,7 +12,7 @@ def load(folderData):
 def createNewFile(fileName, header):
     newFile = open(fileName,'w')
     newFile.write(header)
-
+    newFile.close()
 def fixingCsvTidakAda(folderData):
     required_csv =  ["gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","user.csv","consumable_history.csv"]
     for (root, dirs, files) in os.walk(folderData,topdown=True):
