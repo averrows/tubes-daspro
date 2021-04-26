@@ -1,3 +1,5 @@
+from Hashing import Hash
+
 def cekSama(nama, listKamus, data):
     # untuk memeriksa apakah suatu nama sama dengan sebuah value dari data pada array of dictionary
     count = 0
@@ -12,7 +14,8 @@ def cekSama(nama, listKamus, data):
 def login(userData):
     # input username dan password
     username_login = input("Masukkan username: ")
-    password_login = input("Masukkan password: ")
+    password = input("Masukkan password: ")
+    password_login = Hash(username_login, password)
     
     # validasi akun
     sama_username = cekSama(username_login, userData, 'username')
@@ -20,7 +23,8 @@ def login(userData):
     while (sama_username == False) or (sama_password == False):
         print("Masukan username atau password salah!")
         username_login = input("Masukkan username: ")
-        password_login = input("masukkan password: ")
+        password = input("masukkan password: ")
+        password_login = Hash(username_login, password)
         sama_username = cekSama(username_login, userData, 'username')
         sama_password = cekSama(password_login, userData, 'password')
 

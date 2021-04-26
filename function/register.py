@@ -1,5 +1,4 @@
-# from CsvTools import parseCSV
-# userData = parseCSV("data" + "/user.csv")
+from Hashing import Hash
 
 def gantiKapital(nama):
     # untuk mengganti sebuah teks dengan kapitalisasi yang benar di awal kata
@@ -41,8 +40,9 @@ def register(userData):
         username_user = input("Masukkan username: ")
         sama = cekSama(username_user, userData, 'username')
 
-    # input password -- hashing?
-    password_user = input("Masukkan password: ")
+    # input password beserta hashing
+    password = input("Masukkan password: ")
+    password_user = Hash(username_user, password)
 
     # input alamat
     alamat_user = input("Masukkan alamat: ")
