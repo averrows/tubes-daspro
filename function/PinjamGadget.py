@@ -1,8 +1,7 @@
 # from CsvTools import parseCSV
 # gadgetData = parseCSV("data" + "/gadget.csv")
 # historyData = parseCSV("data" + "/2_gadget_borrow_history.csv")
-from datetime import datetime
-waktuSekarang = datetime.now()
+from function.kembalikanGadget import validasiTanggal # pylint: disable=import-error
 def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
     #Tanpa pemilihan nama dan id, hanya id saja
     idItem = input("Masukkan ID item: ")
@@ -18,7 +17,12 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
             jadiPinjam = input("Apakah jadi meminjam?")
             if jadiPinjam == "y" or jadiPinjam == "Y":
                 dataGadget[dataItem["indeks"]]["jumlah"] = str(jumlahTersedia - jumlahPeminjaman)
-                tanggal = str(waktuSekarang.day)+"/"+str(waktuSekarang.month)+"/"+str(waktuSekarang.year)
+                print("Kamu ada di 'kapan'?")
+                day = int(input())
+                month = int(input())
+                year = int(input())
+                validasiTanggal(day,)
+                tanggal = str(day)+"/"+str(month)+"/"+str(year)
                 dataRiwayatBaru = {
                     "id":dataRiwayat[len(dataRiwayat)-1]["id"][1:],
                     "id_peminjam":idPeminjam,
@@ -41,8 +45,8 @@ def isIdItemAda(id,data):
     #Input : id, data
     #Output : dictionary
     indeks = 0
-    for barang in data:
-        if barang["id"] == id:
+    for i in range(1,len(data)):
+        if data[i]["id"] == id:
             return {"keberadaan":True,"indeks":indeks}
         indeks += 1
     return {"keberadaan":False}
