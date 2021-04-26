@@ -32,11 +32,19 @@ def parseCSV(csv_file):
     dataFile = open(csv_file)
     dataRaw = dataFile.read()
     dataFile.close()
+    hasil = []
     if dataRaw == "":  # untuk data yang bahkan header tidak ada
-        print("file tidak dapat diparse karena masih kosong, gunakan prosedur load() dibanding langsung parseCSV")
+            headers = {
+                "consumable_history.csv" :"id;id_pengambil;id_consumable;tanggal_pengambilan;jumlah",
+                "consumable.csv":"id;nama;deskripsi;jumlah;rarity",
+            "gadget.csv":"id;nama;deskripsi;jumlah;rarity;tahun ditemukan",
+            "user.csv":"nama;username;password;alamat;role",
+            "gadget_return_history.csv":"id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned",
+            "gadget_borrow_history.csv":"id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned"}
+            hasil.append(headers[csv_file])
+    
     else:
         dataPerBaris = pisah(dataRaw, '\n')
-        hasil = []
         onlyHeader = pisah(dataPerBaris[0], ';')
         hasil.append(onlyHeader)
         if len(dataPerBaris) == 1:  # untuk data yang hanya header
@@ -50,7 +58,7 @@ def parseCSV(csv_file):
                     dictData[header] = data[i]
                     i += 1
                 hasil.append(dictData)
-            return hasil
+    return hasil
 
 
 def writeCSV(csv_file, newData):
