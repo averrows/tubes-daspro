@@ -1,5 +1,1 @@
-id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned
-ibukos;G1;20/02/2100;1;0
-narutoh;G2;01/12/2100;20;0
-rojapthecat;G3;17/08/1945;10;0
-rojapthecat;G4;19/04/2021;5;0
+id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned

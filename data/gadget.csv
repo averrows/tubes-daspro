@@ -1,6 +1,1 @@
-username;password;alamat;role
-admin;password;ITB;admin
-rojapthecat;cat;Jalan Bangka Raya nomor 14;user
-heriganteng;poter;Hogwarts;user
-narutoh;uzumaki;Konoha;user
-ibukos;abcde;Tempat Kos;user
+id;nama;deskripsi;jumlah;rarity;tahun ditemukan

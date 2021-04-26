@@ -1,5 +1,1 @@
-nama;deskripsi;jumlah;rarity;tahun ditemukan
-Pintu ke ITB;Siapapun yang masuk ke dalam pintu ini akan diteleport ke kolam Intel;2;A;2112
-Alat Penagih Hutang Otomatis;Mengambil uang cash dari sang terhutang secara otomatis;1;B;2099
-Kunai Elektrik;Kunai bertenaga surya;20;B;1435
-Buku Purcell;Kitab anak imba;30;A;1945
+id;nama;deskripsi;jumlah;rarity

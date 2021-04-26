@@ -27,12 +27,14 @@ folderData = args.folderData
 
 def main():
     clear()
+    print("="*25 + "MENU UTAMA" + "="*25)
     (userData,
      gadgetData,
      consumableData,
-     consumableHistoryData,
      gadgetBorrowHistoryData,
-     gadgetReturnHistoryData) = load(folderData)
+     gadgetReturnHistoryData,
+     consumableHistoryData,
+     ) = load(folderData)
     kondisi = True
     user_status = {"username": "", "role": ""}
     def adminAllowedAction(perintah):
@@ -67,9 +69,8 @@ def main():
         elif perintah == "minta":
             pass
     
+    print("masukkan perintah: (bingung? masukkan 'bantuan')")
     while kondisi:
-        print("="*25 + "MENU UTAMA" + "="*25)
-        print("masukkan login untuk masuk atau bantuan jika bingung")
         perintah = input()
         if perintah == "login":
             user_status = login(userData)
@@ -87,10 +88,12 @@ def main():
             }
             kondisi = Keluar(kondisi, newDatas, folderData)
         if user_status["role"] == "admin":
+            print("masukkan perintah: (bingung? masukkan 'bantuan')"+" "*30 +"masuk sebagai: "+user_status["username"])
             adminAllowedAction(perintah)
         elif user_status["role"] == "user":
+            print("masukkan perintah: (bingung? masukkan 'bantuan')"+" "*30 +"masuk sebagai: "+user_status["username"])
             userAllowedAction(perintah)
-
+        
 
 if __name__ == "__main__":
     main()

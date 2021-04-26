@@ -18,7 +18,7 @@ def fixingCsvTidakAda(folderData):
     for (root, dirs, files) in os.walk(folderData,topdown=True):
         Files = files
     headers = {
-    "consumable_history.csv" :"id;id_pengambil;id_consumable;tanggal_peminjaman;jumlah",
+    "consumable_history.csv" :"id;id_pengambil;id_consumable;tanggal_pengambilan;jumlah",
     "consumable.csv":"id;nama;deskripsi;jumlah;rarity",
     "gadget.csv":"id;nama;deskripsi;jumlah;rarity;tahun ditemukan",
     "user.csv":"nama;username;password;alamat;role",

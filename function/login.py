@@ -3,7 +3,7 @@
 def cekSama(nama, listKamus, data):
     # untuk memeriksa apakah suatu nama sama dengan sebuah value dari data pada array of dictionary
     count = 0
-    for i in range (len(listKamus)):
+    for i in range (1,len(listKamus)):
         if (nama == listKamus[i][data]):
             count += 1
     if (count > 0):
