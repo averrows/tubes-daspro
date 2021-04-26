@@ -1,4 +1,4 @@
-from Hashing import Hash
+from function.Hashing import Hash # pylint: disable=import-error
 
 def cekSama(nama, listKamus, data):
     # untuk memeriksa apakah suatu nama sama dengan sebuah value dari data pada array of dictionary
