@@ -1,9 +1,3 @@
-from function.CsvTools import parseCSV # pylint: disable=import-error
-userData = parseCSV("data" + "/user.csv")
-gadgetData = parseCSV("data" + "/gadget.csv")
-gadgetBorrowHistoryData = parseCSV("data" + "/gadget_borrow_history.csv")
-gadgetReturnHistoryData = parseCSV("data" + "/gadget_return_history.csv")
-
 import datetime
 
 def daftarIDPinjamanUser(username, gadgetBorrowHistoryData):
@@ -56,7 +50,7 @@ def cariIDGadget (nama_selected_gadget, gadgetData):
             id_selected_gadget = gadgetData[i]['id']
     return id_selected_gadget
 
-def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData, gadgetReturnHistoryData):
+def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData):
     # mencetak daftar pinjaman gadget
     for i in range(len(daftarNamaGadgetPinjaman)):
         print(str(i+1) + ". " + daftarNamaGadgetPinjaman[i])
@@ -146,7 +140,7 @@ def kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetReturnHistoryD
     daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
     if (len(daftarPinjaman) != 0):
         daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
-        kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetBorrowHistoryData, gadgetReturnHistoryData)
+        kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData)
     else:       # tidak ada barang yang dipinjam
         print("Tidak ada barang yang dapat dikembalikan!")
 

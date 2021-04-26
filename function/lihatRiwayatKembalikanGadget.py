@@ -1,15 +1,9 @@
-from CsvTools import parseCSV
 from urutDataBerdasarTanggal import *
 
-userData = parseCSV("data" + "/user.csv")
-gadgetData = parseCSV("data" + "/gadget.csv")
-gadgetBorrowHistoryData = parseCSV("data" + "/gadget_borrow_history.csv")
-gadgetReturnHistoryData = parseCSV("data" + "/gadget_return_history.csv")
-
-def printDataDariAkhir(gadgetReturnHistoryData, n):
+def printDataDariAkhir(gadgetReturnHistoryData, n, userData, gadgetData, gadgetBorrowHistoryData):
     jumlahData = len(gadgetReturnHistoryData)
     for i in range((jumlahData - 1), (jumlahData - n - 1), -1):
-        susunanPrint(i, gadgetReturnHistoryData)
+        susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowHistoryData)
         print("")
 
 def cariNamaPengambil(userData, gadgetBorrowHistoryData, id_peminjaman):
@@ -30,7 +24,7 @@ def cariNamaGadget(gadgetData, gadgetBorrowHistoryData, id_peminjaman):
             nama_gadget = gadgetData[i]['nama']
     return nama_gadget
 
-def susunanPrint(i, gadgetReturnHistoryData):
+def susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData,gadgetBorrowHistoryData):
     id_peminjaman = gadgetReturnHistoryData[i]['id_peminjaman']
     print("ID Pengembalian      : " + gadgetReturnHistoryData[i]['id'])
     print("Nama Pengambil       : " + cariNamaPengambil(userData, gadgetBorrowHistoryData, id_peminjaman))
@@ -38,16 +32,16 @@ def susunanPrint(i, gadgetReturnHistoryData):
     print("Jumlah Pengembalian  : " + gadgetReturnHistoryData[i]['jumlah_pengembalian'])
     print("Tanggal Pengembalian : " + gadgetReturnHistoryData[i]['tanggal_pengembalian'])
 
-def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData):
+def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowHistoryData):
     data = gadgetReturnHistoryData[:]
     urutDataBerdasarTanggal(data)
     jumlahData = len(data)
     if (jumlahData == 0):
         print("Belum ada pengembalian gadget dilakukan!")
     elif (jumlahData <= 5):
-        printDataDariAkhir(data, jumlahData)
+        printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
     else:
-        printDataDariAkhir(data, 5)
+        printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
         printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
         while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
             print("Masukan invalid!")
@@ -57,10 +51,8 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData):
             del data_copy[(jumlahData - 5):(jumlahData + 1)]
             print("")
             if ((len(data_copy)) > 5):
-                printDataDariAkhir(data_copy, 5)
+                printDataDariAkhir(data_copy, 5, userData, gadgetData, gadgetBorrowHistoryData)
             else:
-                printDataDariAkhir(data_copy, len(data_copy))
+                printDataDariAkhir(data_copy, len(data_copy), userData, gadgetData, gadgetBorrowHistoryData)
         else:
             pass
-
-lihatRiwayatKembalikanGadget(gadgetReturnHistoryData)
