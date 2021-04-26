@@ -3,7 +3,7 @@ import datetime
 def daftarIDPinjamanUser(username, gadgetBorrowHistoryData):
     # membuat array berisi daftar ID gadget yang dipinjam seorang user
     daftarPinjaman = []
-    for i in range(len(gadgetBorrowHistoryData)):
+    for i in range(1, len(gadgetBorrowHistoryData)):
         if (username == gadgetBorrowHistoryData[i]['id_peminjam']) and (gadgetBorrowHistoryData[i]['is_returned'] != '1'):
             daftarPinjaman.append(gadgetBorrowHistoryData[i]['id_gadget'])
     return daftarPinjaman
@@ -12,7 +12,7 @@ def convertDaftarIDKeNama(daftarPinjaman, gadgetData):
     # mengubah array ID gadget pinjaman menjadi array nama gadget
     daftarNamaGadgetPinjaman = []
     for i in range(len(daftarPinjaman)):
-        for j in range(len(gadgetData)):
+        for j in range(1, len(gadgetData)):
             if (daftarPinjaman[i] == gadgetData[j]['id']):
                 daftarNamaGadgetPinjaman.append(gadgetData[j]['nama'])
     return daftarNamaGadgetPinjaman
@@ -45,7 +45,7 @@ def validasiTanggal(tanggal, bulan, tahun):
         return False
 
 def cariIDGadget (nama_selected_gadget, gadgetData):
-    for i in range (len(gadgetData)):
+    for i in range (1, len(gadgetData)):
         if (nama_selected_gadget == gadgetData[i]['nama']):
             id_selected_gadget = gadgetData[i]['id']
     return id_selected_gadget
@@ -66,7 +66,7 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorro
     jumlahPengembalian = int(input(f"Masukkan jumlah {nama_selected_gadget} yang ingin dikembalikan: "))
 
     # memeriksa apakah barang sudah pernah dikembalikan parsial atau belum
-    for i in range (len(gadgetBorrowHistoryData)):
+    for i in range (1, len(gadgetBorrowHistoryData)):
         if (id_selected_gadget == gadgetBorrowHistoryData[i]['id_gadget']):
             cek_returned = gadgetBorrowHistoryData[i]['is_returned']
             jumlahPeminjaman = gadgetBorrowHistoryData[i]['jumlah']
@@ -77,25 +77,25 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorro
         while (jumlahPengembalian > jumlahPeminjaman):
             print("Jumlah peminjaman tidak mencukupi!")
             jumlahPengembalian = int(input(f"Masukkan jumlah {nama_selected_gadget} yang ingin dikembalikan: "))
-        for i in range (len(gadgetData)):
+        for i in range (1, len(gadgetData)):
             if (id_selected_gadget == gadgetData[i]['id']):
                 gadgetData[i]['jumlah'] = gadgetData[i]['jumlah'] + jumlahPengembalian
         sisaAkhirPengembalian = jumlahPeminjaman - jumlahPengembalian
     else:                       # pernah dikembalikan secara parsial
-        for i in range (len(gadgetReturnHistoryData)):
+        for i in range (1, len(gadgetReturnHistoryData)):
             if (id_peminjaman == gadgetReturnHistoryData[i]['id_peminjaman']) and (gadgetReturnHistoryData[i]['last_returned'] == 'True'):
                 sisaAwalPengembalian = int(gadgetReturnHistoryData[i]['sisa_pengembalian'])
                 gadgetReturnHistoryData[i]['last_returned'] = 'False'
         while (jumlahPengembalian > sisaAwalPengembalian):
             print("Jumlah peminjaman tidak mencukupi!")
             jumlahPengembalian = int(input(f"Masukkan jumlah {nama_selected_gadget} yang ingin dikembalikan: "))
-        for i in range (len(gadgetData)):
+        for i in range (1, len(gadgetData)):
             if (id_selected_gadget == gadgetData[i]['id']):
                 gadgetData[i]['jumlah'] = gadgetData[i]['jumlah'] + jumlahPengembalian
         sisaAkhirPengembalian = sisaAwalPengembalian - jumlahPengembalian
 
     # ubah nilai flag is_returned
-    for i in range (len(gadgetBorrowHistoryData)):
+    for i in range (1, len(gadgetBorrowHistoryData)):
         if (id_selected_gadget == gadgetBorrowHistoryData[i]['id_gadget']):
             if (sisaAkhirPengembalian == 0):
                 gadgetBorrowHistoryData[i]['is_returned'] = '1'
@@ -118,7 +118,7 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorro
     print(f"Item {nama_selected_gadget} (x{jumlahPengembalian}) telah dikembalikan.")
 
     # penggabungan data baru dan lama
-    id_new_return_data = str(len(gadgetReturnHistoryData) + 1)
+    id_new_return_data = str(len(gadgetReturnHistoryData) + 2)
     new_return_data = {
         'id': id_new_return_data,
         'id_peminjaman': str(id_peminjaman),
@@ -130,22 +130,26 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorro
     gadgetReturnHistoryData.append(new_return_data)
 
 def kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetReturnHistoryData, gadgetData):
-    # mengubah nilai string angka ke data integer untuk perhitungan
-    for i in range(len(gadgetBorrowHistoryData)):
-        gadgetBorrowHistoryData[i]['jumlah'] = int(gadgetBorrowHistoryData[i]['jumlah'])
-    for i in range(len(gadgetData)):
-        gadgetData[i]['jumlah'] = int(gadgetData[i]['jumlah'])
-    
-    # prosedur
-    daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
-    if (len(daftarPinjaman) != 0):
-        daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
-        kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData)
-    else:       # tidak ada barang yang dipinjam
-        print("Tidak ada barang yang dapat dikembalikan!")
+    # validasi data tidak kosong
+    if (len(gadgetBorrowHistoryData) == 1) or (len(gadgetData) == 1):
+        print("Maaf, data tidak tersedia!")
+    else:
+        # mengubah nilai string angka ke data integer untuk perhitungan
+        for i in range(1, len(gadgetBorrowHistoryData)):
+            gadgetBorrowHistoryData[i]['jumlah'] = int(gadgetBorrowHistoryData[i]['jumlah'])
+        for i in range(1, len(gadgetData)):
+            gadgetData[i]['jumlah'] = int(gadgetData[i]['jumlah'])
+        
+        # prosedur
+        daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
+        if (len(daftarPinjaman) != 0):
+            daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
+            kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData)
+        else:       # tidak ada barang yang dipinjam
+            print("Tidak ada barang yang dapat dikembalikan!")
 
-    # mengubah kembali data integer ke string angka
-    for i in range(len(gadgetBorrowHistoryData)):
-        gadgetBorrowHistoryData[i]['jumlah'] = str(gadgetBorrowHistoryData[i]['jumlah'])
-    for i in range(len(gadgetData)):
-        gadgetData[i]['jumlah'] = str(gadgetData[i]['jumlah'])
+        # mengubah kembali data integer ke string angka
+        for i in range(1, len(gadgetBorrowHistoryData)):
+            gadgetBorrowHistoryData[i]['jumlah'] = str(gadgetBorrowHistoryData[i]['jumlah'])
+        for i in range(1, len(gadgetData)):
+            gadgetData[i]['jumlah'] = str(gadgetData[i]['jumlah'])

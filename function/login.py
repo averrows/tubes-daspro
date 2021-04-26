@@ -12,31 +12,35 @@ def cekSama(nama, listKamus, data):
         return False
 
 def login(userData):
-    # input username dan password
-    username_login = input("Masukkan username: ")
-    password = input("Masukkan password: ")
-    password_login = Hash(username_login, password)
-    
-    # validasi akun
-    sama_username = cekSama(username_login, userData, 'username')
-    sama_password = cekSama(password_login, userData, 'password')
-    while (sama_username == False) or (sama_password == False):
-        print("Masukan username atau password salah!")
+    # validasi data tidak kosong
+    if (len(userData) == 1):
+        print("Maaf, data tidak tersedia!")
+    else:
+        # input username dan password
         username_login = input("Masukkan username: ")
-        password = input("masukkan password: ")
+        password = input("Masukkan password: ")
         password_login = Hash(username_login, password)
+        
+        # validasi akun
         sama_username = cekSama(username_login, userData, 'username')
         sama_password = cekSama(password_login, userData, 'password')
+        while (sama_username == False) or (sama_password == False):
+            print("Masukan username atau password salah!")
+            username_login = input("Masukkan username: ")
+            password = input("masukkan password: ")
+            password_login = Hash(username_login, password)
+            sama_username = cekSama(username_login, userData, 'username')
+            sama_password = cekSama(password_login, userData, 'password')
 
-    # cek role akun
-    for i in range (1, len(userData)):
-        if (username_login == userData[i]['username']):
-            role_login = userData[i]['role']
+        # cek role akun
+        for i in range (1, len(userData)):
+            if (username_login == userData[i]['username']):
+                role_login = userData[i]['role']
 
-    # login berhasil
-    print(f"Halo {username_login}! Selamat datang di Kantong Ajaib.")
-    status_login = {
-        'username': username_login,
-        'role': role_login
-        }
-    return status_login
+        # login berhasil
+        print(f"Halo {username_login}! Selamat datang di Kantong Ajaib.")
+        status_login = {
+            'username': username_login,
+            'role': role_login
+            }
+        return status_login
