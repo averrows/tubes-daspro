@@ -1,5 +1,4 @@
-from CsvTools import parseCSV
-userData = parseCSV("data" + "/user.csv")
+
 
 def cekSama(nama, listKamus, data):
     # untuk memeriksa apakah suatu nama sama dengan sebuah value dari data pada array of dictionary

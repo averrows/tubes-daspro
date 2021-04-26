@@ -5,7 +5,6 @@
 
 # gadgetData = [{"id":"G1","nama":},{}]
 
-aray = ["kakakak","addekek"]
-
-for x in aray:
-    print(x)
+saya = [[1,2,3,4],{"saya":"lala"}]
+print(saya[0])
+print(saya[1])

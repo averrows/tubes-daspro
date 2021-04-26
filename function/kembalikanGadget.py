@@ -1,4 +1,4 @@
-from CsvTools import parseCSV
+from function.CsvTools import parseCSV # pylint: disable=import-error
 userData = parseCSV("data" + "/user.csv")
 gadgetData = parseCSV("data" + "/gadget.csv")
 gadgetBorrowHistoryData = parseCSV("data" + "/gadget_borrow_history.csv")

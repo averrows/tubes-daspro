@@ -1,6 +1,6 @@
-from CsvTools import parseCSV
-gadgetData = parseCSV("data" + "/gadget.csv")
-historyData = parseCSV("data" + "/2_gadget_borrow_history.csv")
+# from CsvTools import parseCSV
+# gadgetData = parseCSV("data" + "/gadget.csv")
+# historyData = parseCSV("data" + "/2_gadget_borrow_history.csv")
 from datetime import datetime
 waktuSekarang = datetime.now()
 def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
@@ -27,7 +27,7 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
                     "jumlah":jumlahPeminjaman,
                     "is_returned": 0
                     }
-                historyData.append(dataRiwayatBaru)
+                dataRiwayat.append(dataRiwayatBaru)
                 print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
                     namaGadget,str(jumlahPeminjaman),idPeminjam,tanggal
                 ))
@@ -47,4 +47,3 @@ def isIdItemAda(id,data):
         indeks += 1
     return {"keberadaan":False}
     
-pinjamGadget(gadgetData,historyData,"Ave")

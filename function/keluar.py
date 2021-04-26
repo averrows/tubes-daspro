@@ -1,4 +1,4 @@
-from simpan import simpan
+from function.simpan import simpan # pylint: disable=import-error
 
 # Program Keluar
 # Berisi prosedur untuk mengakhiri program main

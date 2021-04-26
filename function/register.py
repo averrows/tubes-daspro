@@ -1,5 +1,5 @@
-from CsvTools import parseCSV
-userData = parseCSV("data" + "/user.csv")
+# from CsvTools import parseCSV
+# userData = parseCSV("data" + "/user.csv")
 
 def gantiKapital(nama):
     # untuk mengganti sebuah teks dengan kapitalisasi yang benar di awal kata

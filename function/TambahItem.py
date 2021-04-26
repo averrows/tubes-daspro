@@ -1,6 +1,6 @@
-from CsvTools import parseCSV
-gadgetData = parseCSV("data" + "/gadget.csv")
-consumableData = parseCSV("data" + "/consumable.csv")
+# from CsvTools import parseCSV
+# gadgetData = parseCSV("data" + "/gadget.csv")
+# consumableData = parseCSV("data" + "/consumable.csv")
 
 def tambahitem(datas):
     ID = input("Masukkan ID: ")

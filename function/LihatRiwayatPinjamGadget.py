@@ -1,5 +1,4 @@
-from CsvTools import parseCSV
-data = parseCSV("../data/gadget_borrow_history.csv")
+
 
 
 def printDataDariAkhir(data, jumlah):
@@ -62,5 +61,4 @@ def lihatRiwayatPinjamGadget(dataRiwayat):
         else:
             print("oke")
 
-lihatRiwayatPinjamGadget(data)
         
