@@ -1,4 +1,4 @@
-from function.Hashing import Hash # pylint: disable=import-error
+from function.hashing import hash # pylint: disable=import-error
 
 def cekSama(nama, listKamus, data):
     # untuk memeriksa apakah suatu nama sama dengan sebuah value dari data pada array of dictionary
@@ -19,7 +19,7 @@ def login(userData):
         # input username dan password
         username_login = input("Masukkan username: ")
         password = input("Masukkan password: ")
-        password_login = Hash(username_login, password)
+        password_login = hash(username_login, password)
         
         # validasi akun
         sama_username = cekSama(username_login, userData, 'username')
@@ -28,7 +28,7 @@ def login(userData):
             print("Masukan username atau password salah!")
             username_login = input("Masukkan username: ")
             password = input("masukkan password: ")
-            password_login = Hash(username_login, password)
+            password_login = hash(username_login, password)
             sama_username = cekSama(username_login, userData, 'username')
             sama_password = cekSama(password_login, userData, 'password')
 

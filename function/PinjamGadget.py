@@ -6,7 +6,7 @@ from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: d
 def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
     #Tanpa pemilihan nama dan id, hanya id saja
     if len(dataGadget) == 1:
-        print("Gadget masih kosong")
+        print("Gadget masih kosong, tidak dapat dilakukan peminjaman")
     elif len(dataGadget)>1:
         idItem = input("Masukkan ID item: ")
         dataItem =isIdItemAda(idItem,dataGadget)
@@ -16,7 +16,7 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
             namaGadget = dataGadget[dataItem["indeks"]]["nama"]
             print("Gadget tersebut adalah "+namaGadget)
             print(namaGadget + " tersedia sejumlah "+ str(jumlahTersedia))
-            jumlahPeminjaman = int(input("Jumlah peminjaman: "))
+            jumlahPeminjaman = int(input("Masukkan jumlah yang ingin dipinjam: "))
             if jumlahTersedia >=  jumlahPeminjaman:
                 jadiPinjam = input("Apakah jadi meminjam?(Yy)")
                 if jadiPinjam == "y" or jadiPinjam == "Y":
