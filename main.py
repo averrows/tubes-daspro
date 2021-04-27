@@ -1,16 +1,16 @@
 # Argparse
-from function.tambahItem import tambahitem
+from function.TambahItem import tambahitem
 from function.simpan import simpan
 from function.register import register
 from function.pinjamGadget import pinjamGadget
 from function.login import login
 from function.lihatRiwayatPinjamGadget import lihatRiwayatPinjamGadget
 from function.kembalikanGadget import kembalikanGadgetMain
-from function.keluar import Keluar
-from function.CariTahun import CariTahun
-from function.CariRarity import CariRarity
+from function.keluar import keluar
+from function.CariTahun import cariTahun
+from function.CariRarity import cariRarity
 from function.load import load
-from function.bantuan import Bantuan
+from function.bantuan import bantuan
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
 import os
 clear = lambda: os.system('cls')

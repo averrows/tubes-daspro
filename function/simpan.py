@@ -22,6 +22,7 @@ def createNewFile(fileName, header):
     newFile = open(fileName,'w')
     newFile.write(header)
 def simpan(newData,folderData):
+    print("Sedang menyimpan...")
     fixingCsvTidakAda(folderData)
     dataList =  ["userData",
                 "gadgetData",
@@ -32,4 +33,4 @@ def simpan(newData,folderData):
     required_csv =  ["gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","user.csv","consumable_history.csv"]
     for i in range(len(dataList)):
         writeCSV(folderData+"/"+required_csv[i],newData[dataList[i]])
-        
+    print("data berhasil tersimpan")
