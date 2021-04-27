@@ -41,9 +41,9 @@ def main():
         if perintah == "register":
             register(userData)
         elif perintah == "carirarity":
-            CariRarity(gadgetData)
+            cariRarity(gadgetData)
         elif perintah == "caritahun":
-            CariTahun(gadgetData)
+            cariTahun(gadgetData)
         elif perintah == "tambahitem":
             tambahitem(gadgetData, consumableData)
         elif perintah == "hapusitem":
@@ -58,9 +58,9 @@ def main():
             pass
     def userAllowedAction(perintah):
         if perintah == "carirarity":
-            CariRarity(gadgetData)
+            cariRarity(gadgetData)
         elif perintah == "caritahun":
-            CariTahun(gadgetData)
+            cariTahun(gadgetData)
         elif perintah == "pinjam":
             pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["username"])
         elif perintah == "kembalikan":
@@ -76,7 +76,7 @@ def main():
             user_status = login(userData)
         elif perintah == "bantuan":
             role = user_status["role"]
-            Bantuan(role)
+            bantuan(role)
         elif perintah == "keluar":
             newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
                 "userData": userData,
@@ -86,7 +86,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            kondisi = Keluar(kondisi, newDatas, folderData)
+            kondisi = keluar(kondisi, newDatas, folderData)
         if user_status["role"] == "admin":
             print("masukkan perintah: (bingung? masukkan 'bantuan')"+" "*30 +"masuk sebagai: "+user_status["username"])
             adminAllowedAction(perintah)

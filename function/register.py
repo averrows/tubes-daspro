@@ -1,4 +1,4 @@
-from function.Hashing import Hash # pylint: disable=import-error
+from function.Hashing import hash # pylint: disable=import-error
 
 def gantiKapital(nama):
     # untuk mengganti sebuah teks dengan kapitalisasi yang benar di awal kata
@@ -42,7 +42,7 @@ def register(userData):
 
     # input password beserta hashing
     password = input("Masukkan password: ")
-    password_user = Hash(username_user, password)
+    password_user = hash(username_user, password)
 
     # input alamat
     alamat_user = input("Masukkan alamat: ")
