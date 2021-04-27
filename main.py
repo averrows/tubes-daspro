@@ -1,16 +1,16 @@
 # Argparse
-from function.tambahItem import tambahitem
+from function.TambahItem import tambahitem
 from function.simpan import simpan
 from function.register import register
 from function.pinjamGadget import pinjamGadget
 from function.login import login
 from function.lihatRiwayatPinjamGadget import lihatRiwayatPinjamGadget
 from function.kembalikanGadget import kembalikanGadgetMain
-from function.keluar import Keluar
-from function.CariTahun import CariTahun
-from function.CariRarity import CariRarity
+from function.keluar import keluar
+from function.CariTahun import cariTahun
+from function.CariRarity import cariRarity
 from function.load import load
-from function.bantuan import Bantuan
+from function.bantuan import bantuan
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
 import os
 clear = lambda: os.system('cls')
@@ -41,9 +41,9 @@ def main():
         if perintah == "register":
             register(userData)
         elif perintah == "carirarity":
-            CariRarity(gadgetData)
+            cariRarity(gadgetData)
         elif perintah == "caritahun":
-            CariTahun(gadgetData)
+            cariTahun(gadgetData)
         elif perintah == "tambahitem":
             tambahitem(gadgetData, consumableData)
         elif perintah == "hapusitem":
@@ -58,9 +58,9 @@ def main():
             pass
     def userAllowedAction(perintah):
         if perintah == "carirarity":
-            CariRarity(gadgetData)
+            cariRarity(gadgetData)
         elif perintah == "caritahun":
-            CariTahun(gadgetData)
+            cariTahun(gadgetData)
         elif perintah == "pinjam":
             pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["username"])
         elif perintah == "kembalikan":
@@ -76,7 +76,7 @@ def main():
             user_status = login(userData)
         elif perintah == "bantuan":
             role = user_status["role"]
-            Bantuan(role)
+            bantuan(role)
         elif perintah == "keluar":
             newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
                 "userData": userData,
@@ -86,7 +86,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            kondisi = Keluar(kondisi, newDatas, folderData)
+            kondisi = keluar(kondisi, newDatas, folderData)
         if user_status["role"] == "admin":
             print("masukkan perintah: (bingung? masukkan 'bantuan')"+" "*30 +"masuk sebagai: "+user_status["username"])
             adminAllowedAction(perintah)
