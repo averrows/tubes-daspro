@@ -1,5 +1,5 @@
 # Argparse
-from function.Tambahitem import tambahitem
+from function.TambahItem import tambahitem
 from function.simpan import simpan
 from function.register import register
 from function.PinjamGadget import pinjamGadget
