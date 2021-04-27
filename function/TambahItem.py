@@ -6,17 +6,17 @@ def tambahitem(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
     
     def IsNotFound(ID, data):
-    found = False
-    i = 1
-    while i < len(data) and not found:
-        if data[i]["id"] == ID:
-            found = True
+        found = False
+        i = 1
+        while i < len(data) and not found:
+            if data[i]["id"] == ID:
+                found = True
+            else:
+                i += 1
+        if found:
+            return False
         else:
-            i += 1
-    if found:
-        return False
-    else:
-        return True
+            return True
     
     # ALGORITMA
     if ID == "G":
