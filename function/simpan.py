@@ -1,4 +1,4 @@
-from function.CsvTools import writeCSV # pylint: disable=import-error
+from function.csvTools import writeCSV # pylint: disable=import-error
 import os
 def fixingCsvTidakAda(folderData):
     required_csv =  ["gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","user.csv","consumable_history.csv"]

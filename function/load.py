@@ -1,4 +1,4 @@
-from function.CsvTools import parseCSV # pylint: disable=import-error
+from function.csvTools import parseCSV # pylint: disable=import-error
 import os 
 def load(folderData):
     print("Loading...")
