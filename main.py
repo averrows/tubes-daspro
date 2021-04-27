@@ -11,6 +11,7 @@ from function.cariTahun import cariTahun
 from function.cariRarity import cariRarity
 from function.load import load
 from function.bantuan import bantuan
+from function.mintaConsumable import mintaConsumable
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
 import os
 clear = lambda: os.system('cls')
@@ -67,7 +68,7 @@ def main():
             kembalikanGadgetMain(
                 user_status["username"], gadgetBorrowHistoryData, gadgetReturnHistoryData, gadgetData)
         elif perintah == "minta":
-            pass
+            mintaConsumable(consumableData,consumableHistoryData,user_status["username"])
     
     while kondisi:
         print("masukkan perintah: (bingung? masukkan 'bantuan')")

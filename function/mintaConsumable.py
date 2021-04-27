@@ -1,3 +1,6 @@
+from function.kembalikanGadget import validasiTanggal # pylint: disable=import-error
+from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: disable=import-error
+
 def mintaConsumable(consumableData,consumableHistoryData,idPeminta):
     if len(consumableData) == 1:
         print("Consumable masih kosong, tidak dapat dilakukan peminjaman")
@@ -6,14 +9,14 @@ def mintaConsumable(consumableData,consumableHistoryData,idPeminta):
         dataItem =isIdItemAda(idItem,consumableData)
         if dataItem["keberadaan"]:
             jumlahTersedia = int(consumableData[dataItem["indeks"]]["jumlah"])
-            namaGadget = consumableData[dataItem["indeks"]]["nama"]
-            print("Gadget tersebut adalah "+namaGadget)
-            print(namaGadget + " tersedia sejumlah "+ str(jumlahTersedia))
-            jumlahPeminjaman = int(input("Masukkan jumlah yang ingin dipinjam: "))
-            if jumlahTersedia >=  jumlahPeminjaman:
-                jadiPinjam = input("Apakah jadi meminjam?(Yy)")
-                if jadiPinjam == "y" or jadiPinjam == "Y":
-                    consumableData[dataItem["indeks"]]["jumlah"] = str(jumlahTersedia - jumlahPeminjaman)
+            namaConsumable = consumableData[dataItem["indeks"]]["nama"]
+            print("Consumable tersebut adalah "+namaConsumable)
+            print(namaConsumable + " tersedia sejumlah "+ str(jumlahTersedia))
+            jumlahPermintaan = int(input("Masukkan jumlah yang ingin diminta: "))
+            if jumlahTersedia >=  jumlahPermintaan:
+                jadiMinta = input("Apakah jadi meminta?(Yy)")
+                if jadiMinta == "y" or jadiMinta == "Y":
+                    consumableData[dataItem["indeks"]]["jumlah"] = str(jumlahTersedia - jumlahPermintaan)
                     print("Kamu ada di 'kapan'?")
                     masukkanTanggal = False
                     while not masukkanTanggal:
@@ -25,17 +28,16 @@ def mintaConsumable(consumableData,consumableHistoryData,idPeminta):
                             print("Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
                     tanggal = str(day)+"/"+str(month)+"/"+str(year)
                     consumableHistoryDataBaru = {
-                        "id":consumableHistoryData[len(consumableHistoryData)-1]["id"][1:],
-                        "id_peminjam":idPeminta,
-                        "id_gadget":idItem,
-                        "tanggal_peminjaman":tanggal,
-                        "jumlah":jumlahPeminjaman,
-                        "is_returned": 0
+                        "id": str(len(consumableHistoryData)),
+                        "id_pengambil":idPeminta,
+                        "id_consumable":idItem,
+                        "tanggal_pengambilan":tanggal,
+                        "jumlah":jumlahPermintaan,
                         }
                     consumableHistoryData.append(consumableHistoryDataBaru)
                     urutDataBerdasarTanggal(consumableHistoryData)
                     print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
-                        namaGadget,str(jumlahPeminjaman),idPeminta,tanggal
+                        namaConsumable,str(jumlahPermintaan),idPeminta,tanggal
                     ))
                     print(consumableHistoryData)
                 else:
