@@ -30,7 +30,7 @@ def simpan(newData,folderData):
                 "consumableHistoryData",
                 "gadgetBorrowHistoryData",
                 "gadgetReturnHistoryData"]
-    required_csv =  ["gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","user.csv","consumable_history.csv"]
+    required_csv =  ["user.csv","gadget.csv","consumable.csv","consumable_history.csv","gadget_borrow_history.csv","gadget_return_history.csv"]
     for i in range(len(dataList)):
         writeCSV(folderData+"/"+required_csv[i],newData[dataList[i]])
     print("data berhasil tersimpan")

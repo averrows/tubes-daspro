@@ -89,6 +89,7 @@ def main():
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
             kondisi = keluar(kondisi, newDatas, folderData)
+        
         if user_status["role"] == "admin":
             adminAllowedAction(perintah)
         elif user_status["role"] == "user":
