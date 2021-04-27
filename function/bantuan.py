@@ -10,7 +10,6 @@ def bantuan(role):
     print("="*25 + " BANTUAN " + "="*25)
     if role == "admin":
         print("register - untuk mendaftarkan user baru")
-        print("login - untuk melakukan login ke sistem")
         print("carirarity - untuk mencari gadget berdasarkan rarity")
         print("caritahun - untuk mencari gadget berdasarkan tahun ditemukan")
         print("tambahitem - untuk menambahkan item ke dalam inventori")
@@ -23,7 +22,6 @@ def bantuan(role):
         print("bantuan - untuk memunculkan panduan penggunaan sistem")
         print("keluar - untuk keluar dari sistem")
     elif role == "user":
-        print("login - untuk melakukan login ke sistem")
         print("carirarity - untuk mencari gadget berdasarkan rarity")
         print("caritahun - untuk mencari gadget berdasarkan tahun ditemukan")
         print("pinjam - untuk melakukan peminjaman gadget")
