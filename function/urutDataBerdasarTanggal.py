@@ -15,7 +15,7 @@ def pisah(kalimat,pemisah):
 
 def urutDataBerdasarTanggal(data):
     headerRequired = ["tanggal_peminjaman","tanggal_pengembalian"]
-    headerExisted = list(data[0].keys())
+    headerExisted = data[0]
     if(isHeaderExisted(headerRequired,headerExisted)):
         header = getHeaderExisted(headerRequired,headerExisted)
         sort(data, header)
@@ -47,7 +47,7 @@ def get_min(data, index_start, header):
 
 def get_idx(data, tanggalConverted,header):
    # mendapatkan index dari suatu angka dalam array
-    for i in range(len(data)):
+    for i in range(1,len(data)):
         if convertTanggal(data[i][header]) == tanggalConverted:
             return i
 def swap(data, indeks_1, indeks_2,header):
@@ -56,7 +56,7 @@ def swap(data, indeks_1, indeks_2,header):
     data[indeks_1] = data[indeks_2]
     data[indeks_2] = temp
 def sort(data,header):
-    for i in range(len(data)):
+    for i in range(1,len(data)):
         maxArr = get_min(data, i, header)
         maxIdx = get_idx(data, maxArr, header)  
         swap(data, i, maxIdx, header)
