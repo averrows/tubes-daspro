@@ -7,7 +7,7 @@ def printDataDariAkhir(data, jumlah):
     #jumlah : integer
     #Melakukan print dari data dimulai dari urutan terakhir sampai jumlah
     #dibutuhkan
-    headersDariData = list(data[0].keys())
+    headersDariData = data[0]
     headersData = ["ID Peminjaman","Nama Pengambil","Nama Gadget","Tanggal Peminjaman","Jumlah"]
     for i in range(jumlah):
         dataDiPrint = data[len(data)-1-i]
@@ -46,7 +46,7 @@ def getPanjangElemenTerpanjang(list):
     return panjangElemenTerpanjang 
 
 def lihatRiwayatPinjamGadget(dataRiwayat):
-    jumlahDataRiwayat = len(dataRiwayat)
+    jumlahDataRiwayat = len(dataRiwayat[1:])
     if jumlahDataRiwayat == 0:
         print("Belum ada peminjaman gadget dilakukan")
     elif jumlahDataRiwayat < 5:
@@ -55,10 +55,10 @@ def lihatRiwayatPinjamGadget(dataRiwayat):
     else:
         print("\n")
         printDataDariAkhir(dataRiwayat, 5)
-        printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn)")
+        printSisa = input("Lihat riwayat selanjutnya?(Yy)")
         if printSisa == "Y" or printSisa == "y":
             lihatRiwayatPinjamGadget(dataRiwayat[:(len(dataRiwayat)-5)])
         else:
-            print("oke")
+            print("Kembali ke menu")
 
         
