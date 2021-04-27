@@ -1,4 +1,4 @@
-from function.Hashing import Hash # pylint: disable=import-error
+from function.Hashing import hash # pylint: disable=import-error
 
 def gantiKapital(nama):
     # untuk mengganti sebuah teks dengan kapitalisasi yang benar di awal kata
