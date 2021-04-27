@@ -1,7 +1,7 @@
 # Program CariTahun
 # berisi prosedur untuk melakukan pencarian gadget sesuai kategori tahun
 
-def CariTahun(data):
+def cariTahun(data):
 # I.S. data sudah dalam bentuk list of dictionary;
 # F.S. menampilkan seluruh gadget sesuai kategori tahun yang dicari.
 # KAMUS LOKAL
@@ -10,7 +10,7 @@ def CariTahun(data):
     # kategori : char (sudah pasti <,<=,=,>=,>)
     # gadget : string
 
-    def IsFound(year, cat):
+    def isFound(year, cat):
     # fungsi IsFound menghasilkan True jika menemukan barang
     # sesuai rarity yang dicari dan False jika tidak ditemukan
     # KAMUS LOKAL
@@ -45,7 +45,7 @@ def CariTahun(data):
     if len(data) == 1:  # data hanya berisi header
         print("Data gadget kosong!")
     else:
-        if IsFound(tahun, kategori):
+        if isFound(tahun, kategori):
             for i in range(len(data)):
                 gadget = ("Nama            : {0}\n" + 
                           "Deskripsi       : {1}\n" +

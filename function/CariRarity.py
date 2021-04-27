@@ -1,14 +1,14 @@
 # Program CariRarity
 # berisi prosedur untuk melakukan pencarian gadget sesuai rarity
 
-def CariRarity(data):
+def cariRarity(data):
 # I.S. data sudah dalam bentuk list of dictionary;
 # F.S. menampilkan seluruh gadget sesuai rarity yang dicari.
 # KAMUS LOKAL
     # data : array of dictionary (data yang akan diproses)
     # rarity : char (S, A, B, C)
 
-    def IsFound(x):
+    def isFound(x):
     # fungsi IsFound menghasilkan True jika menemukan barang
     # sesuai rarity yang dicari dan False jika tidak ditemukan
     # KAMUS LOKAL
@@ -34,7 +34,7 @@ def CariRarity(data):
     if len(data) == 1:  # data hanya berisi header
         print("Data gadget kosong!")
     else:
-        if IsFound(rarity):
+        if isFound(rarity):
             for i in range(len(data)):
                 if data[i]["rarity"] == rarity:
                     print("Nama            :", data[i]["nama"])

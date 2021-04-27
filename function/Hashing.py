@@ -1,7 +1,7 @@
 # Program Hashing
 # Berisi fungsi untuk hashing password
 
-def Hash(uname, pswd):
+def hash(uname, pswd):
 # Fungsi hash mengembalikan password yang sudah di-hash dalam 
 # bentuk 32 karakter angka walaupun password yang di-hash hanya 1 karakter
 # KAMUS
