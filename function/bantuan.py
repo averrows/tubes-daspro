@@ -1,7 +1,7 @@
 # Program Bantuan
 # Berisi prosedur untuk menampilkan bantuan/panduan penggunaan sistem
 
-def Bantuan(role):
+def bantuan(role):
 # I.S. role terdefinisi ("" jika belum login)
 # F.S. menampilkan bantuan penggunaan sistem
 # KAMUS LOKAL
