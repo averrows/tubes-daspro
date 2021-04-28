@@ -14,7 +14,7 @@ def pisah(kalimat, pemisah):
 
 
 def renderLine(line):  # fungsi untuk merender suatu line ke dalam isiBaruFile
-    i = 1
+    i = 0
     isiBaruFile = ""
     while i < len(line):
         if i == len(line) - 1:
@@ -48,7 +48,7 @@ def parseCSV(csv_file):
         onlyHeader = pisah(dataPerBaris[0], ';')
         hasil.append(onlyHeader)
         if len(dataPerBaris) == 1:  # untuk data yang hanya header
-            return hasil
+            pass
         else:
             for data in dataPerBaris[1:]:
                 dictData = {}

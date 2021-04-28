@@ -14,11 +14,12 @@ def pisah(kalimat,pemisah):
         return split_value
 
 def urutDataBerdasarTanggal(data):
-    headerRequired = ["tanggal_peminjaman","tanggal_pengembalian"]
+    headerRequired = ["tanggal_peminjaman","tanggal_pengembalian","tanggal_pengambilan"]
     headerExisted = data[0]
     if(isHeaderExisted(headerRequired,headerExisted)):
         header = getHeaderExisted(headerRequired,headerExisted)
         sort(data, header)
+        return data
     else:
         pass
 

@@ -21,6 +21,7 @@ def fixingCsvTidakAda(folderData):
 def createNewFile(fileName, header):
     newFile = open(fileName,'w')
     newFile.write(header)
+    newFile.close()
 def simpan(newData,folderData):
     print("Sedang menyimpan...")
     fixingCsvTidakAda(folderData)
