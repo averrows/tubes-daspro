@@ -1,4 +1,6 @@
 from function.csvTools import parseCSV # pylint: disable=import-error
+from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: disable=import-error
+
 import os 
 def load(folderData):
     print("Loading...")
@@ -7,7 +9,10 @@ def load(folderData):
     required_csv =  ["user.csv","gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","consumable_history.csv"]
     data = []
     for File in required_csv:
-        data.append(parseCSV(folderData+"/"+File))
+        if File in ["gadget_borrow_history.csv","gadget_return_history.csv","consumable_history.csv"]:
+            data.append(urutDataBerdasarTanggal(parseCSV(folderData+"/"+File)))
+        else:
+            data.append(parseCSV(folderData+"/"+File))
     print("Selamat datang di \"Kantong Ajaib!\"")
     return tuple(data)
 def createNewFile(fileName, header):
@@ -34,8 +39,10 @@ def fixingCsvTidakAda(folderData):
             createNewFile(folderData+"/"+x,headers[x])
 
 def fixingFolderTidakAda(folderData):
-    for (root, dirs, files) in os.walk(".",topdown=False):
-        Dirs = dirs
+    Dirs = []
+    for root, dirs, files in os.walk(".", topdown=False):
+        for name in dirs:
+            Dirs.append((root+"/"+name)[2:].replace("\\","/"))
     if folderData in Dirs:
         pass
     else: #folderData not in Dirs
