@@ -1,11 +1,10 @@
 from function.simpan import simpan # pylint: disable=import-error
 
 # Program Keluar
-# Berisi prosedur untuk mengakhiri program main
+# Berisi fungsi untuk mengakhiri program main
 
 def keluar(kondisi, newData, folderData):
-# I.S. kondisi looping terdefinisi, folderData terdefinisi;
-# F.S. mengubah kondisi looping.
+# Fungsi mengembalikan nilai False 
 # KAMUS LOKAL
     # kondisi : bool
 # ALGORITMA
