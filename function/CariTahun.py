@@ -39,12 +39,13 @@ def cariTahun(data):
             return False
 
 # ALGORITMA    
-    tahun = int(input("Masukkan tahun: "))
-    kategori = input("Masukkan kategori: ")
-    print("\nHasil pencarian:\n")
     if len(data) == 1:  # data hanya berisi header
         print("Data gadget kosong!")
     else:
+        tahun = int(input("Masukkan tahun: "))
+        kategori = input("Masukkan kategori: ")
+        print("\nHasil pencarian:\n")
+        
         if isFound(tahun, kategori):
             for i in range(len(data)):
                 gadget = ("Nama            : {0}\n" + 

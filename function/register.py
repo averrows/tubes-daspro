@@ -48,7 +48,8 @@ def register(userData):
     alamat_user = input("Masukkan alamat: ")
     
     # penggabungan data baru dan lama
-    new_user = {'nama': nama_user, 'username': username_user, 'password': password_user, 'alamat': alamat_user, 'role': 'user'}
+    id_user = len(userData) + 1
+    new_user = {'id': str(id_user), 'nama': nama_user, 'username': username_user, 'password': password_user, 'alamat': alamat_user, 'role': 'user'}
     userData.append(new_user)
 
     print(f"User {username_user} telah berhasil register ke dalam Kantong Ajaib.")
