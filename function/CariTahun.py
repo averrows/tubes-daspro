@@ -45,9 +45,9 @@ def cariTahun(data):
         tahun = int(input("Masukkan tahun: "))
         kategori = input("Masukkan kategori: ")
         print("\nHasil pencarian:\n")
-        
+
         if isFound(tahun, kategori):
-            for i in range(len(data)):
+            for i in range(1, len(data)):
                 gadget = ("Nama            : {0}\n" + 
                           "Deskripsi       : {1}\n" +
                           "Jumlah          : {2}\n" +
