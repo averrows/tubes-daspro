@@ -29,11 +29,12 @@ def cariRarity(data):
             return False
 
 # ALGORITMA    
-    rarity = input("Masukkan rarity: ")
-    print("Hasil pencarian:\n")
     if len(data) == 1:  # data hanya berisi header
         print("Data gadget kosong!")
     else:
+        rarity = input("Masukkan rarity: ")
+        print("Hasil pencarian:\n")
+        
         if isFound(rarity):
             for i in range(len(data)):
                 if data[i]["rarity"] == rarity:
