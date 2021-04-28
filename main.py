@@ -73,7 +73,7 @@ def main():
     
     while kondisi:
         print("masukkan perintah: (bingung? masukkan 'bantuan')")
-        perintah = input()
+        perintah = input(">>> ")
         if perintah == "bantuan":
             role = user_status["role"]
             bantuan(role)

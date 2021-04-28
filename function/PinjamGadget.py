@@ -6,7 +6,7 @@ from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: d
 def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
     #Tanpa pemilihan nama dan id, hanya id saja
     if len(dataGadget) == 1:
-        print("Gadget masih kosong, tidak dapat dilakukan peminjaman")
+        print("Ups, maaf! Data Gadget masih kosong, belum ada peminjaman dapat dilakukan (っ °Д °;)っ")
     elif len(dataGadget)>1:
         idItem = input("Masukkan ID item: ")
         dataItem =isIdItemAda(idItem,dataGadget)
