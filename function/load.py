@@ -31,7 +31,6 @@ def fixingCsvTidakAda(folderData):
     "gadget_return_history.csv":"id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned",
     "gadget_borrow_history.csv":"id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned"
     }
-    required_csv =  ["gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","user.csv","consumable_history.csv"]
     for x in required_csv: 
         if x in Files: #jika sudah ada filenya
             pass

@@ -1,3 +1,4 @@
+import os
 def pisah(kalimat, pemisah):
     # kalimat = 'baris 1 \n baris 2'
     split_value = []
@@ -41,8 +42,9 @@ def parseCSV(csv_file):
             "user.csv":"nama;username;password;alamat;role",
             "gadget_return_history.csv":"id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned",
             "gadget_borrow_history.csv":"id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned"}
-            hasil.append(headers[csv_file])
-    
+            #extract namafile
+            namaFile = os.path.split(csv_file)[1]
+            hasil.append(pisah(headers[namaFile],";"))
     else:
         dataPerBaris = pisah(dataRaw, '\n')
         onlyHeader = pisah(dataPerBaris[0], ';')
