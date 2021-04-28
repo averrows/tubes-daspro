@@ -21,8 +21,8 @@ def ubahjumlah(gadgetData,consumableData):
     
     # ALGORITMA
     if ID[0] == "G":
-        if IsFound(ID, data):
-            for i in range(len(data)):
+        if IsFound(ID, gadgetData):
+            for i in range(len(gadgetData)):
                 if data[i]["jumlah"] < jumlah and jumlah > 0:
                     data[i]["jumlah"] += jumlah
                     print(jumlah + " " + data[i]["nama"] + " berhasil ditambahkan. Stok sekarang: " + data[i]["jumlah"])
@@ -37,8 +37,8 @@ def ubahjumlah(gadgetData,consumableData):
         else:
             print("Tidak ada item dengan ID tersebut.")
     elif ID[0] == "C":
-        if IsFound(ID, data):
-            for i in range(len(data)):
+        if IsFound(ID, consumableData):
+            for i in range(len(consumableData)):
                 if data[i]["jumlah"] < jumlah and jumlah > 0:
                     data[i]["jumlah"] += jumlah
                     print(jumlah + " " + data[i]["nama"] + " berhasil ditambahkan. Stok sekarang: " + data[i]["jumlah"])
