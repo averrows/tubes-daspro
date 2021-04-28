@@ -24,27 +24,26 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
                     print("Kamu ada di 'kapan'?")
                     masukkanTanggal = False
                     while not masukkanTanggal:
-                        day = int(input())
-                        month = int(input())
-                        year = int(input())
+                        day = int(input("Masukkan tanggal:"))
+                        month = int(input("Masukkan bulan:"))
+                        year = int(input("Masukkan tahun:"))
                         masukkanTanggal = validasiTanggal(day,month,year)
                         if masukkanTanggal == False:
                             print("Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
                     tanggal = str(day)+"/"+str(month)+"/"+str(year)
                     dataRiwayatBaru = {
-                        "id":dataRiwayat[len(dataRiwayat)-1]["id"][1:],
+                        "id":str(5), #masih masalah,
                         "id_peminjam":idPeminjam,
                         "id_gadget":idItem,
                         "tanggal_peminjaman":tanggal,
-                        "jumlah":jumlahPeminjaman,
-                        "is_returned": 0
+                        "jumlah":str(jumlahPeminjaman),
+                        "is_returned": str(0)
                         }
                     dataRiwayat.append(dataRiwayatBaru)
                     urutDataBerdasarTanggal(dataRiwayat)
                     print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
                         namaGadget,str(jumlahPeminjaman),idPeminjam,tanggal
                     ))
-                    print(dataRiwayat)
                 else:
                     pass
             else:
