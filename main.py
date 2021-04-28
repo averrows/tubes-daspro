@@ -36,6 +36,13 @@ def main():
      gadgetReturnHistoryData,
      consumableHistoryData,
      ) = load(folderData)
+    print((userData,
+     gadgetData,
+     consumableData,
+     gadgetBorrowHistoryData,
+     gadgetReturnHistoryData,
+     consumableHistoryData,
+     ))
     kondisi = True
     user_status = {"username": "", "role": ""}
     def adminAllowedAction(perintah):
