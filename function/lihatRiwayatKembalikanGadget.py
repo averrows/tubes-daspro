@@ -11,7 +11,7 @@ def cariNamaPengambil(userData, gadgetBorrowHistoryData, id_peminjaman):
         if (id_peminjaman == gadgetBorrowHistoryData[i]['id']):
             id_peminjam = gadgetBorrowHistoryData[i]['id_peminjam']
     for i in range(1, len(userData)):
-        if (id_peminjam == userData[i]['username']):
+        if (id_peminjam == userData[i]['id']):
             nama_pengambil = userData[i]['nama']
     return nama_pengambil
 
