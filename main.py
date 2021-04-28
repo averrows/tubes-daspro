@@ -74,9 +74,6 @@ def main():
     while kondisi:
         print("masukkan perintah: (bingung? masukkan 'bantuan')")
         perintah = input()
-        if user_status["role"] == "":
-            if perintah == "login":
-                user_status = login(userData)
         if perintah == "bantuan":
             role = user_status["role"]
             bantuan(role)
@@ -91,12 +88,15 @@ def main():
             }
             kondisi = keluar(kondisi, newDatas, folderData)
         
-        if user_status["role"] == "admin":
+        elif user_status["role"] == "admin":
             adminAllowedAction(perintah)
         elif user_status["role"] == "user":
             userAllowedAction(perintah)
         else:
-            if perintah == "login":
+            if user_status["role"] == "":
+                if perintah == "login":
+                    user_status = login(userData)
+            elif perintah == "login":
                 print("Anda tidak bisa login lagi, keluar lalu jalankan ulang program untuk login dengan akun berbeda")
             else:
                 print("Perintah tersebut tidak tersedia")
