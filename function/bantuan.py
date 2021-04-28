@@ -2,11 +2,6 @@
 # Berisi prosedur untuk menampilkan bantuan/panduan penggunaan sistem
 
 def bantuan(role):
-# I.S. role terdefinisi ("" jika belum login)
-# F.S. menampilkan bantuan penggunaan sistem
-# KAMUS LOKAL
-        
-# ALGORITMA
     print("="*25 + " BANTUAN " + "="*25)
     if role == "admin":
         print("register - untuk mendaftarkan user baru")

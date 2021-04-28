@@ -2,20 +2,8 @@
 # berisi prosedur untuk melakukan pencarian gadget sesuai rarity
 
 def cariRarity(data):
-# I.S. data sudah dalam bentuk list of dictionary;
-# F.S. menampilkan seluruh gadget sesuai rarity yang dicari.
-# KAMUS LOKAL
-    # data : array of dictionary (data yang akan diproses)
-    # rarity : char (S, A, B, C)
-
     def isFound(x):
-    # fungsi IsFound menghasilkan True jika menemukan barang
-    # sesuai rarity yang dicari dan False jika tidak ditemukan
-    # KAMUS LOKAL
-        # x : char (S, A, B, C)
-        # found : bool
-        # i : integer
-    # ALGORITMA
+    # fungsi IsFound menghasilkan True jika menemukan barang sesuai rarity yang dicari
         found = False
         i = 1
         while i < len(data) and not found:
@@ -28,9 +16,9 @@ def cariRarity(data):
         else:
             return False
 
-# ALGORITMA    
+# ALGORITMA
     if len(data) == 1:  # data hanya berisi header
-        print("Data gadget kosong!")
+        print("Ups, maaf! Data tidak ditemukan (っ °Д °;)っ")
     else:
         rarity = input("Masukkan rarity: ")
         print("Hasil pencarian:\n")

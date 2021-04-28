@@ -5,9 +5,6 @@ from function.simpan import simpan # pylint: disable=import-error
 
 def keluar(kondisi, newData, folderData):
 # Fungsi mengembalikan nilai False 
-# KAMUS LOKAL
-    # kondisi : bool
-# ALGORITMA
     prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
     while prompt not in "YyNn":  # validasi input
         prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
