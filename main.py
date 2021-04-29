@@ -1,6 +1,6 @@
 # Argparse
 from function.tambahItem import tambahitem
-from function.save import save
+from function.save import saveMain
 from function.register import register
 from function.pinjamGadget import pinjamGadget
 from function.login import login
@@ -70,6 +70,18 @@ def main():
             print("="*62)
         elif perintah == "riwayatambil":
             pass
+        elif perintah == "save":
+            print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
+            newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
+                "userData": userData,
+                "gadgetData": gadgetData,
+                "consumableData": consumableData,
+                "consumableHistoryData": consumableHistoryData,
+                "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
+                "gadgetReturnHistoryData": gadgetReturnHistoryData
+            }
+            saveMain(newDatas)
+            print("="*62)
     def userAllowedAction(perintah):
         if perintah == "carirarity":
             print("="*25 + " CARI RARITY " + "="*24)    # (49 + 2 + 11) characters
@@ -83,9 +95,21 @@ def main():
             print("="*27 + " PINJAM " + "="*27)         # (54 + 2 + 6) characters
             pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["id"])
             print("="*62)
+        elif perintah == "save":
+            print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
+            newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
+                "userData": userData,
+                "gadgetData": gadgetData,
+                "consumableData": consumableData,
+                "consumableHistoryData": consumableHistoryData,
+                "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
+                "gadgetReturnHistoryData": gadgetReturnHistoryData
+            }
+            saveMain(newDatas)
+            print("="*62)
         elif perintah == "kembalikan":
             print("="*25 + " KEMBALIKAN " + "="*26)     # (51 + 2 + 9) characters
-            kembalikanGadgetMain(user_status["username"], gadgetBorrowHistoryData, gadgetReturnHistoryData, gadgetData)
+            kembalikanGadgetMain(user_status["id"], gadgetBorrowHistoryData, gadgetReturnHistoryData, gadgetData)
             print("="*62)
         elif perintah == "minta":
             print("="*27 + " MINTA " + "="*26)          # (55 + 2 + 5) characters

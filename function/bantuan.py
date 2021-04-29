@@ -13,6 +13,7 @@ def bantuan(role):
         print("riwayatpinjam - untuk melihat riwayat peminjaman gadget")
         print("riwayatkembali - untuk melihat riwayat pengembalian gadget")
         print("riwayatambil - untuk melihat riwayat pengambilan consumable")
+        print("save - untuk menyimpan file yang sudah diubah")
         print("bantuan - untuk memunculkan panduan penggunaan sistem")
         print("keluar - untuk keluar dari sistem")
     elif role == "user":
@@ -21,6 +22,7 @@ def bantuan(role):
         print("pinjam - untuk melakukan peminjaman gadget")
         print("kembalikan - untuk melakukan pengembalian gadget")
         print("minta - untuk meminta consumable")
+        print("save - untuk menyimpan file yang sudah diubah")
         print("bantuan - untuk memunculkan panduan penggunaan sistem")
         print("keluar - untuk keluar dari sistem")
     elif role == "":  # jika pengguna belum login
