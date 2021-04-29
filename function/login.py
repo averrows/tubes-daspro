@@ -32,14 +32,16 @@ def login(userData):
             sama_username = cekSama(username_login, userData, 'username')
             sama_password = cekSama(password_login, userData, 'password')
 
-        # cek role akun
+        # cek role & id akun
         for i in range (1, len(userData)):
             if (username_login == userData[i]['username']):
                 role_login = userData[i]['role']
+                id_login = userData[i]['id']
 
         # login berhasil
         print(f"Halo {username_login}! Selamat datang di Kantong Ajaib.")
         status_login = {
+            'id': id_login,
             'username': username_login,
             'role': role_login
             }
