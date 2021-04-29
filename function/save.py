@@ -15,9 +15,9 @@ def save(newData,folderData):
     required_csv =  ["user.csv","gadget.csv","consumable.csv","consumable_history.csv","gadget_borrow_history.csv","gadget_return_history.csv"]
     for i in range(len(dataList)):
         writeCSV(folderData+"/"+required_csv[i],newData[dataList[i]])
-    print("data berhasil tersimpan")
+    print("Data telah disimpan pada folder {folderData}")
 
-def saveMain(newData,folderData):
+def saveMain(newData):
     folder = input("Masukkan nama folder penyimpanan: ")
     fixingFolderTidakAda(folder)
     save(newData,folder)
