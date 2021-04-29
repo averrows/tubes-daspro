@@ -49,7 +49,7 @@ def parseCSV(csv_file):
         dataPerBaris = pisah(dataRaw, '\n')
         onlyHeader = pisah(dataPerBaris[0], ';')
         hasil.append(onlyHeader)
-        if len(dataPerBaris) == 1:  # untuk data yang hanya header
+        if len(dataPerBaris) == 1:
             pass
         else:
             for data in dataPerBaris[1:]:
@@ -65,16 +65,16 @@ def parseCSV(csv_file):
 
 def writeCSV(csv_file, newData):
     # csv_file adalah file yang akan dioverwrite, dan newData (array of dict) adalah data baru yang menggantikan data sebelumnya
+    dataFile = open(csv_file, 'w')
     header = newData[0]  # dapatkan header
     if len(newData) == 1:
         isiBaruFile = renderLine(header)
     elif len(newData) > 1:
-        dataFile = open(csv_file, 'w')
         isiBaruFile = renderLine(header)  # render header
         for x in newData[1:]:  # render isi
             # x adalah sebuah dictionary
             isi = list(x.values())
             # render isi
             isiBaruFile += renderLine(isi)
-        dataFile.write(isiBaruFile)
-        dataFile.close()
+    dataFile.write(isiBaruFile)
+    dataFile.close()

@@ -1,4 +1,4 @@
-from function.simpan import simpan # pylint: disable=import-error
+from function.save import save # pylint: disable=import-error
 
 # Program Keluar
 # Berisi fungsi untuk mengakhiri program main
@@ -10,7 +10,7 @@ def keluar(kondisi, newData, folderData):
         prompt = input("Apakah Anda mau menyimpan file yang sudah diubah?(y/n) ")
     if prompt in "Yy":
         # jalankan prosedur save data
-        simpan(newData,folderData)
+        save(newData,folderData)
     else:
         pass
     return False

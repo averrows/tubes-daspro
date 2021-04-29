@@ -1,6 +1,6 @@
 # Argparse
 from function.tambahItem import tambahitem
-from function.simpan import simpan
+from function.save import save
 from function.register import register
 from function.pinjamGadget import pinjamGadget
 from function.login import login
