@@ -1,6 +1,7 @@
 from function.csvTools import writeCSV # pylint: disable=import-error
 import os
 from function.load import fixingCsvTidakAda # pylint: disable=import-error
+from function.load import fixingFolderTidakAda # pylint: disable=import-error
 
 def save(newData,folderData):
     print("Sedang menyimpan...")
@@ -15,3 +16,8 @@ def save(newData,folderData):
     for i in range(len(dataList)):
         writeCSV(folderData+"/"+required_csv[i],newData[dataList[i]])
     print("data berhasil tersimpan")
+
+def saveMain(newData,folderData):
+    folder = input("Masukkan nama folder penyimpanan: ")
+    fixingFolderTidakAda(folder)
+    save(newData,folder)
