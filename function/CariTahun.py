@@ -8,15 +8,15 @@ def cariTahun(data):
         found = False
         i = 1
         while i < len(data) and not found:
-            if cat == "<" and int(data[i]["tahun ditemukan"]) < year:
+            if cat == "<" and int(data[i]["tahun_ditemukan"]) < year:
                 found = True
-            elif cat == "<=" and int(data[i]["tahun ditemukan"]) <= year:
+            elif cat == "<=" and int(data[i]["tahun_ditemukan"]) <= year:
                 found = True
-            elif cat == "=" and int(data[i]["tahun ditemukan"]) == year:
+            elif cat == "=" and int(data[i]["tahun_ditemukan"]) == year:
                 found = True
-            elif cat == ">=" and int(data[i]["tahun ditemukan"]) >= year:
+            elif cat == ">=" and int(data[i]["tahun_ditemukan"]) >= year:
                 found = True
-            elif cat == ">" and int(data[i]["tahun ditemukan"]) > year:
+            elif cat == ">" and int(data[i]["tahun_ditemukan"]) > year:
                 found = True
             else:
                 i += 1
@@ -40,17 +40,17 @@ def cariTahun(data):
                           "Jumlah          : {2}\n" +
                           "Rarity          : {3}\n" +                
                           "Tahun Ditemukan : {4}\n").format(data[i]["nama"], data[i]["deskripsi"], data[i]["jumlah"],
-                          data[i]["rarity"],data[i]["tahun ditemukan"])
+                          data[i]["rarity"],data[i]["tahun_ditemukan"])
                      
-                if kategori == "<" and int(data[i]["tahun ditemukan"]) < tahun:
+                if kategori == "<" and int(data[i]["tahun_ditemukan"]) < tahun:
                     print(gadget)
-                elif kategori == "<=" and int(data[i]["tahun ditemukan"]) <= tahun:
+                elif kategori == "<=" and int(data[i]["tahun_ditemukan"]) <= tahun:
                     print(gadget)
-                elif kategori == "=" and int(data[i]["tahun ditemukan"]) == tahun:
+                elif kategori == "=" and int(data[i]["tahun_ditemukan"]) == tahun:
                     print(gadget)
-                elif kategori == ">=" and int(data[i]["tahun ditemukan"]) >= tahun:
+                elif kategori == ">=" and int(data[i]["tahun_ditemukan"]) >= tahun:
                     print(gadget)
-                elif kategori == ">" and int(data[i]["tahun ditemukan"]) > tahun:
+                elif kategori == ">" and int(data[i]["tahun_ditemukan"]) > tahun:
                     print(gadget)
         else:
             print(f"Gadget dengan kategori {kategori}{tahun} tidak ditemukan!")

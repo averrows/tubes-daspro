@@ -30,6 +30,6 @@ def cariRarity(data):
                     print("Deskripsi       :", data[i]["deskripsi"])
                     print("Jumlah          :", data[i]["jumlah"])
                     print("Rarity          :", data[i]["rarity"])
-                    print("Tahun Ditemukan :", data[i]["tahun ditemukan"], "\n")
+                    print("Tahun Ditemukan :", data[i]["tahun_ditemukan"], "\n")
         else:
             print(f"Gadget dengan rarity {rarity} tidak ditemukan!")

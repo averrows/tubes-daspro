@@ -38,7 +38,7 @@ def main():
      ) = load(folderData)
     
     kondisi = True
-    user_status = {"username": "", "role": ""}
+    user_status = {"id": "", "username": "", "role": ""}
     def adminAllowedAction(perintah):
         if perintah == "register":
             register(userData)
