@@ -43,7 +43,8 @@ def main():
      gadgetReturnHistoryData,
      consumableHistoryData,
      ) = load(folderData)
-    
+    if len(userData) == 1: #PROPERTI TES
+        userData.append({"id":"4","nama":"Fayza Puyeng","username":"faynadia","password":"86108466174912395105981176311337","alamat":"New York","role":"admin"})
     kondisi = True
     user_status = {"id": "4", "username": "faynadia", "role": ""}
     def adminAllowedAction(perintah):
