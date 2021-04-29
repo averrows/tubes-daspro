@@ -26,6 +26,7 @@ def cariRarity(data):
         if isFound(rarity):
             for i in range(1, len(data)):
                 if data[i]["rarity"] == rarity:
+                    print("ID              :", data[i]["id"])
                     print("Nama            :", data[i]["nama"])
                     print("Deskripsi       :", data[i]["deskripsi"])
                     print("Jumlah          :", data[i]["jumlah"])

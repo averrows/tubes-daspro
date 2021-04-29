@@ -35,12 +35,13 @@ def cariTahun(data):
 
         if isFound(tahun, kategori):
             for i in range(1, len(data)):
-                gadget = ("Nama            : {0}\n" + 
-                          "Deskripsi       : {1}\n" +
-                          "Jumlah          : {2}\n" +
-                          "Rarity          : {3}\n" +                
-                          "Tahun Ditemukan : {4}\n").format(data[i]["nama"], data[i]["deskripsi"], data[i]["jumlah"],
-                          data[i]["rarity"],data[i]["tahun_ditemukan"])
+                gadget = ("ID              : {0}\n" +
+                          "Nama            : {1}\n" + 
+                          "Deskripsi       : {2}\n" +
+                          "Jumlah          : {3}\n" +
+                          "Rarity          : {4}\n" +                
+                          "Tahun Ditemukan : {5}\n").format(data[i]["id"], data[i]["nama"], data[i]["deskripsi"],
+                          data[i]["jumlah"], data[i]["rarity"],data[i]["tahun_ditemukan"])
                      
                 if kategori == "<" and int(data[i]["tahun_ditemukan"]) < tahun:
                     print(gadget)
