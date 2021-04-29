@@ -92,14 +92,11 @@ def main():
             adminAllowedAction(perintah)
         elif user_status["role"] == "user":
             userAllowedAction(perintah)
-        else:
-            if user_status["role"] == "":
-                if perintah == "login":
-                    user_status = login(userData)
-            elif perintah == "login":
-                print("Anda tidak bisa login lagi, keluar lalu jalankan ulang program untuk login dengan akun berbeda")
+        else:       # user_status["role"] == ""
+            if perintah == "login":
+                user_status = login(userData)
             else:
-                print("Perintah tersebut tidak tersedia")
+                print("Perintah tersebut tidak tersedia!")
 
 if __name__ == "__main__":
     main()
