@@ -21,28 +21,34 @@ def hapusitem(gadgetData,consumableData):
     
     # ALGORITMA
     if ID[0] == "G":
-        if IsFound(ID, gadgetData):
-            for i in range(len(gadgetData)):
-                if data[i]["id"] == ID:
-                    print("Apakah anda ingin menghapus " + data[i]["nama"] + "? (yYnN)")
-                    if op == "Y" or op == "y":
-                        del data[i]
-                        print("Item telah berhasil dihapus")
-                    elif op == "n" or op == "N" :
-                        print("Kembali ke Menu")
+        if len(gadgetData) == 1:
+            print("maaf data tidak tersedia")
         else:
-            print("Tidak ada item dengan ID tersebut")
+            if IsFound(ID, gadgetData):
+                for i in range(len(gadgetData)):
+                    if data[i]["id"] == ID:
+                        print("Apakah anda ingin menghapus " + data[i]["nama"] + "? (yYnN)")
+                        if op == "Y" or op == "y":
+                            del data[i]
+                            print("Item telah berhasil dihapus")
+                        elif op == "n" or op == "N" :
+                            print("Kembali ke Menu")
+            else:
+                print("Tidak ada item dengan ID tersebut")
     elif ID[0] == "C":
-        if IsFound(ID, consumableData):
-            for i in range(len(consumableData)):
-                if data[i]["id"] == ID:
-                    print("Apakah anda ingin menghapus " + data[i]["nama"] + "? (yYnN)")
-                    if op == "Y" or op == "y":
-                        del data[i]
-                        print("Item telah berhasil dihapus")
-                    elif op == "n" or op == "N" :
-                        print("Kembali ke Menu")
+        if len(consumableData) == 1:
+            print("maaf data tidak tersedia")
         else:
-            print("Tidak ada item dengan ID tersebut")
+            if IsFound(ID, consumableData):
+                for i in range(len(consumableData)):
+                    if data[i]["id"] == ID:
+                        print("Apakah anda ingin menghapus " + data[i]["nama"] + "? (yYnN)")
+                        if op == "Y" or op == "y":
+                            del data[i]
+                            print("Item telah berhasil dihapus")
+                        elif op == "n" or op == "N" :
+                            print("Kembali ke Menu")
+            else:
+                print("Tidak ada item dengan ID tersebut")
     else:
         print("Tidak ada item dengan ID tersebut")      
