@@ -13,7 +13,7 @@ def cekPinjam(idItem,dataRiwayat):
             return False    # Gadget sedang dipinjam user
     return True             # Gadget tidak sedang dipinjam user
 
-def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
+def pinjamGadget(dataGadget,dataRiwayat,idPeminjam,username):
     #Tanpa pemilihan nama dan id, hanya id saja
     if len(dataGadget) == 1:
         print("Ups, maaf! Data Gadget masih kosong, peminjaman belum dapat dilakukan (っ °Д °;)っ")
@@ -21,12 +21,15 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
         idItem = input("Masukkan ID item: ")
         dataItem =isIdItemAda(idItem,dataGadget)
         if (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == True):
-            # print("Tanggal Peminjaman: "+str(waktuSekarang.day)+"/"+str(waktuSekarang.month)+"/"+str(waktuSekarang.year))
             jumlahTersedia = int(dataGadget[dataItem["indeks"]]["jumlah"])
             namaGadget = dataGadget[dataItem["indeks"]]["nama"]
             print("Gadget tersebut adalah "+namaGadget)
             print(namaGadget + " tersedia sejumlah "+ str(jumlahTersedia))
-            jumlahPeminjaman = int(input("Masukkan jumlah yang ingin dipinjam: "))
+            jumlahPeminjaman = input("Masukkan jumlah yang ingin dipinjam: ")
+            while (validasiAngka(jumlahPeminjaman) == False):
+                print("Masukkan angka! (˘･_･˘)")
+                jumlahPeminjaman = input("Masukkan jumlah yang ingin dipinjam: ")
+            jumlahPeminjaman = int(jumlahPeminjaman)
             if jumlahTersedia >=  jumlahPeminjaman:
                 jadiPinjam = input("Apakah jadi meminjam? (Yy): ")
                 if jadiPinjam == "y" or jadiPinjam == "Y":
@@ -58,7 +61,6 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
                             print("Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
                     dmy = datetime.datetime(year, month, day)
                     tanggal = dmy.strftime("%d") + "/" + dmy.strftime("%m") + "/" + dmy.strftime("%Y")
-                    #tanggal = str(day)+"/"+str(month)+"/"+str(year)
                     idBorrow = len(dataRiwayat)
                     dataRiwayatBaru = {
                         "id":str(idBorrow),
@@ -71,16 +73,17 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam):
                     dataRiwayat.append(dataRiwayatBaru)
                     urutDataBerdasarTanggal(dataRiwayat)
                     print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
-                        namaGadget,str(jumlahPeminjaman),idPeminjam,tanggal
+                        namaGadget,str(jumlahPeminjaman),username,tanggal
                     ))
                 else:
                     pass
             else:
                 print("Jumlah tidak cukup")
         elif (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == False):
-            print("Gadget tersebut masih kamu pinjam.\nSilahkan kembalikan terlebih dahulu atau pinjam yang lain! ヾ(^▽^*)))")
+            print("Gadget tersebut masih kamu pinjam.\nSilahkan kembalikan terlebih dahulu atau pinjam yang lain! ヾ(^▽^*)")
         else:
             print("Gadget dengan ID tersebut tidak ada")
+
 def isIdItemAda(id,data):
     #Input : id, data
     #Output : dictionary

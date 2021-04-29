@@ -93,7 +93,7 @@ def main():
             print("="*62)
         elif perintah == "pinjam":
             print("="*27 + " PINJAM " + "="*27)         # (54 + 2 + 6) characters
-            pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["id"])
+            pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["id"], user_status["username"])
             print("="*62)
         elif perintah == "save":
             print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
