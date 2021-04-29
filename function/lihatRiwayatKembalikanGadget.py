@@ -35,7 +35,7 @@ def susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData,gadgetBorrowHi
 def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowHistoryData):
     # validasi data tidak kosong
     if (len(gadgetReturnHistoryData) == 1) or (len(gadgetData) == 1) or (len(userData) == 1) or (len(gadgetBorrowHistoryData) == 1):
-        print("Maaf, data tidak tersedia!")
+        print("Ups, maaf! Data tidak ditemukan (っ °Д °;)っ")
     else:
         # duplikasi data original dan menghapus element header pada array
         data = gadgetReturnHistoryData[:]

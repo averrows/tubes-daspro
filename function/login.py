@@ -14,7 +14,7 @@ def cekSama(nama, listKamus, data):
 def login(userData):
     # validasi data tidak kosong
     if (len(userData) == 1):
-        print("Maaf, data tidak tersedia!")
+        print("Ups, maaf! Data tidak ditemukan (っ °Д °;)っ")
     else:
         # input username dan password
         username_login = input("Masukkan username: ")
