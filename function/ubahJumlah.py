@@ -1,4 +1,4 @@
-from function.validasiTahundanJumlah import jumlahbesarkecil
+from function.validasiTahundanJumlah import jumlahbesarkecil # pylint: disable=import-error
 from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
 
 from CsvTools import parseCSV

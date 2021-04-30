@@ -1,6 +1,3 @@
-# from CsvTools import parseCSV
-# gadgetData = parseCSV("data" + "/gadget.csv")
-# historyData = parseCSV("data" + "/2_gadget_borrow_history.csv")
 import datetime
 
 from function.kembalikanGadget import validasiTanggal  # pylint: disable=import-error

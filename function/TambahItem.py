@@ -1,9 +1,5 @@
-from function.validasiTahundanJumlah import tahunvalid, jumlahvalid
+from function.validasiTahundanJumlah import tahunvalid, jumlahvalid # pylint: disable=import-error
 from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
-
-# from CsvTools import parseCSV
-# gadgetData = parseCSV("data" + "/gadget.csv")
-# consumableData = parseCSV("data" + "/consumable.csv")
 
 def tambahitem(gadgetData,consumableData):
     ID = input("Masukkan ID: ")

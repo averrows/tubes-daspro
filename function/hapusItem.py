@@ -1,9 +1,5 @@
 from function.validasiID import IDValid, IDditemukan #pylint: disable=import-error
 
-"""from csvTools import parseCSV
-gadgetData = parseCSV("data" + "/gadget.csv")
-consumableData = parseCSV("data" + "/consumable.csv")"""
-
 def hapusitem(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
     

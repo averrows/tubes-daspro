@@ -1,4 +1,3 @@
-
 def pisah(kalimat,pemisah):
         # kalimat = 'baris 1 \n baris 2'
         split_value = []
