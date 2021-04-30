@@ -37,27 +37,33 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
     if (len(gadgetReturnHistoryData) == 1) or (len(gadgetData) == 1) or (len(userData) == 1) or (len(gadgetBorrowHistoryData) == 1):
         print("Ups, maaf! Data tidak ditemukan (っ °Д °;)っ")
     else:
-        # duplikasi data original dan menghapus element header pada array
+        # duplikasi data original dan diurutkan berdasarkan tanggal
         data = gadgetReturnHistoryData[:]
-        data.pop(0)
         urutDataBerdasarTanggal(data)
-        jumlahData = len(data)
-        if (jumlahData <= 5):
-            printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
+        if (len(data) <= 5):
+            printDataDariAkhir(data, len(data), userData, gadgetData, gadgetBorrowHistoryData)
         else:
             printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
             kondisi = True
-            while (jumlahData - 5 > 0) and (kondisi == True):
+            halaman = 0
+            while (kondisi == True):
+                halaman += 1
+                print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
                 printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
                 while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
                     print("Masukan invalid!")
                     printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
                 if (printSisa == 'Y') or (printSisa == 'y'):
-                    del data[(jumlahData - 5):(jumlahData + 1)]
+                    del data[(len(data) - 5):(len(data) + 1)]
                     print("")
-                    if (jumlahData > 5):
+                    if (len(data) > 5):
                         printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
                     else:
-                        printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
+                        printDataDariAkhir(data, (len(data) - 1), userData, gadgetData, gadgetBorrowHistoryData)
+                        halaman += 1
+                        print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
+                        kondisi = False
+                        print("Kamu di halaman terakhir! (o゜▽゜)o☆ \nKembali ke menu utama....")
                 else:
                     kondisi = False
+                    print("Kembali ke menu utama....")
