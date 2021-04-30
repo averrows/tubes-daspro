@@ -25,7 +25,7 @@ def login(userData):
         sama_username = cekSama(username_login, userData, 'username')
         sama_password = cekSama(password_login, userData, 'password')
         while (sama_username == False) or (sama_password == False):
-            print("Masukan username atau password salah!")
+            print("Masukan username atau password salah!\n")
             username_login = input("Masukkan username: ")
             password = input("masukkan password: ")
             password_login = hash(username_login, password)
@@ -39,6 +39,7 @@ def login(userData):
                 id_login = userData[i]['id']
 
         # login berhasil
+        print("")
         print(f"Halo {username_login}! Selamat datang di Kantong Ajaib.")
         status_login = {
             'id': id_login,

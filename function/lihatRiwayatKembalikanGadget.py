@@ -46,7 +46,8 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
             printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
         else:
             printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
-            while (jumlahData - 5 > 0):
+            kondisi = True
+            while (jumlahData - 5 > 0) and (kondisi == True):
                 printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
                 while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
                     print("Masukan invalid!")
@@ -59,4 +60,4 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
                     else:
                         printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
                 else:
-                    pass
+                    kondisi = False
