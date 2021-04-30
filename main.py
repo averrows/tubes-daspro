@@ -13,6 +13,7 @@ from function.load import load
 from function.bantuan import bantuan
 from function.mintaConsumable import mintaConsumable
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
+from function.hapusItem import hapusitem
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
@@ -89,7 +90,9 @@ def main():
             tambahitem(gadgetData, consumableData)
             print("="*62)
         elif perintah == "hapusitem":
-            pass
+            print("="*25 + " HAPUS ITEM " + "="*25)     # (50 + 2 + 10) characters
+            hapusitem(gadgetData, consumableData)
+            print("="*62)
         elif perintah == "ubahjumlah":
             pass
         elif perintah == "riwayatpinjam":
