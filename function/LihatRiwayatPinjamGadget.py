@@ -1,5 +1,4 @@
-
-
+from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: disable=import-error
 
 def printDataDariAkhir(data, jumlah):
     #KAMUS LOKAL
@@ -46,6 +45,7 @@ def getPanjangElemenTerpanjang(list):
     return panjangElemenTerpanjang 
 
 def lihatRiwayatPinjamGadget(dataRiwayat):
+    dataRiwayat = urutDataBerdasarTanggal(dataRiwayat)
     jumlahDataRiwayat = len(dataRiwayat[1:])
     if jumlahDataRiwayat == 0:
         print("Belum ada peminjaman gadget dilakukan")

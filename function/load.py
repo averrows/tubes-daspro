@@ -1,5 +1,4 @@
 from function.csvTools import parseCSV # pylint: disable=import-error
-from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: disable=import-error
 
 import os 
 def load(folderData):
