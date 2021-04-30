@@ -14,9 +14,9 @@ def tambahitem(gadgetData,consumableData):
             else:
                 i += 1
         if found:
-            return False
-        else:
             return True
+        else:
+            return False
     
 # ALGORITMA
     if ID[0] == "G":
@@ -25,6 +25,8 @@ def tambahitem(gadgetData,consumableData):
             print("maaf data tidak tersedia")
         else:
             if IDditemukan(ID, gadgetData):
+                print("Gagal menambahkan item karena ID sudah ada.")
+            else:
                 gadgettambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
                 gadgettambahan["id"] = ID
                 gadgettambahan["nama"] = input("Masukkan nama: ")
@@ -37,7 +39,6 @@ def tambahitem(gadgetData,consumableData):
                     print("Item berhasil ditambahkan ke database.")
                 else :
                     print("Input Rarity Tidak Valid!")
-            else:
                 print("Gagal menambahkan item karena ID sudah ada.")
 
     elif ID[0] == "C":
@@ -46,6 +47,8 @@ def tambahitem(gadgetData,consumableData):
             print("maaf data tidak tersedia")
         else:
             if IDditemukan(ID, consumableData):
+                print("Gagal menambahkan item karena ID sudah ada.")
+            else:
                 consumabletambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
                 consumabletambahan["id"] = ID
                 consumabletambahan["nama"] = input("Masukkan nama: ")
@@ -57,8 +60,6 @@ def tambahitem(gadgetData,consumableData):
                     print("Item berhasil ditambahkan ke database.")
                 else :
                     print("Input Rarity Tidak Valid!")
-            else:
-                print("Gagal menambahkan item karena ID sudah ada.")
 
     else: #ID[0] != "C" and ID[0] != "G"
         print("Gagal menambahkan item karena ID tidak valid.")

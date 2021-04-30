@@ -6,7 +6,7 @@ def ubahjumlah(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
     jumlah = input("Masukkan jumlah: ")
     
-    def IsFound(ID, data):
+    def IDditemukan(ID, data):
         found = False
         i = 1
         while i < len(data) and not found:
@@ -24,7 +24,7 @@ def ubahjumlah(gadgetData,consumableData):
         if len(gadgetData) == 1:
         # validasi data kosong    
             print("maaf data tidak tersedia")
-            if IsFound(ID, gadgetData):
+            if IDditemukan(ID, gadgetData):
                 for i in range(len(gadgetData)):
                     if data[i]["jumlah"] < jumlah and jumlah > 0:
                         data[i]["jumlah"] += jumlah
@@ -43,7 +43,7 @@ def ubahjumlah(gadgetData,consumableData):
         if len(consumableData) == 1:
         # validasi data kosong
             print("maaf data tidak tersedia")
-            if IsFound(ID, consumableData):
+            if IDditemukan(ID, consumableData):
                 for i in range(len(consumableData)):
                     if data[i]["jumlah"] < jumlah and jumlah > 0:
                         data[i]["jumlah"] += jumlah
