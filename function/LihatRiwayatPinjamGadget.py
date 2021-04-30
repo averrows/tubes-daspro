@@ -51,7 +51,7 @@ def lihatRiwayatPinjamGadget(dataRiwayat):
         print("Belum ada peminjaman gadget dilakukan")
     elif jumlahDataRiwayat < 5:
         print("\n")
-        printDataDariAkhir(dataRiwayat, len(dataRiwayat))
+        printDataDariAkhir(dataRiwayat, len(dataRiwayat)-1)
     else:
         print("\n")
         printDataDariAkhir(dataRiwayat, 5)
