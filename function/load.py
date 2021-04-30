@@ -26,11 +26,16 @@ def fixingCsvTidakAda(folderData):
             createNewFile(folderData+"/"+x)
 
 def fixingFolderTidakAda(folderData):
-    Dirs = []
-    for root, dirs, files in os.walk(".", topdown=False):
-        for name in dirs:
-            Dirs.append((root+"/"+name)[2:].replace("\\","/"))
-    if folderData in Dirs:
+    def rekursiBuatFolder(path):
+        #basis
+        if os.path.dirname(path) == "":
+            os.mkdir(path)
+            return path
+        else: #rekurens
+            path = os.path.join(rekursiBuatFolder(os.path.dirname(path)),os.path.basename(path))
+            os.mkdir(path)
+            return path
+    if os.path.isdir(folderData):
         pass
-    else: #folderData not in Dirs
-        os.mkdir("./"+folderData)
+    else:
+        rekursiBuatFolder(folderData)
