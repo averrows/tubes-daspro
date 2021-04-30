@@ -8,7 +8,7 @@ def bantuan(role):
         print("carirarity - untuk mencari gadget berdasarkan rarity")
         print("caritahun - untuk mencari gadget berdasarkan tahun ditemukan")
         print("tambahitem - untuk menambahkan item ke dalam inventori")
-        print("hapus item - untuk menghapus item di dalam inventori")
+        print("hapusitem - untuk menghapus item di dalam inventori")
         print("ubahjumlah - untuk mengubah jumlah gadget dan consumable di dalam inventori")
         print("riwayatpinjam - untuk melihat riwayat peminjaman gadget")
         print("riwayatkembali - untuk melihat riwayat pengembalian gadget")
