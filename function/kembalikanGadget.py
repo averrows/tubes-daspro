@@ -60,16 +60,25 @@ def cariIDGadget (nama_selected_gadget, gadgetData):
 
 def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData):
     # mencetak daftar pinjaman gadget
+    print("Daftar pinjaman:")
     for i in range(len(daftarNamaGadgetPinjaman)):
         print(str(i+1) + ". " + daftarNamaGadgetPinjaman[i])
     print()
 
     # memilih gadget yang ingin dikembalikan dan jumlah pengembalian
-    nomorGadget = int(input("Masukkan nomor peminjaman: "))
-    while (nomorGadget > (len(daftarNamaGadgetPinjaman) + 1)):
+    nomorGadget = input("Masukkan nomor peminjaman: ")
+    while (validasiAngka(nomorGadget) == False):
+                print("Masukkan angka! (˘･_･˘)")
+                jumlahPeminjaman = input("Masukkan nomor peminjaman: ")
+    nomorGadget = int(nomorGadget)
+    while (nomorGadget > (len(daftarNamaGadgetPinjaman))) or (nomorGadget < 1):
         print("Nomor peminjaman tidak ada!")
-        nomorGadget = int(input("Masukkan nomor peminjaman: "))
-    nama_selected_gadget = daftarNamaGadgetPinjaman[nomorGadget - 1]
+        nomorGadget = input("Masukkan nomor peminjaman: ")
+        while (validasiAngka(nomorGadget) == False):
+            print("Masukkan angka! (˘･_･˘)")
+            jumlahPeminjaman = input("Masukkan nomor peminjaman: ")
+        nomorGadget = int(nomorGadget)
+    nama_selected_gadget = daftarNamaGadgetPinjaman[nomorGadget-1]
     id_selected_gadget = cariIDGadget(nama_selected_gadget, gadgetData)
     jumlahPengembalian = input(f"Masukkan jumlah {nama_selected_gadget} yang ingin dikembalikan: ")
     while (validasiAngka(jumlahPengembalian) == False):

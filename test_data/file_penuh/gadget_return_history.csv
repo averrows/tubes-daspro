@@ -1,1 +1,4 @@
 id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last_returned
+1;2;07/08/2010;2;2;False
+2;2;30/04/2021;2;0;True
+3;3;06/07/1000;3;0;True

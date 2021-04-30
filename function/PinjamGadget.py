@@ -30,55 +30,58 @@ def pinjamGadget(dataGadget,dataRiwayat,idPeminjam,username):
                 print("Masukkan angka! (˘･_･˘)")
                 jumlahPeminjaman = input("Masukkan jumlah yang ingin dipinjam: ")
             jumlahPeminjaman = int(jumlahPeminjaman)
-            if jumlahTersedia >=  jumlahPeminjaman:
-                jadiPinjam = input("Apakah jadi meminjam? (Yy): ")
-                if jadiPinjam == "y" or jadiPinjam == "Y":
-                    dataGadget[dataItem["indeks"]]["jumlah"] = str(jumlahTersedia - jumlahPeminjaman)
-                    print("Kamu ada di 'kapan'?")
-                    masukkanTanggal = False
-                    while not masukkanTanggal:
-                        # tanggal
-                        day = input("Masukkan tanggal: ")
-                        while (validasiAngka(day) == False):
-                            print("Masukkan angka! (˘･_･˘)")
-                            day = input("Masukkan tanggal: ")
-                        day = int(day)
-                        # bulan
-                        month = input("Masukkan bulan: ")
-                        while (validasiAngka(month) == False):
-                            print("Masukkan angka! (˘･_･˘)")
-                            month = input("Masukkan bulan: ")
-                        month = int(month)
-                        # tahun
-                        year = input("Masukkan tahun: ")
-                        while (validasiAngka(year) == False):
-                            print("Masukkan angka! (˘･_･˘)")
-                            year = input("Masukkan tahun: ")
-                        year = int(year)
-                        #validasi
-                        masukkanTanggal = validasiTanggal(day, month, year)
-                        if masukkanTanggal == False:
-                            print("Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
-                    dmy = datetime.datetime(year, month, day)
-                    tanggal = dmy.strftime("%d") + "/" + dmy.strftime("%m") + "/" + dmy.strftime("%Y")
-                    idBorrow = len(dataRiwayat)
-                    dataRiwayatBaru = {
-                        "id":str(idBorrow),
-                        "id_peminjam":idPeminjam,
-                        "id_gadget":idItem,
-                        "tanggal_peminjaman":tanggal,
-                        "jumlah":str(jumlahPeminjaman),
-                        "is_returned": str(0)
-                        }
-                    dataRiwayat.append(dataRiwayatBaru)
-                    urutDataBerdasarTanggal(dataRiwayat)
-                    print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
-                        namaGadget,str(jumlahPeminjaman),username,tanggal
-                    ))
-                else:
-                    pass
+            if jumlahPeminjaman == 0:
+                print("Berarti gak ada yang dipinjam dong... ┌( ´_ゝ` )┐")
             else:
-                print("Jumlah tidak cukup")
+                if jumlahTersedia >=  jumlahPeminjaman:
+                    jadiPinjam = input("Apakah jadi meminjam? (Yy): ")
+                    if jadiPinjam == "y" or jadiPinjam == "Y":
+                        dataGadget[dataItem["indeks"]]["jumlah"] = str(jumlahTersedia - jumlahPeminjaman)
+                        print("Kamu ada di 'kapan'?")
+                        masukkanTanggal = False
+                        while not masukkanTanggal:
+                            # tanggal
+                            day = input("Masukkan tanggal: ")
+                            while (validasiAngka(day) == False):
+                                print("Masukkan angka! (˘･_･˘)")
+                                day = input("Masukkan tanggal: ")
+                            day = int(day)
+                            # bulan
+                            month = input("Masukkan bulan: ")
+                            while (validasiAngka(month) == False):
+                                print("Masukkan angka! (˘･_･˘)")
+                                month = input("Masukkan bulan: ")
+                            month = int(month)
+                            # tahun
+                            year = input("Masukkan tahun: ")
+                            while (validasiAngka(year) == False):
+                                print("Masukkan angka! (˘･_･˘)")
+                                year = input("Masukkan tahun: ")
+                            year = int(year)
+                            #validasi
+                            masukkanTanggal = validasiTanggal(day, month, year)
+                            if masukkanTanggal == False:
+                                print("Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
+                        dmy = datetime.datetime(year, month, day)
+                        tanggal = dmy.strftime("%d") + "/" + dmy.strftime("%m") + "/" + dmy.strftime("%Y")
+                        idBorrow = len(dataRiwayat)
+                        dataRiwayatBaru = {
+                            "id":str(idBorrow),
+                            "id_peminjam":idPeminjam,
+                            "id_gadget":idItem,
+                            "tanggal_peminjaman":tanggal,
+                            "jumlah":str(jumlahPeminjaman),
+                            "is_returned": str(0)
+                            }
+                        dataRiwayat.append(dataRiwayatBaru)
+                        urutDataBerdasarTanggal(dataRiwayat)
+                        print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
+                            namaGadget,str(jumlahPeminjaman),username,tanggal
+                        ))
+                    else:
+                        pass
+                else:
+                    print("Jumlah tidak cukup")
         elif (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == False):
             print("Gadget tersebut masih kamu pinjam.\nSilahkan kembalikan terlebih dahulu atau pinjam yang lain! ヾ(^▽^*)")
         else:
