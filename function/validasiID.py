@@ -4,6 +4,7 @@ def IDValid(ID):
     panjangID = len(ID)
     if panjangID == 1:
         IDInteger = False
+        print("gagal")
         return False
     else:
         if ID[0] == "C" or ID[0] == "G":
