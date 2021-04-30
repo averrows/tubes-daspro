@@ -14,6 +14,9 @@ from function.bantuan import bantuan
 from function.mintaConsumable import mintaConsumable
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
 from function.hapusItem import hapusitem
+from function.lihatRiwayatPengambilanConsumable import lihatRiwayatPengambilanConsumable
+from function.ubahJumlah import ubahjumlah
+
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
@@ -94,7 +97,9 @@ def main():
             hapusitem(gadgetData, consumableData)
             print("="*62)
         elif perintah == "ubahjumlah":
-            pass
+            print("="*25 + " UBAH JUMLAH " + "="*24)     # (49 + 2 + 11) characters
+            ubahjumlah(gadgetData, consumableData)
+            print("="*62)
         elif perintah == "riwayatpinjam":
             print("="*23 + " RIWAYAT PINJAM " + "="*23)  # (46 + 2 + 14) characters
             lihatRiwayatPinjamGadget(gadgetBorrowHistoryData)
@@ -104,7 +109,9 @@ def main():
             lihatRiwayatKembalikanGadget(gadgetReturnHistoryData,userData,gadgetData,gadgetBorrowHistoryData)
             print("="*62)
         elif perintah == "riwayatambil":
-            pass
+            print("="*23 + " RIWAYAT AMBIL " + "="*23)   # (46 + 2 + 14) characters
+            lihatRiwayatPengambilanConsumable(consumableHistoryData,userData,consumableData)
+            print("="*62)
         elif perintah == "save":
             print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
             newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.

@@ -24,7 +24,7 @@ def cariNamaGadget(gadgetData, gadgetBorrowHistoryData, id_peminjaman):
             nama_gadget = gadgetData[i]['nama']
     return nama_gadget
 
-def susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData,gadgetBorrowHistoryData):
+def susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowHistoryData):
     id_peminjaman = gadgetReturnHistoryData[i]['id_peminjaman']
     print("ID Pengembalian      : " + gadgetReturnHistoryData[i]['id'])
     print("Nama Pengambil       : " + cariNamaPengambil(userData, gadgetBorrowHistoryData, id_peminjaman))
