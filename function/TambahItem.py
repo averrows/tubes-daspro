@@ -1,4 +1,5 @@
 from function.validasiID import IDValid, IDditemukan
+from function.validasiTahundanJumlah import tahunvalid, jumlahvalid
 
 # from CsvTools import parseCSV
 # gadgetData = parseCSV("data" + "/gadget.csv")
@@ -22,14 +23,19 @@ def tambahitem(gadgetData,consumableData):
                     gadgettambahan["nama"] = input("Masukkan nama: ")
                     gadgettambahan["deskripsi"] = input("Masukkan Deskripsi: ")
                     gadgettambahan["jumlah"] = input("Masukkan Jumlah: ")
-                    gadgettambahan["rarity"] = input("Masukkan Rarity: ")
-                    if gadgettambahan["rarity"] == "C" or gadgettambahan["rarity"] == "B" or gadgettambahan["rarity"] == "A" or gadgettambahan["rarity"] == "S" or gadgettambahan["rarity"] == "c" or gadgettambahan["rarity"] == "b" or gadgettambahan["rarity"] == "a" or gadgettambahan["rarity"] == "s":
-                        gadgettambahan["tahun"] = int(input("Masukkan tahun: "))
-                        gadgetData.append(gadgettambahan)
-                        print("Item berhasil ditambahkan ke database.")
-                    else :
-                        print("Input Rarity Tidak Valid!")
-                    print("Gagal menambahkan item karena ID sudah ada.")
+                    if jumlahvalid(gadgettambahan["jumlah"]):
+                        gadgettambahan["rarity"] = input("Masukkan Rarity: ")
+                        if gadgettambahan["rarity"] == "C" or gadgettambahan["rarity"] == "B" or gadgettambahan["rarity"] == "A" or gadgettambahan["rarity"] == "S" or gadgettambahan["rarity"] == "c" or gadgettambahan["rarity"] == "b" or gadgettambahan["rarity"] == "a" or gadgettambahan["rarity"] == "s":
+                            gadgettambahan["tahun"] = input("Masukkan tahun: ")
+                            if tahunvalid(gadgettambahan["tahun"]):
+                                gadgetData.append(gadgettambahan)
+                                print("Item berhasil ditambahkan ke database.")
+                            else:
+                                print("Input Tahun Tidak Valid!")
+                        else :
+                            print("Input Rarity Tidak Valid!")
+                    else:
+                        print("Input Jumlah Tidak Valid!")
 
         elif ID[0] == "C":
             if len(consumableData) == 1:
@@ -44,12 +50,15 @@ def tambahitem(gadgetData,consumableData):
                     consumabletambahan["nama"] = input("Masukkan nama: ")
                     consumabletambahan["deskripsi"] = input("Masukkan Deskripsi: ")
                     consumabletambahan["jumlah"] = input("Masukkan Jumlah: ")
-                    consumabletambahan["rarity"] = input("Masukkan Rarity: ")
-                    if consumabletambahan["rarity"] == "C" or consumabletambahan["rarity"] == "B" or consumabletambahan["rarity"] == "A" or consumabletambahan["rarity"] == "S" or consumabletambahan["rarity"] == "c" or consumabletambahan["rarity"] == "b" or consumabletambahan["rarity"] == "a" or consumabletambahan["rarity"] == "s":
-                        consumableData.append(consumabletambahan)
-                        print("Item berhasil ditambahkan ke database.")
-                    else :
-                        print("Input Rarity Tidak Valid!")
+                    if jumlahvalid(consumabletambahan["jumlah"]):
+                        consumabletambahan["rarity"] = input("Masukkan Rarity: ")
+                        if consumabletambahan["rarity"] == "C" or consumabletambahan["rarity"] == "B" or consumabletambahan["rarity"] == "A" or consumabletambahan["rarity"] == "S" or consumabletambahan["rarity"] == "c" or consumabletambahan["rarity"] == "b" or consumabletambahan["rarity"] == "a" or consumabletambahan["rarity"] == "s":
+                            consumableData.append(consumabletambahan)
+                            print("Item berhasil ditambahkan ke database.")
+                        else :
+                            print("Input Rarity Tidak Valid!")
+                    else:
+                        print("Input Jumlah Tidak Valid!")
 
         else: #ID[0] != "C" and ID[0] != "G"
             print("Gagal menambahkan item karena ID tidak valid.")

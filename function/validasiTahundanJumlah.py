@@ -29,31 +29,21 @@ def jumlahvalid(jumlah):
         return False
 
 def jumlahbesarkecil(jumlah):
-    if jumlah < 0:
-        jumlahkurang = False
-        jumlahstring = str(jumlah)
-        panjangjumlah = len(jumlah)
-        kodejumlah = jumlahstring[0:panjangjumlah]
-        for i in kodejumlah:
-            if i not in "1234567890":
-                jumlahkurang = False
-            else:
-                jumlahkurang = True
-        if jumlahkurang:
-            return True
+    statusjumlah = False
+    jumlahstring = str(jumlah)
+    panjangjumlah = len(jumlahstring)
+    kodesatu = jumlahstring[0:panjangjumlah]
+    kodesisa = jumlahstring[1:panjangjumlah]
+    for i in kodesatu:
+        if jumlahstring[0] not in "-1234567890":
+            statusjumlah = False
         else:
-            return False
-    else :
-        jumlahlebih = False
-        jumlahstring = str(jumlah)
-        panjangjumlah = len(jumlah)
-        kodejumlah = jumlahstring[0:panjangjumlah]
-        for i in kodejumlah:
-            if i not in "-1234567890":
-                jumlahlebih = False
-            else:
-                jumlahlebih = True
-        if jumlahlebih:
-            return True
-        else:
-            return False
+            for i in kodesisa:
+                if i not in "1234567890":
+                    statusjumlah = False
+                else:
+                    statusjumlah = True
+    if statusjumlah:
+        return True
+    else:
+        return False
