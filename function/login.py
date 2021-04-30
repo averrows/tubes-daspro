@@ -39,6 +39,7 @@ def login(userData):
                 id_login = userData[i]['id']
 
         # login berhasil
+        print("Login berhasil!")
         print("")
         print(f"Halo {username_login}! Selamat datang di Kantong Ajaib.")
         status_login = {
