@@ -23,12 +23,28 @@ parser.add_argument("folderData", help="folder dari data",
 args = parser.parse_args()
 folderData = args.folderData
 
+# text art interface
+doraemon_stenbaimi = r"""
+                  ,,;yyWW$$@l@l@@$$$$@gyw,,                 
+            ,y@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$@$gw,           
+        ,@$$$$$$$@*'      "*$$$$@*`     `"M$$$$$$$$g,       
+     w$$$$$$$$$F             1$"            "%$$$$$$$$&,    
+  ,$$$$$$$$$$$                L               ]$$$$$$$$$$g, 
+g$$$$$$$$$$$$`          ,,,   L   ,,           ]$$$$$$$$$$$@
+$$$$$$$$$$$@M          $wg@K  L  @wg@C         j%@$$$$$$$$$$
+$$$$$$$N"'   L         "&$& ,gg,,"&$M          L   "*B$$$$$$
+$$$$M`        ,           g$$$$$$$g           '       -"%@$$
+$@""~,           .     ,.$$$$$$$$$$F,     ,+"         ,wr"1$
+`      `^                "*^*^*^^**''          ''  ^"`''''''
+"""
+
 # Import fungsi secara keseluruhan
 
 
 def main():
     clear()
     print("="*25 + " MENU UTAMA " + "="*25)             # (50 + 2 + 10) characters
+    print(doraemon_stenbaimi)
     (userData,
      gadgetData,
      consumableData,
@@ -36,7 +52,7 @@ def main():
      gadgetReturnHistoryData,
      consumableHistoryData,
      ) = load(folderData)
-    
+
     kondisi = True
     user_status = {"id": "", "username": "", "role": ""}
     def adminAllowedAction(perintah):
