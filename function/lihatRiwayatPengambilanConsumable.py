@@ -1,4 +1,4 @@
-from function.urutDataBerdasarkanTanggal import urutDataBerdasarTanggal
+from function.urutDataBerdasarkanTanggal import urutDataBerdasarTanggal #pylint: disable=import-error
 
 def printDataDariAkhir(consumableHistoryData, n, userData, consumableData):
     jumlahData = len(1, consumableHistoryData)

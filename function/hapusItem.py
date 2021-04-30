@@ -1,8 +1,8 @@
-from function.validasiID import IDValid, IDditemukan
+from function.validasiID import IDValid, IDditemukan #pylint: disable=import-error
 
-from CsvTools import parseCSV
+"""from csvTools import parseCSV
 gadgetData = parseCSV("data" + "/gadget.csv")
-consumableData = parseCSV("data" + "/consumable.csv")
+consumableData = parseCSV("data" + "/consumable.csv")"""
 
 def hapusitem(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
