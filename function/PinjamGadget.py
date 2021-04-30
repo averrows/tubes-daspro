@@ -12,18 +12,16 @@ Apakah kamu yakin ingin meminjam {} sebanyak {}?
     1 Yakin
     2 Ubah Jumlah
     3 Ubah Item
-    0 Kembali
-"""
-pinjamSkript =    """
-Halo {}, kamu ingin pinjam apa?
+    0 Kembali """
+pinjamSkript = """Halo {}, kamu ingin pinjam apa?
     Tekan:
         1 "Aku tahu ID gadget yang mau aku pinjam Dora !!!"
         2 "Aku cuma tahu beberapa katanya Dora !!!" -----Bingung Aku
-        0 "Gajadi minjem ah"
-"""
+        0 "Gajadi minjem ah" """
 def dapatkanItem(data,username):
     print(pinjamSkript.format(username))
     tipeMasukan = input(">>> ")
+    print("")
     if tipeMasukan == "1":
         return input("Masukkan ID: ")
     elif tipeMasukan == "2":
@@ -118,6 +116,7 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
                     "is_returned": str(0)
                 }
                 dataRiwayat.append(dataRiwayatBaru)
+                print("")
                 print("Peminjaman {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
                     namaGadget, str(
                         jumlahPeminjaman), username, tanggal
@@ -128,7 +127,7 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
 
             # lakukan tergantung jumlah peminjaman
             if jumlahPeminjaman == 0:
-                print("Berarti gak ada yang dipinjam dong... ┌( ´_ゝ` )┐")
+                print("\nBerarti gak ada yang dipinjam dong... ┌( ´_ゝ` )┐")
             else:
                 if jumlahTersedia >= jumlahPeminjaman:
                     #pilihan 1,2,3,0 cek pilihan jadi atau tidak
