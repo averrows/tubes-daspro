@@ -8,7 +8,7 @@ from function.kembalikanGadget import validasiAngka  # pylint: disable=import-er
 from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal  # pylint: disable=import-error
 
 yakinSkript = """
-Apakah kamu yakin ingin meminjam {} sebanyak {}?
+Apakah kamu yakin ingin meminta {} sebanyak {}?
     1 Yakin
     2 Ubah Jumlah
     3 Ubah Item
@@ -17,9 +17,9 @@ Apakah kamu yakin ingin meminjam {} sebanyak {}?
 MintaSkript =    """
 Halo {}, kamu ingin Minta apa?
     Tekan:
-        1 "Aku tahu ID consumable yang mau aku Minta Dora !!!"
+        1 "Aku tahu ID consumable yang mau aku minta Dora !!!"
         2 "Aku cuma tahu beberapa katanya Dora !!!" -----Bingung Aku
-        0 "Gajadi minjem ah"
+        0 "Gajadi minta ah"
 """
 def dapatkanItem(data,username):
     print(MintaSkript.format(username))
@@ -44,13 +44,13 @@ def dapatkanItem(data,username):
                 i += 1
             pilihanconsumable = input(">>> ")
             while not (validasiAngka(pilihanconsumable) and (int(pilihanconsumable)>=1 and int(pilihanconsumable) <= len(listconsumableSesuai) )):
-                print("Masukkan pilihan yang benar")
+                print("Masukkan pilihan yang benar! (˘･_･˘)")
                 pilihanconsumable = input(">>> ")
             
             indeksPilihan = int(pilihanconsumable) - 1
             return listconsumableSesuai[indeksPilihan]["id"]
     elif tipeMasukan == "0":
-        pass
+        return "0000000"
 
 
 def cekMinta(idItem, dataRiwayat):
@@ -64,7 +64,7 @@ def getJumlahPerMintaan():
 
             # Masukkan jumlah PerMintaan
     while (validasiAngka(jumlahPerMintaan) == False):
-        print("Masukkan angka! (˘･_･˘)")
+        print("Masukkan angka positif! (˘･_･˘)")
         jumlahPerMintaan = input(
         "Masukkan jumlah yang ingin diminta: ")
     jumlahPerMintaan = int(jumlahPerMintaan)    
@@ -75,7 +75,7 @@ def mintaConsumable(dataconsumable, dataRiwayat, idPeMinta, username):
     def prosedurMinta():
         #PROSEDUR DARI MASUKKAN JUMLAH
         def prosedurMasukkanJumlahToNext():
-            #PROSEDUR DIJALANKAN JIKA JADI MEMINJAM
+            #PROSEDUR DIJALANKAN JIKA JADI MEMINTA
             def prosedurJadiMinta():    
                 dataconsumable[dataItem["indeks"]]["jumlah"] = str(
                     jumlahTersedia - jumlahPerMintaan)
@@ -148,7 +148,7 @@ def mintaConsumable(dataconsumable, dataRiwayat, idPeMinta, username):
                             nextChoiceDecided = True
                             print("Yaah kamu gajadi minta ... ┌( ´_ゝ` )┐")
                         else:
-                            print("Masukkan angka! (˘･_･˘)")
+                            print("Masukkan angka yang ada di pilihan! (˘･_･˘)")
                 else:
                     print("Jumlah tidak cukup")               
 
@@ -159,11 +159,12 @@ def mintaConsumable(dataconsumable, dataRiwayat, idPeMinta, username):
             jumlahTersedia = int(dataconsumable[dataItem["indeks"]]["jumlah"])
             indeksconsumable = dataItem["indeks"]
             namaconsumable = dataconsumable[indeksconsumable]["nama"]
-            print("consumable tersebut adalah "+namaconsumable)
-            print(namaconsumable + " tersedia sejumlah " + str(jumlahTersedia))
+            print("Berikut consumable yang akan kamu minta:")
+            print("  Nama Consumable: "+namaconsumable)
+            print("  Jumlah: " + str(jumlahTersedia))
             prosedurMasukkanJumlahToNext()
-        elif (dataItem["keberadaan"]) and (cekMinta(idItem, dataRiwayat) == False):
-            print("Consumable tersebut masih kamu minta.\nSilahkan kembalikan terlebih dahulu atau Minta yang lain! ヾ(^▽^*)")
+        elif idItem == "0000000":
+            pass
         else:
             print("Consumable dengan ID tersebut tidak ada")
     
