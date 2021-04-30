@@ -1,4 +1,4 @@
-from Function.validasiID import IDValid, IDditemukan
+from function.validasiID import IDValid, IDditemukan
 
 from CsvTools import parseCSV
 gadgetData = parseCSV("data" + "/gadget.csv")
