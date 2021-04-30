@@ -46,17 +46,17 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
             printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
         else:
             printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
-            printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
-            while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
-                print("Masukan invalid!")
+            while (jumlahData - 5 > 0):
                 printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
-            if (printSisa == 'Y') or (printSisa == 'y'):
-                data_copy = data[:]
-                del data_copy[(jumlahData - 5):(jumlahData + 1)]
-                print("")
-                if ((len(data_copy)) > 5):
-                    printDataDariAkhir(data_copy, 5, userData, gadgetData, gadgetBorrowHistoryData)
+                while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
+                    print("Masukan invalid!")
+                    printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
+                if (printSisa == 'Y') or (printSisa == 'y'):
+                    del data[(jumlahData - 5):(jumlahData + 1)]
+                    print("")
+                    if (jumlahData > 5):
+                        printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
+                    else:
+                        printDataDariAkhir(data, jumlahData, userData, gadgetData, gadgetBorrowHistoryData)
                 else:
-                    printDataDariAkhir(data_copy, len(data_copy), userData, gadgetData, gadgetBorrowHistoryData)
-            else:
-                pass
+                    pass
