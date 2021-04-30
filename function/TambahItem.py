@@ -1,4 +1,4 @@
-from function.validasiID import IDValid, IDditemukan
+from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
 
 # from CsvTools import parseCSV
 # gadgetData = parseCSV("data" + "/gadget.csv")
