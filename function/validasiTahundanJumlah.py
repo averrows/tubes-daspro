@@ -8,7 +8,7 @@ def tahunvalid(tahun):
             tahuninteger = True
         else:
             i += 1
-    if tahunInteger:
+    if tahuninteger:
         return False
     else:
         return True
@@ -23,7 +23,7 @@ def jumlahvalid(jumlah):
             jumlahinteger = True
         else:
             i += 1
-    if jumlahInteger:
+    if jumlahinteger:
         return False
     else:
         return True
