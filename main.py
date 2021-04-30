@@ -80,7 +80,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            saveMain(newDatas)
+            saveMain(newDatas,folderData)
             print("="*62)
     def userAllowedAction(perintah):
         if perintah == "carirarity":
@@ -105,7 +105,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            saveMain(newDatas)
+            saveMain(newDatas,folderData)
             print("="*62)
         elif perintah == "kembalikan":
             print("="*25 + " KEMBALIKAN " + "="*26)     # (51 + 2 + 9) characters
@@ -113,7 +113,7 @@ def main():
             print("="*62)
         elif perintah == "minta":
             print("="*27 + " MINTA " + "="*26)          # (55 + 2 + 5) characters
-            mintaConsumable(consumableData,consumableHistoryData,user_status["username"])
+            mintaConsumable(consumableData,consumableHistoryData,user_status["id"],user_status["username"])
             print("="*62)
     
     while kondisi:

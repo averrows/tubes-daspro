@@ -88,7 +88,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            saveMain(newDatas)
+            saveMain(newDatas,folderData)
             print("="*62)
     def userAllowedAction(perintah):
         if perintah == "carirarity":
@@ -113,7 +113,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            saveMain(newDatas)
+            saveMain(newDatas,folderData)
             print("="*62)
         elif perintah == "kembalikan":
             print("="*25 + " KEMBALIKAN " + "="*26)     # (51 + 2 + 9) characters
