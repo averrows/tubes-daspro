@@ -55,7 +55,7 @@ def dapatkanItem(data,username):
 
 def cekPinjam(idItem, dataRiwayat):
     for i in range(1, len(dataRiwayat)):
-        if (idItem == dataRiwayat[i]['id_gadget']) and (dataRiwayat[i]['is_returned'] != 1):
+        if (idItem == dataRiwayat[i]['id_gadget']) and (dataRiwayat[i]['is_returned'] != "1"):
             return False    # Gadget sedang dipinjam user
     return True             # Gadget tidak sedang dipinjam user
 
