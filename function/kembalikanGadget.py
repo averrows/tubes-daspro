@@ -8,6 +8,20 @@ def daftarIDPinjamanUser(username, gadgetBorrowHistoryData):
             daftarPinjaman.append(gadgetBorrowHistoryData[i]['id_gadget'])
     return daftarPinjaman
 
+def daftarJumlahPinjaman(username, gadgetBorrowHistoryData, gadgetReturnHistoryData):
+    # mencari jumlah barang yang sedang dipinjaman seorang user
+    daftarJumlah = []
+    for i in range(1, len(gadgetBorrowHistoryData)):
+        if (username == gadgetBorrowHistoryData[i]['id_peminjam']) and (gadgetBorrowHistoryData[i]['is_returned'] != '1'):
+            if (gadgetBorrowHistoryData[i]['is_returned'] == '0'):
+                daftarJumlah.append(gadgetBorrowHistoryData[i]['jumlah'])
+            else:
+                id_peminjaman = gadgetBorrowHistoryData[i]['id']
+                for j in range(1, len(gadgetReturnHistoryData)):
+                    if (id_peminjaman == gadgetReturnHistoryData[j]['id_peminjaman']) and (gadgetReturnHistoryData[j]['last_returned'] == 'True'):
+                        daftarJumlah.append(gadgetReturnHistoryData[j]['sisa_pengembalian'])
+    return daftarJumlah
+                
 def convertDaftarIDKeNama(daftarPinjaman, gadgetData):
     # mengubah array ID gadget pinjaman menjadi array nama gadget
     daftarNamaGadgetPinjaman = []
@@ -60,11 +74,12 @@ def cariIDGadget (nama_selected_gadget, gadgetData):
             id_selected_gadget = gadgetData[i]['id']
     return id_selected_gadget
 
-def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData):
+def kembalikanGadget(username, daftarNamaGadgetPinjaman, daftarJumlah, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData):
     # mencetak daftar pinjaman gadget
     print("Daftar pinjaman:")
     for i in range(len(daftarNamaGadgetPinjaman)):
-        print(str(i+1) + ". " + daftarNamaGadgetPinjaman[i])
+        jumlah = daftarJumlah[i]
+        print(str(i+1) + ". " + daftarNamaGadgetPinjaman[i] + f" (x{jumlah})")
     print()
 
     # memilih gadget yang ingin dikembalikan dan jumlah pengembalian
@@ -283,9 +298,10 @@ def kembalikanGadgetMain(username, gadgetBorrowHistoryData, gadgetReturnHistoryD
         
         # prosedur
         daftarPinjaman = daftarIDPinjamanUser(username, gadgetBorrowHistoryData)
+        daftarJumlah = daftarJumlahPinjaman(username, gadgetBorrowHistoryData, gadgetReturnHistoryData)
         if (len(daftarPinjaman) != 0):
             daftarNamaGadgetPinjaman = convertDaftarIDKeNama(daftarPinjaman, gadgetData)
-            kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData)
+            kembalikanGadget(username, daftarNamaGadgetPinjaman, daftarJumlah, gadgetData, gadgetBorrowHistoryData, gadgetReturnHistoryData)
         else:       # tidak ada barang yang dipinjam
             print("Kamu tidak sedang meminjam apa-apa!\nSilakan melakukan peminjaman (｡･∀･)ﾉﾞ")
 
