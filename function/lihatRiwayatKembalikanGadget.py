@@ -1,7 +1,7 @@
 from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal #pylint: disable=import-error
 
 def printDataDariAkhir(gadgetReturnHistoryData, n, userData, gadgetData, gadgetBorrowHistoryData):
-    jumlahData = len(1, gadgetReturnHistoryData)
+    jumlahData = len(gadgetReturnHistoryData)
     for i in range((jumlahData - 1), (jumlahData - n - 1), -1):
         susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowHistoryData)
         print("")
