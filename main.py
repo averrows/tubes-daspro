@@ -23,12 +23,44 @@ parser.add_argument("folderData", help="folder dari data",
 args = parser.parse_args()
 folderData = args.folderData
 
+# text art interface
+doraemon_stenbaimi = r"""
+                  ,,;yyWW$$@l@l@@$$$$@gyw,,                 
+            ,y@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$@$gw,           
+        ,@$$$$$$$@*'      "*$$$$@*`     `"M$$$$$$$$g,       
+     w$$$$$$$$$F             1$"            "%$$$$$$$$&,    
+  ,$$$$$$$$$$$                L               ]$$$$$$$$$$g, 
+g$$$$$$$$$$$$`          ,,,   L   ,,           ]$$$$$$$$$$$@
+$$$$$$$$$$$@M          $wg@K  L  @wg@C         j%@$$$$$$$$$$
+$$$$$$$N"'   L         "&$& ,gg,,"&$M          L   "*B$$$$$$
+$$$$M`        ,           g$$$$$$$g           '       -"%@$$
+$@""~,           .     ,.$$$$$$$$$$F,     ,+"         ,wr"1$
+`      `^                "*^*^*^^**''          ''  ^"`''''''
+"""
+title = r"""
+            _  __           _                    
+            | |/ /          | |                   
+            | ' / __ _ _ __ | |_ ___  _ __   __ _ 
+            |  < / _` | '_ \| __/ _ \| '_ \ / _` |
+            | . \ (_| | | | | || (_) | | | | (_| |
+            |_|\_\__,_|_| |_|\__\___/|_| |_|\__, |
+                /\   (_)     (_) |          __/ |
+               /  \   _  __ _ _| |__       |___/ 
+              / /\ \ | |/ _` | | '_ \            
+             / ____ \| | (_| | | |_) |           
+            /_/    \_\ |\__,_|_|_.__/            
+                    _/ |                         
+                    |__/                          
+"""
+
 # Import fungsi secara keseluruhan
 
 
 def main():
     clear()
     print("="*25 + " MENU UTAMA " + "="*25)             # (50 + 2 + 10) characters
+    print(title)
+    print(doraemon_stenbaimi)
     (userData,
      gadgetData,
      consumableData,
@@ -36,7 +68,7 @@ def main():
      gadgetReturnHistoryData,
      consumableHistoryData,
      ) = load(folderData)
-    
+
     kondisi = True
     user_status = {"id": "", "username": "", "role": ""}
     def adminAllowedAction(perintah):
@@ -80,7 +112,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            saveMain(newDatas)
+            saveMain(newDatas,folderData)
             print("="*62)
     def userAllowedAction(perintah):
         if perintah == "carirarity":
@@ -105,7 +137,7 @@ def main():
                 "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
-            saveMain(newDatas)
+            saveMain(newDatas,folderData)
             print("="*62)
         elif perintah == "kembalikan":
             print("="*25 + " KEMBALIKAN " + "="*26)     # (51 + 2 + 9) characters
@@ -113,7 +145,7 @@ def main():
             print("="*62)
         elif perintah == "minta":
             print("="*27 + " MINTA " + "="*26)          # (55 + 2 + 5) characters
-            mintaConsumable(consumableData,consumableHistoryData,user_status["username"])
+            mintaConsumable(consumableData,consumableHistoryData,user_status["id"],user_status["username"])
             print("="*62)
     
     while kondisi:

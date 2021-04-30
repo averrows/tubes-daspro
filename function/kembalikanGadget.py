@@ -18,12 +18,14 @@ def convertDaftarIDKeNama(daftarPinjaman, gadgetData):
     return daftarNamaGadgetPinjaman
 
 def validasiAngka(x):
+    count = 0
     for i in x:
         if i not in "1234567890":
-            return False
-        else:
-            pass
-    return True
+            count = count + 1
+    if (count > 0):
+        return False
+    else:
+        return True
 
 def validasiTanggal(tanggal, bulan, tahun):
     # kabisat = habis dibagi 4 dan tidak habis dibagi 100. atau habis dibagi 400
@@ -69,7 +71,7 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorro
     nomorGadget = input("Masukkan nomor peminjaman: ")
     while (validasiAngka(nomorGadget) == False):
                 print("Masukkan angka! (˘･_･˘)")
-                jumlahPeminjaman = input("Masukkan nomor peminjaman: ")
+                nomorGadget = input("Masukkan nomor peminjaman: ")
     nomorGadget = int(nomorGadget)
     while (nomorGadget > (len(daftarNamaGadgetPinjaman))) or (nomorGadget < 1):
         print("Nomor peminjaman tidak ada!")
@@ -164,6 +166,7 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, gadgetData, gadgetBorro
         tanggal_pengembalian = x.strftime("%d") + "/" + x.strftime("%m") + "/" + x.strftime("%Y")
 
         # gadget berhasil dikembalikan
+        print("")
         print(f"Item {nama_selected_gadget} (x{jumlahPengembalian}) telah dikembalikan.")
 
         # penggabungan data baru dan lama
