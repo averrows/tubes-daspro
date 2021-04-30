@@ -1,4 +1,4 @@
-from function.urutDataBerdasarkanTanggal import urutDataBerdasarTanggal #pylint: disable=import-error
+from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal #pylint: disable=import-error
 
 def printDataDariAkhir(consumableHistoryData, n, userData, consumableData):
     jumlahData = len(consumableHistoryData)
@@ -29,7 +29,7 @@ def susunanPrint(i, consumableHistoryData, userData, consumableData):
 
 def lihatRiwayatPengambilanConsumable(consumableHistoryData, userData, consumableData):
     # validasi data tidak kosong
-    if ((len(consumableHistoryData) == 1) or (len(consumableData) == 1) or (len(userData) == 1)):
+    if ((len(consumableHistoryData) == 1)):
         print("Ups, maaf! Data tidak ditemukan (っ °Д °;)っ")
     else:
         # duplikasi data original dan diurutkan berdasarkan tanggal

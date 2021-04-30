@@ -34,7 +34,7 @@ def susunanPrint(i, gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowH
 
 def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, gadgetBorrowHistoryData):
     # validasi data tidak kosong
-    if (len(gadgetReturnHistoryData) == 1) or (len(gadgetData) == 1) or (len(userData) == 1) or (len(gadgetBorrowHistoryData) == 1):
+    if (len(gadgetReturnHistoryData) == 1):
         print("Ups, maaf! Data tidak ditemukan (っ °Д °;)っ")
     else:
         # duplikasi data original dan diurutkan berdasarkan tanggal

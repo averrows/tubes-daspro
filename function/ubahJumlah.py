@@ -1,10 +1,6 @@
 from function.validasiTahundanJumlah import jumlahbesarkecil # pylint: disable=import-error
 from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
 
-from CsvTools import parseCSV
-gadgetData = parseCSV("data" + "/gadget.csv")
-consumableData = parseCSV("data" + "/consumable.csv")
-
 def ubahjumlah(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
     jumlah = input("Masukkan jumlah: ")
