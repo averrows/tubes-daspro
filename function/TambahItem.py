@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-from function.validasiID import IDValid, IDditemukan
 from function.validasiTahundanJumlah import tahunvalid, jumlahvalid
-=======
 from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
->>>>>>> cef66eb0909f0e150937f163d6fb0df8545676ca
 
 # from CsvTools import parseCSV
 # gadgetData = parseCSV("data" + "/gadget.csv")
