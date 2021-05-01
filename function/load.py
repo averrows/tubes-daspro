@@ -8,7 +8,8 @@ def load(folderData):
     required_csv =  ["user.csv","gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","consumable_history.csv"]
     data = []
     for File in required_csv:
-            data.append(parseCSV(folderData+"/"+File))
+            data.append(parseCSV(os.path.join(folderData,File)))
+    print("Data berhasil diload dari {}".format(folderData))
     print("Selamat datang di \"Kantong Ajaib!\"")
     return tuple(data)
 def createNewFile(fileName):
