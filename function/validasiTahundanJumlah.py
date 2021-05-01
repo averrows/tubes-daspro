@@ -34,16 +34,17 @@ def jumlahbesarkecil(jumlah):
     panjangjumlah = len(jumlahstring)
     kodesatu = jumlahstring[0:panjangjumlah]
     kodesisa = jumlahstring[1:panjangjumlah]
-    for i in kodesatu:
-        if jumlahstring[0] not in "-1234567890":
-            statusjumlah = False
-        else:
-            for i in kodesisa:
-                if i not in "1234567890":
-                    statusjumlah = False
-                else:
-                    statusjumlah = True
-    if statusjumlah:
-        return True
-    else:
+    if jumlahstring[0] not in "-1234567890":
+        statusjumlah = False
         return False
+    else:
+        i = 1
+        while i < panjangjumlah and not statusjumlah:
+            if i not in "1234567890":
+                statusjumlah = True
+            else:
+                i += 1
+        if statusjumlah:
+            return False
+        else:
+            return True
