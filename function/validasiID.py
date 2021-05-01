@@ -4,23 +4,19 @@ def IDValid(ID):
     panjangID = len(ID)
     if panjangID == 1:
         IDInteger = False
-        print("gagal")
         return False
     else:
         if ID[0] == "C" or ID[0] == "G":
-            kodeID = stringID[1:panjangID]
-            for i in kodeID:
-                if i not in "1234567890":
-                    IDInteger = False
-                else:
+            i = 1
+            while i < panjangID and not IDInteger:
+                if ID[i] not in "1234567890":
                     IDInteger = True
+                else:
+                    i += 1
             if IDInteger:
-                return True
-            else:
                 return False
-        else:
-            IDInteger = False
-            return False
+            else:
+                return True
 
 def IDditemukan(ID, data):
         found = False

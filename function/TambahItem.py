@@ -21,7 +21,7 @@ def tambahitem(gadgetData,consumableData):
                     gadgettambahan["jumlah"] = input("Masukkan Jumlah: ")
                     if jumlahvalid(gadgettambahan["jumlah"]):
                         gadgettambahan["rarity"] = input("Masukkan Rarity: ")
-                        if gadgettambahan["rarity"] == "C" or gadgettambahan["rarity"] == "B" or gadgettambahan["rarity"] == "A" or gadgettambahan["rarity"] == "S" or gadgettambahan["rarity"] == "c" or gadgettambahan["rarity"] == "b" or gadgettambahan["rarity"] == "a" or gadgettambahan["rarity"] == "s":
+                        if gadgettambahan["rarity"] == "C" or gadgettambahan["rarity"] == "B" or gadgettambahan["rarity"] == "A" or gadgettambahan["rarity"] == "S":
                             gadgettambahan["tahun"] = input("Masukkan tahun: ")
                             if tahunvalid(gadgettambahan["tahun"]):
                                 gadgetData.append(gadgettambahan)
@@ -48,7 +48,7 @@ def tambahitem(gadgetData,consumableData):
                     consumabletambahan["jumlah"] = input("Masukkan Jumlah: ")
                     if jumlahvalid(consumabletambahan["jumlah"]):
                         consumabletambahan["rarity"] = input("Masukkan Rarity: ")
-                        if consumabletambahan["rarity"] == "C" or consumabletambahan["rarity"] == "B" or consumabletambahan["rarity"] == "A" or consumabletambahan["rarity"] == "S" or consumabletambahan["rarity"] == "c" or consumabletambahan["rarity"] == "b" or consumabletambahan["rarity"] == "a" or consumabletambahan["rarity"] == "s":
+                        if consumabletambahan["rarity"] == "C" or consumabletambahan["rarity"] == "B" or consumabletambahan["rarity"] == "A" or consumabletambahan["rarity"] == "S":
                             consumableData.append(consumabletambahan)
                             print("Item berhasil ditambahkan ke database.")
                         else :

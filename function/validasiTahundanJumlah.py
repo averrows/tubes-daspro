@@ -2,32 +2,32 @@ def tahunvalid(tahun):
     tahuninteger = False
     tahunstring = str(tahun)
     panjangtahun = len(tahun)
-    kodetahun = tahunstring[0:panjangtahun]
-    for i in kodetahun:
-        if i not in "1234567890":
-            tahuninteger = False
-        else:
+    i = 0
+    while i < panjangtahun and not tahuninteger:
+        if tahun[i] not in "1234567890":
             tahuninteger = True
+        else:
+            i += 1
     if tahuninteger:
-        return True
-    else:
         return False
+    else:
+        return True
 
 def jumlahvalid(jumlah):
     jumlahinteger = False
     jumlahstring = str(jumlah)
     panjangjumlah = len(jumlah)
-    kodejumlah = jumlahstring[0:panjangjumlah]
-    for i in kodejumlah:
-        if i not in "1234567890":
-            jumlahinteger = False
-        else:
+    i = 1
+    while i < panjangjumlah and not jumlahinteger:
+        if jumlah[i] not in "1234567890":
             jumlahinteger = True
+        else:
+            i += 1
     if jumlahinteger:
-        return True
-    else:
         return False
-
+    else:
+        return True
+    
 def jumlahbesarkecil(jumlah):
     statusjumlah = False
     jumlahstring = str(jumlah)
