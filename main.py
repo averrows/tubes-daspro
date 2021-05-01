@@ -191,7 +191,8 @@ if __name__ == "__main__":
                     type=str,nargs='?')
     args, leftovers = parser.parse_known_args()
     if args.folderData is None:
-        print()
+        print("Tidak ada nama folder yang diberikan!")
+        print("Pemakaian: python main.py <namafolder>")
     else:
         folderData = args.folderData
         main(folderData)
