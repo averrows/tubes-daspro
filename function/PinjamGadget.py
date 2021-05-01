@@ -13,10 +13,11 @@ Apakah kamu yakin ingin meminjam {} sebanyak {}?
 pinjamSkript = """Halo {}, kamu ingin pinjam apa?
     Tekan:
         1 "Aku tahu ID gadget yang mau aku pinjam Dora !!!"
-        2 "Aku cuma tahu beberapa katanya Dora !!!" -----Bingung Aku
+        2 "Aku cuma tahu beberapa katanya Dora !!!"
         0 "Gajadi minjem ah" """
-def dapatkanItem(data,username):
-    print(pinjamSkript.format(username))
+def dapatkanItem(data,username, isOperasiPertama):
+    if isOperasiPertama:
+        print(pinjamSkript.format(username))
     tipeMasukan = input(">>> ")
     print("")
     if tipeMasukan == "1":
@@ -45,7 +46,11 @@ def dapatkanItem(data,username):
             indeksPilihan = int(pilihanGadget) - 1
             return listGadgetSesuai[indeksPilihan]["id"]
     elif tipeMasukan == "0":
-        pass
+        print("Peminjaman tidak jadi dilakukan. Kembali ke main menu")
+        return "0000000"
+    else:
+        print("Masukkan pilihan hanya antara 1,2, atau 0!")
+        dapatkanItem(data,username,False)
 
 
 def cekPinjam(idItem, dataRiwayat):
@@ -147,7 +152,7 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
                 else:
                     print("Jumlah tidak cukup")               
 
-        idItem = dapatkanItem(dataGadget,username)
+        idItem = dapatkanItem(dataGadget,username,True)
         # cek apakah item ada, jika ada, jalankan algoritma
         dataItem = isIdItemAda(idItem, dataGadget)
         if (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == True):
@@ -159,9 +164,11 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
             prosedurMasukkanJumlahToNext()
         elif (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == False):
             print("Gadget tersebut masih kamu pinjam.\nSilahkan kembalikan terlebih dahulu atau pinjam yang lain! ヾ(^▽^*)")
-        else:
+        elif (dataItem["keberadaan"] == False) and (idItem != "0000000") :
             print("Gadget dengan ID tersebut tidak ada")
-    
+        else:
+            pass
+
 
     # Tanpa pemilihan nama dan id, hanya id saja
     if len(dataGadget) == 1:
