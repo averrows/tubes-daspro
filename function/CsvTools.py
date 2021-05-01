@@ -58,7 +58,11 @@ def parseCSV(csv_file):
                 data = pisah(data, ';')
                 i = 0
                 for header in onlyHeader:
-                    dictData[header] = data[i]
+                    if i > len(data)-1:
+                        print(f"Terdapat kesalahan isi csv file {csv_file}. Data yang terload hanya header saja")
+                        return [onlyHeader]
+                    else:
+                        dictData[header] = data[i]
                     i += 1
                 hasil.append(dictData)
     return hasil
