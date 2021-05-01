@@ -16,11 +16,11 @@ def ubahjumlah(gadgetData,consumableData):
                         jumlah = int(input("Masukkan jumlah: "))                   
                         if jumlahbesarkecil(jumlah):
                             jumlahgadget = int(gadgetData[i]["jumlah"])
-                            if jumlahgadget < jumlah and jumlah > 0:
+                            if jumlahgadget <= jumlah and jumlah > 0:
                                 jumlahgadget += jumlah
                                 gadgetData[i]["jumlah"] = jumlahgadget
                                 print(str(jumlah) + " " + str(gadgetData[i]["nama"]) + " berhasil ditambahkan. Stok sekarang: " + str(gadgetData[i]["jumlah"]))
-                            elif jumlahgadget > jumlah and jumlah > 0:
+                            elif jumlahgadget => jumlah and jumlah > 0:
                                 jumlahgadget += jumlah
                                 gadgetData[i]["jumlah"] = jumlahgadget
                                 print(str(jumlah) + " " + str(gadgetData[i]["nama"]) + " berhasil ditambahkan. Stok sekarang: " + str(gadgetData[i]["jumlah"]))
