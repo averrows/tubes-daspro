@@ -1,13 +1,15 @@
 from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: disable=import-error
-
-def printDataDariAkhir(data, jumlah):
+from math import ceil
+def printDataDariAkhir(data, jumlah, currentHalaman, halamanKeseluruhan):
     #KAMUS LOKAL
     #data : array of dictionary
     #jumlah : integer
     #Melakukan print dari data dimulai dari urutan terakhir sampai jumlah
     #dibutuhkan
+    print("-"*25 + f" HALAMAN {currentHalaman}/{halamanKeseluruhan} " + "-"*25)
+    print("\n")
     headersDariData = data[0]
-    headersData = ["ID Peminjaman","Nama Pengambil","Nama Gadget","Tanggal Peminjaman","Jumlah"]
+    headersData = ["ID Peminjaman","Nama Peminjam","Nama Gadget","Tanggal Peminjaman","Jumlah"]
     for i in range(jumlah):
         dataDiPrint = data[len(data)-1-i]
         print(susunanPrint(dataDiPrint,headersData,headersDariData))
@@ -44,21 +46,38 @@ def getPanjangElemenTerpanjang(list):
         i += 1
     return panjangElemenTerpanjang 
 
-def lihatRiwayatPinjamGadget(dataRiwayat):
+counterLihatRiwayat = 0
+
+def lihatRiwayatPinjamGadget(dataRiwayat,counter,halamanKeseluruhan):
     dataRiwayat = urutDataBerdasarTanggal(dataRiwayat)
     jumlahDataRiwayat = len(dataRiwayat[1:])
+    currentHalaman = 1
+    if counter == 0:
+        halamanKeseluruhan = ceil(jumlahDataRiwayat / 5)
     if jumlahDataRiwayat == 0:
         print("Belum ada peminjaman gadget dilakukan")
     elif jumlahDataRiwayat < 5:
-        print("\n")
-        printDataDariAkhir(dataRiwayat, jumlahDataRiwayat)
+        currentHalaman += 1
+        printDataDariAkhir(dataRiwayat, jumlahDataRiwayat, currentHalaman, halamanKeseluruhan)
+        print("Data sudah habis! (o゜▽゜)o☆ Kembali ke menu utama....")
     else:
         print("\n")
-        printDataDariAkhir(dataRiwayat, 5)
-        printSisa = input("Lihat riwayat selanjutnya?(Yy)")
-        if printSisa == "Y" or printSisa == "y":
-            lihatRiwayatPinjamGadget(dataRiwayat[:(len(dataRiwayat)-5)])
-        else:
-            print("Kembali ke menu")
+        printDataDariAkhir(dataRiwayat, 5, currentHalaman, halamanKeseluruhan)
+        counter += 1
+        currentHalaman += 1
+        printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn)")
+        decision = False
+        while not decision:
+            if printSisa == "Y" or printSisa == "y":
+                lihatRiwayatPinjamGadget(dataRiwayat[:(len(dataRiwayat)-5)],counter,halamanKeseluruhan)
+                decision = True
+            elif printSisa.upper() == "N":
+                print("Okay, kalau begitu kita kembali ke menu utama...")
+                decision = True
+            else:
+                print("Masukan invalid!")
+                printSisa = input(">>> ")
+
+                
 
         
