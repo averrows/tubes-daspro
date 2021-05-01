@@ -47,8 +47,6 @@ def tentukanRange(rarity:dict):
     return {"S":rangeS,"A":rangeA,"B":rangeB,"C":rangeC}
 
 def hasilRandomRarity(range:dict, random):
-    print(range)
-    print(random)
     for x in ["S","A","B","C"]:
         rangeRarity = range[x]
         if random >= rangeRarity[0] and random < rangeRarity[1]:
@@ -83,23 +81,18 @@ def rumusRarityJumlahInventory(dataConsumable):
             pengaruh[rarity] = 0
         else:
             pengaruh[rarity] = 1/fraksi
-    print("inventori")
-    print(pengaruh)
     return pengaruh #dictionary of integer
 
 def rumusPengaruhKeseluruhan(pengaruhRarityUmum,pengaruhRarityJumlahInventory):
     for rarity2 in ["S","A","B","C"]:
         for rarity3 in ["S","A","B","C"]:
             pengaruhRarityUmum[rarity2][rarity3] = pengaruhRarityUmum[rarity2][rarity3] * pengaruhRarityJumlahInventory[rarity2]
-    print(pengaruhRarityUmum)
     return pengaruhRarityUmum
 
 def rarityPascaPenambahanItem(rarity:str ,jumlah:int, pengaruhKeseluruhan:dict, rarityBasis:dict):
     rarityBaru = {}
-    print(rarityBasis)
     for rarity2 in ["S","A","B","C"]:
         rarityBaru[rarity2] = rarityBasis[rarity2] +jumlah*pengaruhKeseluruhan[rarity][rarity2]
-    print(rarityBaru)
     return rarityBaru #dictionary of integer
 
 def tingkatkanRarityConsumables(dataConsumable,username):
@@ -108,7 +101,7 @@ def tingkatkanRarityConsumables(dataConsumable,username):
     idConsumable = dapatkanItem(dataConsumable,username,campurSkript) # pylint: disable=E0602, E0603
     siap = False
     rarityBasis = {"S":2,"A":16,"B":36,"C":46}
-    pengaruhRarityUmum = {"S":rumusRarityUmum(0.4,-0.4/21,-1.6/21,-6.4/21,dataConsumable),"A":rumusRarityUmum(0.7,-0.1,-0.2,-0.4,dataConsumable),"B":rumusRarityUmum(0.025,0.1,-0.025,-0.1,dataConsumable),"C":rumusRarityUmum(0.00625,0.025,0.1,-0.13125,dataConsumable)}
+    pengaruhRarityUmum = {"S":rumusRarityUmum(0.4,-0.4/21,-1.6/21,-6.4/21,dataConsumable),"A":rumusRarityUmum(0.2,0.4,-0.2,-0.4,dataConsumable),"B":rumusRarityUmum(0.1,0.2,0.,-0.12,dataConsumable),"C":rumusRarityUmum(0.00625,0.025,0.1,-0.13125,dataConsumable)}
     pengaruhRarityJumlahInventory = rumusRarityJumlahInventory(dataConsumable) #{"S":20}
     pengaruhRarityKeseluruhan = rumusPengaruhKeseluruhan(pengaruhRarityUmum,pengaruhRarityJumlahInventory)
     jumlahBarangDicampur = 0
@@ -117,14 +110,13 @@ def tingkatkanRarityConsumables(dataConsumable,username):
         if existStatus["keberadaan"]:
             indeks = existStatus["indeks"]
             jumlah = getJumlahPermintaan("campur") # pylint: disable=E0602, E0603
-            if jumlah <= int(dataConsumable[indeks]["jumlah"]):
-                rarityBasis = rarityPascaPenambahanItem(dataConsumable[indeks]["rarity"],jumlah,pengaruhRarityKeseluruhan,rarityBasis)
-                jumlahBarangDicampur += 1
-            else:
+            while jumlah > int(dataConsumable[indeks]["jumlah"]):
                 print("Jumlah yang kamu masukkan berlebih!")
+                jumlah = getJumlahPermintaan("campur") # pylint: disable=E0602, E0603
+            rarityBasis = rarityPascaPenambahanItem(dataConsumable[indeks]["rarity"],jumlah,pengaruhRarityKeseluruhan,rarityBasis)
+            jumlahBarangDicampur += 1
         else:
             print("item tersebut tidak ada")
-        
         # campur lagi?
         lagi = input("Campur yang lain?(Yy)")
         if lagi.upper() == "Y":
