@@ -20,10 +20,10 @@ def renderLine(line):  # fungsi untuk merender suatu line ke dalam isiBaruFile
     isiBaruFile = ""
     while i < len(line):
         if i == len(line) - 1:
-            isiBaruFile += line[i]
+            isiBaruFile += str(line[i])
             isiBaruFile += "\n"
         else:
-            isiBaruFile += line[i]
+            isiBaruFile += str(line[i])
             isiBaruFile += ";"
         i += 1
     return isiBaruFile
