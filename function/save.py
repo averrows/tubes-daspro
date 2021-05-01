@@ -15,10 +15,10 @@ def save(newData,folderData):
     required_csv =  ["user.csv","gadget.csv","consumable.csv","consumable_history.csv","gadget_borrow_history.csv","gadget_return_history.csv"]
     for i in range(len(dataList)):
         writeCSV(os.path.join(folderData,required_csv[i]),newData[dataList[i]])
-    print("Data telah disimpan pada folder {}".format(folderData))
+    print("Data berhasil disimpan pada folder {}".format(folderData))
 
 def saveMain(newData,lameFolder):
-    pilihan = input("Pakai folder tadi (1), atau folder lain(2)?")
+    pilihan = input("Pakai folder tadi (1), atau folder lain(2) ?")
     terpilih = False
     while not terpilih:
         if pilihan == "1":
@@ -29,5 +29,7 @@ def saveMain(newData,lameFolder):
             terpilih = True
         else:
             print("Masukkan antara dua pilihan itu aja yaa...")
+            pilihan = input(">>> ")
+
     fixingFolderTidakAda(folder)
     save(newData,folder)
