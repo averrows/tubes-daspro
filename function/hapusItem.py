@@ -10,7 +10,7 @@ def hapusitem(gadgetData,consumableData):
                 print("maaf data tidak tersedia")
             else:
                 if IDditemukan(ID, gadgetData):
-                    for i in range(len(gadgetData)):
+                    for i in range(1, len(gadgetData)):
                         if gadgetData[i]["id"] == ID:
                             print("Apakah anda ingin menghapus " + gadgetData[i]["nama"] + "?(Yy/Nn)")
                             op = input()
@@ -26,7 +26,7 @@ def hapusitem(gadgetData,consumableData):
                 print("maaf data tidak tersedia")
             else:
                 if IDditemukan(ID, consumableData):
-                    for i in range(len(consumableData)):
+                    for i in range(1, len(consumableData)):
                         if consumableData[i]["id"] == ID:
                             print("Apakah anda ingin menghapus " + consumableData[i]["nama"] + "?(Yy/Nn)")
                             op = input()
@@ -38,4 +38,6 @@ def hapusitem(gadgetData,consumableData):
                 else:
                     print("Tidak ada item dengan ID tersebut")
         else:
-            print("Tidak ada item dengan ID tersebut")      
+            print("Input ID tidak valid!")
+    else:
+        print("Input ID tidak valid!")

@@ -3,7 +3,6 @@ from function.validasiID import IDValid, IDditemukan # pylint: disable=import-er
 
 def ubahjumlah(gadgetData,consumableData):
     ID = input("Masukkan ID: ")
-    jumlah = input("Masukkan jumlah: ")
     
     # ALGORITMA
     if IDValid(ID):
@@ -11,20 +10,22 @@ def ubahjumlah(gadgetData,consumableData):
             if len(gadgetData) == 1:
             # validasi data kosong    
                 print("maaf data tidak tersedia")
+            else:
                 if IDditemukan(ID, gadgetData):
-                    for i in range(len(gadgetData)):
+                    for i in range(1, len(gadgetData)):
+                        jumlah = int(input("Masukkan jumlah: "))
                         if jumlahbesarkecil(jumlah):
-                            if gadgetData[i]["jumlah"] < jumlah and jumlah > 0:
+                            if int(gadgetData[i]["jumlah"]) < jumlah and jumlah > 0:
+                                gadgetData[i]["jumlah"] += int(jumlah)
+                                print(jumlah + " " + gadgetData[i]["nama"] + " berhasil ditambahkan. Stok sekarang: " + gadgetData[i]["jumlah"])
+                            elif int(gadgetData[i]["jumlah"]) > jumlah and jumlah > 0:
                                 gadgetData[i]["jumlah"] += jumlah
                                 print(jumlah + " " + gadgetData[i]["nama"] + " berhasil ditambahkan. Stok sekarang: " + gadgetData[i]["jumlah"])
-                            elif gadgetData[i]["jumlah"] > jumlah and jumlah > 0:
-                                gadgetData[i]["jumlah"] += jumlah
-                                print(jumlah + " " + gadgetData[i]["nama"] + " berhasil ditambahkan. Stok sekarang: " + gadgetData[i]["jumlah"])
-                            elif gadgetData[i]["jumlah"] > jumlah and jumlah < 0:
+                            elif int(gadgetData[i]["jumlah"]) > jumlah and jumlah < 0:
                                 gadgetData[i]["jumlah"] -= jumlah
                                 print(jumlah + " " + gadgetData[i]["nama"] + " berhasil ditambahkan. Stok sekarang: " + gadgetData[i]["jumlah"])
                             else:
-                                    print(jumlah + " gagal dibuang karena stok kurang. Stok sekarang: " + gadgetData[i]["jumlah"] + "(<" + jumlah + ")")
+                                print(jumlah + " gagal dibuang karena stok kurang. Stok sekarang: " + gadgetData[i]["jumlah"] + "(<" + jumlah + ")")
                         else:
                             print("Masukkan jumlah tidak valid.")
                 else:
@@ -33,8 +34,10 @@ def ubahjumlah(gadgetData,consumableData):
             if len(consumableData) == 1:
             # validasi data kosong
                 print("maaf data tidak tersedia")
+            else:
                 if IDditemukan(ID, consumableData):
-                    for i in range(len(consumableData)):
+                    for i in range(1, len(consumableData)):
+                        jumlah = input("Masukkan jumlah: ")
                         if jumlahbesarkecil(jumlah):
                             if consumableData[i]["jumlah"] < jumlah and jumlah > 0:
                                 consumableData[i]["jumlah"] += jumlah
@@ -52,6 +55,6 @@ def ubahjumlah(gadgetData,consumableData):
                 else:
                     print("Tidak ada item dengan ID tersebut.")
         else:
-            print("Tidak ada item dengan ID tersebut.")
+            print("Input ID Tidak Valid!")
     else:
-        print("Tidak ada item dengan ID tersebut.")
+        print("Input ID Tidak Valid!")

@@ -17,6 +17,8 @@ def IDValid(ID):
                 return False
             else:
                 return True
+        else:
+            return False
 
 def IDditemukan(ID, data):
         found = False
