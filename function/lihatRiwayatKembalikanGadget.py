@@ -42,26 +42,26 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
         urutDataBerdasarTanggal(data)
         if (len(data) <= 5):
             printDataDariAkhir(data, len(data), userData, gadgetData, gadgetBorrowHistoryData)
+            print("Kamu di halaman terakhir! (o゜▽゜)o☆ \nKembali ke menu utama....")
         else:
+            halaman = 1
+            print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
             printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
             kondisi = True
-            halaman = 0
             while (kondisi == True):
-                halaman += 1
-                print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
                 printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
+                print("")
                 while not((printSisa == 'Y') or (printSisa == 'y') or (printSisa == 'N') or (printSisa == 'n')):
                     print("Masukan invalid!")
                     printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn): ")
                 if (printSisa == 'Y') or (printSisa == 'y'):
                     del data[(len(data) - 5):(len(data) + 1)]
-                    print("")
+                    halaman += 1
+                    print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
                     if (len(data) > 5):
                         printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
                     else:
                         printDataDariAkhir(data, (len(data) - 1), userData, gadgetData, gadgetBorrowHistoryData)
-                        halaman += 1
-                        print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
                         kondisi = False
                         print("Kamu di halaman terakhir! (o゜▽゜)o☆ \nKembali ke menu utama....")
                 else:
