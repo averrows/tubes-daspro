@@ -44,29 +44,32 @@ def validasiAngka(x):
 def validasiTanggal(tanggal, bulan, tahun):
     # kabisat = habis dibagi 4 dan tidak habis dibagi 100. atau habis dibagi 400
     # kabisat bulan februarinya 29
-    if (bulan == 1) or (bulan == 3) or (bulan == 5) or (bulan == 7) or (bulan == 8) or (bulan == 10) or (bulan == 12):
-        if (tanggal >= 1) and (tanggal <= 31):
-            return True
-        else:
-            return False
-    elif (bulan == 4) or (bulan == 6) or (bulan == 9) or (bulan == 11):
-        if (tanggal >=1) and (tanggal <= 30):
-            return True
-        else:
-            return False
-    elif (bulan == 2):
-        if ((tahun % 4 == 0) and (tahun % 100 != 0)) or (tahun % 400 == 0):
-            if (tanggal >=1) and (tanggal <= 29):
-                return True
-            else:
-                return False
-        else:
-            if (tanggal >= 1) and (tanggal <= 28):
-                return True
-            else:
-                return False
-    else:
+    if tahun > 9999:
         return False
+    else:
+        if (bulan == 1) or (bulan == 3) or (bulan == 5) or (bulan == 7) or (bulan == 8) or (bulan == 10) or (bulan == 12):
+            if (tanggal >= 1) and (tanggal <= 31):
+                return True
+            else:
+                return False
+        elif (bulan == 4) or (bulan == 6) or (bulan == 9) or (bulan == 11):
+            if (tanggal >=1) and (tanggal <= 30):
+                return True
+            else:
+                return False
+        elif (bulan == 2):
+            if ((tahun % 4 == 0) and (tahun % 100 != 0)) or (tahun % 400 == 0):
+                if (tanggal >=1) and (tanggal <= 29):
+                    return True
+                else:
+                    return False
+            else:
+                if (tanggal >= 1) and (tanggal <= 28):
+                    return True
+                else:
+                    return False
+        else:
+            return False
 
 def cariIDGadget (nama_selected_gadget, gadgetData):
     for i in range (1, len(gadgetData)):
