@@ -16,7 +16,7 @@ from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
 from function.hapusItem import hapusitem
 from function.lihatRiwayatPengambilanConsumable import lihatRiwayatPengambilanConsumable
 from function.ubahJumlah import ubahjumlah
-
+from function.tingkatkanRarityConsumables import tingkatkanRarityConsumables
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
@@ -151,7 +151,8 @@ def main(folderData):
             print("="*27 + " MINTA " + "="*26)          # (55 + 2 + 5) characters
             mintaConsumable(consumableData,consumableHistoryData,user_status["id"],user_status["username"])
             print("="*62)
-    
+        elif perintah == "gacha":
+            tingkatkanRarityConsumables(consumableData,consumableHistoryData,user_status["username"],user_status["id"])
     while kondisi:
         print("")
         print("masukkan perintah: (bingung? masukkan 'bantuan')")
