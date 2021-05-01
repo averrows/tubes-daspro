@@ -10,6 +10,8 @@ from function.keluar import keluar
 from function.cariTahun import cariTahun
 from function.cariRarity import cariRarity
 from function.load import load
+from function.tingkatkanRarityConsumables import tingkatkanRarityConsumables
+from function.hapusItem import hapusitem
 from function.bantuan import bantuan
 from function.mintaConsumable import mintaConsumable
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
@@ -51,6 +53,7 @@ def main():
         if perintah == "register":
             print("="*25 + " REGISTER " + "="*26)       # (51 + 2 + 9) characters
             register(userData)
+            print(userData)
             print("="*62)
         elif perintah == "carirarity":
             print("="*25 + " CARI RARITY " + "="*24)    # (49 + 2 + 11) characters
@@ -65,12 +68,12 @@ def main():
             tambahitem(gadgetData, consumableData)
             print("="*62)
         elif perintah == "hapusitem":
-            pass
+            hapusitem(gadgetData,consumableData)
         elif perintah == "ubahjumlah":
             pass
         elif perintah == "riwayatpinjam":
             print("="*23 + " RIWAYAT PINJAM " + "="*23)  # (46 + 2 + 14) characters
-            lihatRiwayatPinjamGadget(gadgetBorrowHistoryData)
+            lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,0,1)
             print("="*62)
         elif perintah == "riwayatkembali":
             print("="*23 + " RIWAYAT KEMBALI " + "="*22)   # (45 + 2 + 15) characters
@@ -90,6 +93,9 @@ def main():
             }
             saveMain(newDatas,folderData)
             print("="*62)
+        elif perintah == "gacha":
+            print("="*28 + " GACHA " + "="*28)           # (56 + 2 + 4) characters
+            tingkatkanRarityConsumables(consumableData,consumableHistoryData,user_status["username"],user_status["id"])
     def userAllowedAction(perintah):
         if perintah == "carirarity":
             print("="*25 + " CARI RARITY " + "="*24)    # (49 + 2 + 11) characters
@@ -102,18 +108,6 @@ def main():
         elif perintah == "pinjam":
             print("="*27 + " PINJAM " + "="*27)         # (54 + 2 + 6) characters
             pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["id"],user_status["username"])
-            print("="*62)
-        elif perintah == "save":
-            print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
-            newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
-                "userData": userData,
-                "gadgetData": gadgetData,
-                "consumableData": consumableData,
-                "consumableHistoryData": consumableHistoryData,
-                "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
-                "gadgetReturnHistoryData": gadgetReturnHistoryData
-            }
-            saveMain(newDatas,folderData)
             print("="*62)
         elif perintah == "kembalikan":
             print("="*25 + " KEMBALIKAN " + "="*26)     # (51 + 2 + 9) characters
