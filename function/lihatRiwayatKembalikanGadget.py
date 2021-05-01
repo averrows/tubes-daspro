@@ -40,8 +40,8 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
         # duplikasi data original dan diurutkan berdasarkan tanggal
         data = gadgetReturnHistoryData[:]
         urutDataBerdasarTanggal(data)
-        if (len(data) <= 5):
-            printDataDariAkhir(data, len(data), userData, gadgetData, gadgetBorrowHistoryData)
+        if (len(data) <= 6):
+            printDataDariAkhir(data, (len(data) - 1), userData, gadgetData, gadgetBorrowHistoryData)
             print("Kamu di halaman terakhir! (o゜▽゜)o☆ \nKembali ke menu utama....")
         else:
             halaman = 1
@@ -58,7 +58,7 @@ def lihatRiwayatKembalikanGadget(gadgetReturnHistoryData, userData, gadgetData, 
                     del data[(len(data) - 5):(len(data) + 1)]
                     halaman += 1
                     print("-"*25 + f" HALAMAN {halaman} " + "-"*25)
-                    if (len(data) > 5):
+                    if (len(data) > 6):
                         printDataDariAkhir(data, 5, userData, gadgetData, gadgetBorrowHistoryData)
                     else:
                         printDataDariAkhir(data, (len(data) - 1), userData, gadgetData, gadgetBorrowHistoryData)
