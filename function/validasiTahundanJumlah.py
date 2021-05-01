@@ -40,7 +40,7 @@ def jumlahbesarkecil(jumlah):
     else:
         i = 1
         while i < panjangjumlah and not statusjumlah:
-            if i not in "1234567890":
+            if jumlahstring[i] not in "1234567890":
                 statusjumlah = True
             else:
                 i += 1
