@@ -79,6 +79,7 @@ def tambahitem(gadgetData,consumableData):
                                 else:
                                     print("Input Jumlah Tidak Valid!")
                                     gadgettambahan["jumlah"] = input("Masukkan Jumlah: ")
+                    break
 
             else:
                 if len(consumableData) == 1:
@@ -133,6 +134,7 @@ def tambahitem(gadgetData,consumableData):
                                 else:
                                     print("Input Jumlah Tidak Valid!")
                                     consumabletambahan["jumlah"] = input("Masukkan Jumlah: ")
+                    break
 
         else:
             print("Gagal menambahkan item karena ID tidak valid.")

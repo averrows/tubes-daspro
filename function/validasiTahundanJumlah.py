@@ -17,7 +17,7 @@ def jumlahvalid(jumlah):
     jumlahinteger = False
     jumlahstring = str(jumlah)
     panjangjumlah = len(jumlah)
-    i = 1
+    i = 0
     while i < panjangjumlah and not jumlahinteger:
         if jumlah[i] not in "1234567890":
             jumlahinteger = True
@@ -32,8 +32,6 @@ def jumlahbesarkecil(jumlah):
     statusjumlah = False
     jumlahstring = str(jumlah)
     panjangjumlah = len(jumlahstring)
-    kodesatu = jumlahstring[0:panjangjumlah]
-    kodesisa = jumlahstring[1:panjangjumlah]
     if jumlahstring[0] not in "-1234567890":
         statusjumlah = False
         return False
