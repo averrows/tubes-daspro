@@ -187,12 +187,12 @@ def main(folderData):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--folderData", help="folder dari data",
-                    type=str,nargs='?')
-    args, leftovers = parser.parse_known_args()
-    if args.folderData is None:
-        print("Tidak ada nama folder yang diberikan!")
-        print("Pemakaian: python main.py <namafolder>")
-    else:
+    parser.add_argument("--folderData")
+    args, leftovers = parser.parse_args()
+    print(args.folderData)
+    if args.folderData is not None:
         folderData = args.folderData
         main(folderData)
+    else:
+        print("Tidak ada nama folder yang diberikan!")
+        print("Pemakaian: python main.py <namafolder>")
