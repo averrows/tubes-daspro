@@ -93,7 +93,7 @@ def kembalikanGadget(username, daftarNamaGadgetPinjaman, daftarJumlah, gadgetDat
         nomorGadget = input("Masukkan nomor peminjaman: ")
         while (validasiAngka(nomorGadget) == False):
             print("Masukkan angka! (˘･_･˘)")
-            jumlahPeminjaman = input("Masukkan nomor peminjaman: ")
+            nomorGadget = input("Masukkan nomor peminjaman: ")
         nomorGadget = int(nomorGadget)
     nama_selected_gadget = daftarNamaGadgetPinjaman[nomorGadget-1]
     id_selected_gadget = cariIDGadget(nama_selected_gadget, gadgetData)
