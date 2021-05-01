@@ -44,6 +44,7 @@ def ubahjumlah(gadgetData,consumableData):
                                         else:
                                             print("Masukkan jumlah tidak valid.")
                                             jumlah = int(input("Masukkan jumlah: "))
+                                    break
                                 else:
                                     kondisi = False
                             if kondisi == True:
