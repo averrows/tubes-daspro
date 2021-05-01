@@ -30,11 +30,13 @@ def fixingFolderTidakAda(folderData):
     def rekursiBuatFolder(path):
         #basis
         if os.path.dirname(path) == "":
-            os.mkdir(path)
+            if os.path.exists(path) == False:
+                os.mkdir(path)
             return path
         else: #rekurens
             path = os.path.join(rekursiBuatFolder(os.path.dirname(path)),os.path.basename(path))
-            os.mkdir(path)
+            if os.path.exists(path) == False:
+                os.mkdir(path)
             return path
     if os.path.isdir(folderData):
         pass
