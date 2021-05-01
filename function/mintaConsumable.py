@@ -2,7 +2,6 @@ import datetime
 
 from function.kembalikanGadget import validasiTanggal  # pylint: disable=import-error
 from function.kembalikanGadget import validasiAngka  # pylint: disable=import-error
-from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal  # pylint: disable=import-error
 
 yakinSkript = """
 Apakah kamu yakin ingin meminta {} sebanyak {}?
@@ -37,6 +36,8 @@ def dapatkanItem(data,username,skript):
                 print("Ketik {} untuk consumable ini".format(i))
                 print("Nama        : {}".format(item["nama"]))
                 print("Deskripsi   : {}".format(item["deskripsi"]))
+                print("Jumlah      : {}".format(item["jumlah"]))
+                print("Rarity      : {}".format(item["rarity"]))
                 print("\n")
                 i += 1
             pilihanconsumable = input(">>> ")
@@ -101,9 +102,9 @@ def mintaConsumable(dataconsumable, dataRiwayat, idPeMinta, username):
                 dmy = datetime.datetime(year, month, day)
                 tanggal = dmy.strftime(
                     "%d") + "/" + dmy.strftime("%m") + "/" + dmy.strftime("%Y")
-                idBorrow = len(dataRiwayat)
+                idMinta = len(dataRiwayat)
                 consumableHistoryDataBaru = {
-                        "id": str(idBorrow),
+                        "id": str(idMinta),
                         "id_pengambil":idPeMinta,
                         "id_consumable":idItem,
                         "tanggal_pengambilan":tanggal,

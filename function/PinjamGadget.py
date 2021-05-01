@@ -2,7 +2,6 @@ import datetime
 
 from function.kembalikanGadget import validasiTanggal  # pylint: disable=import-error
 from function.kembalikanGadget import validasiAngka  # pylint: disable=import-error
-from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal  # pylint: disable=import-error
 
 yakinSkript = """
 Apakah kamu yakin ingin meminjam {} sebanyak {}?
@@ -25,7 +24,7 @@ def dapatkanItem(data,username, isOperasiPertama):
     elif tipeMasukan == "2":
         key = input("Masukkan kata berkaitan gadget itu yang kamu ingat: ")
         print("\n")
-        listGadgetSesuai = cariBendaReturnId(key, data)
+        listGadgetSesuai = cariBendaReturnBenda(key, data)
         jumlahGadgetSesuai = len(listGadgetSesuai)
         if jumlahGadgetSesuai == 0:
             print("Tidak ada gadget yang sesuai dengan kata kunci tersebut")
@@ -169,11 +168,11 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
         else:
             pass
 
-
     # Tanpa pemilihan nama dan id, hanya id saja
-    if len(dataGadget) == 1:
+    jumlah = len(dataGadget)
+    if jumlah<= 1:
         print("Ups, maaf! Data Gadget masih kosong, peminjaman belum dapat dilakukan (っ °Д °;)っ")
-    elif len(dataGadget) > 1:
+    elif jumlah > 1:
         prosedurPinjam()
 
 
@@ -190,7 +189,7 @@ def isIdItemAda(id, data):
     return {"keberadaan": False}
 
 
-def cariBendaReturnId(key: str, data: list) -> list:
+def cariBendaReturnBenda(key: str, data: list) -> list:
     # ambil id, nama, dan deskripsi
     # cek apakah dalam nama atau desripsi terdapat string key
     # return yang list berisi id-nya
