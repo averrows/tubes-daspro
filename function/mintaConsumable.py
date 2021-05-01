@@ -12,14 +12,14 @@ Apakah kamu yakin ingin meminta {} sebanyak {}?
     0 Kembali
 """
 MintaSkript =    """
-Halo {}, kamu ingin Minta apa?
+Halo {}, kamu ingin minta apa?
     Tekan:
         1 "Aku tahu ID consumable yang mau aku minta Dora !!!"
         2 "Aku cuma tahu beberapa katanya Dora !!!" -----Bingung Aku
         0 "Gajadi minta ah"
 """
-def dapatkanItem(data,username):
-    print(MintaSkript.format(username))
+def dapatkanItem(data,username,skript):
+    print(skript.format(username))
     tipeMasukan = input(">>> ")
     if tipeMasukan == "1":
         return input("Masukkan ID: ")
@@ -50,20 +50,16 @@ def dapatkanItem(data,username):
         return "0000000"
 
 
-def cekMinta(idItem, dataRiwayat):
-    for i in range(1, len(dataRiwayat)):
-        if idItem == dataRiwayat[i]['id_consumable']:
-            return False    # consumable sedang diMinta user
-    return True             # consumable tidak sedang diminta user
 
-def getJumlahPerMintaan():
-    jumlahPerMintaan = input("Masukkan jumlah yang ingin diminta: ")
+
+def getJumlahPermintaan(proses):
+    jumlahPerMintaan = input("Masukkan jumlah yang ingin di{}: ".format(proses))
 
             # Masukkan jumlah PerMintaan
     while (validasiAngka(jumlahPerMintaan) == False):
         print("Masukkan angka positif! (˘･_･˘)")
         jumlahPerMintaan = input(
-        "Masukkan jumlah yang ingin diminta: ")
+        "Masukkan jumlah yang ingin di{}: ".format(proses))
     jumlahPerMintaan = int(jumlahPerMintaan)    
     return jumlahPerMintaan
 
@@ -114,13 +110,13 @@ def mintaConsumable(dataconsumable, dataRiwayat, idPeMinta, username):
                         "jumlah":jumlahPerMintaan,
                         }
                 dataRiwayat.append(consumableHistoryDataBaru)
-                print("PerMintaan {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
+                print("Permintaan {}(x{}) berhasil dilakukan oleh {} pada tanggal {}".format(
                     namaconsumable, str(
                         jumlahPerMintaan), username, tanggal
                 ))
             
             # masukkan jumlah
-            jumlahPerMintaan = getJumlahPerMintaan()
+            jumlahPerMintaan = getJumlahPermintaan("minta")
 
             # lakukan tergantung jumlah PerMintaan
             if jumlahPerMintaan == 0:
@@ -149,10 +145,10 @@ def mintaConsumable(dataconsumable, dataRiwayat, idPeMinta, username):
                 else:
                     print("Jumlah tidak cukup")               
 
-        idItem = dapatkanItem(dataconsumable,username)
+        idItem = dapatkanItem(dataconsumable,username,MintaSkript) 
         # cek apakah item ada, jika ada, jalankan algoritma
         dataItem = isIdItemAda(idItem, dataconsumable)
-        if (dataItem["keberadaan"]) and (cekMinta(idItem, dataRiwayat) == True):
+        if (dataItem["keberadaan"]):
             jumlahTersedia = int(dataconsumable[dataItem["indeks"]]["jumlah"])
             indeksconsumable = dataItem["indeks"]
             namaconsumable = dataconsumable[indeksconsumable]["nama"]
