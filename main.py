@@ -20,12 +20,6 @@ from function.ubahJumlah import ubahjumlah
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("folderData", help="folder dari data",
-                    type=str)
-args = parser.parse_args()
-folderData = args.folderData
 
 # text art interface
 doraemon_stenbaimi = r"""
@@ -60,7 +54,7 @@ title = r"""
 # Import fungsi secara keseluruhan
 
 
-def main():
+def main(folderData):
     clear()
     print("="*25 + " MENU UTAMA " + "="*25)             # (50 + 2 + 10) characters
     print(title)
@@ -191,4 +185,13 @@ def main():
                 print("Perintah tersebut tidak tersedia!")
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--folderData", help="folder dari data",
+                    type=str,nargs='?')
+    args, leftovers = parser.parse_known_args()
+    if args.folderData is None:
+        print()
+    else:
+        folderData = args.folderData
+        main(folderData)
