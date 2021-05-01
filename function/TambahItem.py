@@ -8,8 +8,24 @@ def tambahitem(gadgetData,consumableData):
     if IDValid(ID):
         if ID[0] == "G":
             if len(gadgetData) == 1:
-            # validasi data kosong    
-                print("maaf data tidak tersedia")
+                gadgettambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
+                gadgettambahan["id"] = ID
+                gadgettambahan["nama"] = input("Masukkan nama: ")
+                gadgettambahan["deskripsi"] = input("Masukkan Deskripsi: ")
+                gadgettambahan["jumlah"] = input("Masukkan Jumlah: ")
+                if jumlahvalid(gadgettambahan["jumlah"]):
+                    gadgettambahan["rarity"] = input("Masukkan Rarity: ")
+                    if gadgettambahan["rarity"] == "C" or gadgettambahan["rarity"] == "B" or gadgettambahan["rarity"] == "A" or gadgettambahan["rarity"] == "S":
+                        gadgettambahan["tahun"] = input("Masukkan tahun: ")
+                        if tahunvalid(gadgettambahan["tahun"]):
+                            gadgetData.append(gadgettambahan)
+                            print("Item berhasil ditambahkan ke database.")
+                        else:
+                            print("Input Tahun Tidak Valid!")
+                    else :
+                        print("Input Rarity Tidak Valid!")
+                else:
+                    print("Input Jumlah Tidak Valid!")
             else:
                 if IDditemukan(ID, gadgetData):
                     print("Gagal menambahkan item karena ID sudah ada.")
@@ -35,8 +51,20 @@ def tambahitem(gadgetData,consumableData):
 
         elif ID[0] == "C":
             if len(consumableData) == 1:
-            # validasi data kosong
-                print("maaf data tidak tersedia")
+                consumabletambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
+                consumabletambahan["id"] = ID
+                consumabletambahan["nama"] = input("Masukkan nama: ")
+                consumabletambahan["deskripsi"] = input("Masukkan Deskripsi: ")
+                consumabletambahan["jumlah"] = input("Masukkan Jumlah: ")
+                if jumlahvalid(consumabletambahan["jumlah"]):
+                    consumabletambahan["rarity"] = input("Masukkan Rarity: ")
+                    if consumabletambahan["rarity"] == "C" or consumabletambahan["rarity"] == "B" or consumabletambahan["rarity"] == "A" or consumabletambahan["rarity"] == "S":
+                        consumableData.append(consumabletambahan)
+                        print("Item berhasil ditambahkan ke database.")
+                    else :
+                        print("Input Rarity Tidak Valid!")
+                else:
+                    print("Input Jumlah Tidak Valid!")
             else:
                 if IDditemukan(ID, consumableData):
                     print("Gagal menambahkan item karena ID sudah ada.")
