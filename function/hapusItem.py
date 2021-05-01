@@ -24,7 +24,7 @@ def hapusitem(gadgetData,consumableData):
                 else:
                     print("Tidak ada item dengan ID tersebut")
                     ID = input("Masukkan ID: ")
-        elif ID[0] == "C":
+        else: #ID[0] == "C":
             if len(consumableData) == 1:
                 print("maaf data tidak tersedia")
             else:
@@ -43,8 +43,6 @@ def hapusitem(gadgetData,consumableData):
                 else:
                     print("Tidak ada item dengan ID tersebut")
                     ID = input("Masukkan ID: ")
-        else:
-            print("Input ID tidak valid!")
     else:
         print("Input ID tidak valid!")
         ID = input("Masukkan ID: ")
