@@ -11,10 +11,10 @@ def hapusitem(gadgetData, consumableData, gadget_borrow_history_Data):
                 print("Maaf data tidak tersedia")
                 validID = True
             else:
-                if IDditemukan(ID, gadgetData) and not isBorrowed(ID, gadget_borrow_history_Data):
+                if IDditemukan(ID, gadgetData) and (isBorrowed(ID, gadget_borrow_history_Data)==False):
                     hapusGadget(ID, gadgetData)
                     validID = True
-                elif IDditemukan(ID, gadgetData) and isBorrowed(ID, gadget_borrow_history_Data):
+                elif IDditemukan(ID, gadgetData) and (isBorrowed(ID, gadget_borrow_history_Data)==True):
                     print("Gadget sedang dipinjam. Minta user kembalikan terlebih dahulu.")
                 else:
                     print("Tidak ada item dengan ID tersebut")
@@ -72,15 +72,15 @@ def hapusConsumable(ID, consumableData):
         print("Penghapusan tidak jadi dilakukan, kamu akan kembali ke menu")
         
 
-def isBorrowed(ID, gadget_borrow_history_Data):
-    borrowed = False
-    i = 1
-    while not borrowed and i < len(gadget_borrow_history_Data):
-        if gadget_borrow_history_Data[i]["id"] == ID and gadget_borrow_history_Data[i]["is_returned"] in "02":
-            borrowed = True
-        else:
-            i += 1
-    if borrowed:
+def isBorrowed(ID, gadgetBorrowHistoryData):
+    count = 0
+    for i in range(1, len(gadgetBorrowHistoryData)):
+        if (gadgetBorrowHistoryData[i]['id_gadget'] == ID):
+            if (gadgetBorrowHistoryData[i]['is_returned'] == '1'):
+                pass
+            else:
+                count = count + 1 
+    if (count > 0):
         return True
     else:
         return False

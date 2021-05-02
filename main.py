@@ -89,7 +89,7 @@ def main(folderData):
             print("="*62)
         elif perintah == "hapusitem":
             print("="*25 + " HAPUS ITEM " + "="*25)     # (50 + 2 + 10) characters
-            hapusitem(gadgetData, consumableData)
+            hapusitem(gadgetData, consumableData, gadgetBorrowHistoryData)
             print("="*62)
         elif perintah == "ubahjumlah":
             print("="*25 + " UBAH JUMLAH " + "="*24)     # (49 + 2 + 11) characters
