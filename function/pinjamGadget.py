@@ -78,7 +78,7 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
             def prosedurJadiPinjam():    
                 dataGadget[dataItem["indeks"]]["jumlah"] = str(
                     jumlahTersedia - jumlahPeminjaman)
-                print("Kamu ada di 'kapan'?")
+                print("Masukkan tanggal tempat kamu berada dulu yha..")
                 masukkanTanggal = False
                 while not masukkanTanggal:
                     # tanggal

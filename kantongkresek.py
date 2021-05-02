@@ -10,35 +10,58 @@ from function.keluar import keluar
 from function.cariTahun import cariTahun
 from function.cariRarity import cariRarity
 from function.load import load
-from function.tingkatkanRarityConsumables import tingkatkanRarityConsumables
-from function.hapusItem import hapusitem
 from function.bantuan import bantuan
 from function.mintaConsumable import mintaConsumable
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
+from function.hapusItem import hapusitem
+from function.lihatRiwayatPengambilanConsumable import lihatRiwayatPengambilanConsumable
 from function.ubahJumlah import ubahjumlah
+from function.tingkatkanRarityConsumables import tingkatkanRarityConsumables
+from function.hapusItem import hapusitem
+from function.animation import animasiDoraemon
+from function.animation import animation
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("folderData", help="folder dari data",
-                    type=str)
-args = parser.parse_args()
-folderData = args.folderData
+
+# text art interface
+doraemon_stenbaimi = r"""
+                  ,,;yyWW$$@l@l@@$$$$@gyw,,                 
+            ,y@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$@$gw,           
+        ,@$$$$$$$@*'      "*$$$$@*`     `"M$$$$$$$$g,       
+     w$$$$$$$$$F             1$"            "%$$$$$$$$&,    
+  ,$$$$$$$$$$$                L               ]$$$$$$$$$$g, 
+g$$$$$$$$$$$$`          ,,,   L   ,,           ]$$$$$$$$$$$@
+$$$$$$$$$$$@M          $wg@K  L  @wg@C         j%@$$$$$$$$$$
+$$$$$$$N"'   L         "&$& ,gg,,"&$M          L   "*B$$$$$$
+$$$$M`        ,           g$$$$$$$g           '       -"%@$$
+$@""~,           .     ,.$$$$$$$$$$F,     ,+"         ,wr"1$
+`      `^                "*^*^*^^**''          ''  ^"`''''''
+"""
+title = r"""
+             _  __           _                    
+            | |/ /          | |                   
+            | ' / __ _ _ __ | |_ ___  _ __   __ _ 
+            |  < / _` | '_ \| __/ _ \| '_ \ / _` |
+            | . \ (_| | | | | || (_) | | | | (_| |
+            |_|\_\__,_|_| |_|\__\___/|_| |_|\__, |
+                /\   (_)     (_) |           __/ |
+               /  \   _  __ _ _| |__        |___/ 
+              / /\ \ | |/ _` | | '_ \            
+             / ____ \| | (_| | | |_) |           
+            /_/    \_\ |\__,_|_|_.__/            
+                    _/ |                         
+                    |__/                          
+"""
 
 # Import fungsi secara keseluruhan
 
 
-def main():
+def main(folderData):
     clear()
-    print("MAIN INI ADALAH MAIN TEST, JANGAN LUPA")
-    print("""
-        USER YANG LOGIN CERITANYA ADALAH: faynadia 
-        DENGAN ID: 4 
-        faynadia ADALAH TUHAN, BISA APA PUN YANG DILAKUKAN ADMIN DAN USER (OMNIPOTENT) 
-        KECUALI LOGIN KARENA LOGIN BISA MERUSAK KEESAANNYA
-        """)
     print("="*25 + " MENU UTAMA " + "="*25)             # (50 + 2 + 10) characters
+    print(title)
+    print(doraemon_stenbaimi)
     (userData,
      gadgetData,
      consumableData,
@@ -46,10 +69,9 @@ def main():
      gadgetReturnHistoryData,
      consumableHistoryData,
      ) = load(folderData)
-    if len(userData) == 1: #PROPERTI TES
-        userData.append({"id":"4","nama":"Fayza Puyeng","username":"faynadia","password":"86108466174912395105981176311337","alamat":"New York","role":"admin"})
+    
     kondisi = True
-    user_status = {"id": "4", "username": "faynadia", "role": ""}
+    user_status = {"id": "", "username": "", "role": ""}
     def adminAllowedAction(perintah):
         if perintah == "register":
             print("="*25 + " REGISTER " + "="*26)       # (51 + 2 + 9) characters
@@ -68,9 +90,13 @@ def main():
             tambahitem(gadgetData, consumableData)
             print("="*62)
         elif perintah == "hapusitem":
-            hapusitem(gadgetData,consumableData, gadgetBorrowHistoryData)
+            print("="*25 + " HAPUS ITEM " + "="*25)     # (50 + 2 + 10) characters
+            hapusitem(gadgetData,consumableData,gadgetBorrowHistoryData)
+            print("="*62)
         elif perintah == "ubahjumlah":
-            ubahjumlah(gadgetData,consumableData)
+            print("="*25 + " UBAH JUMLAH " + "="*24)     # (49 + 2 + 11) characters
+            ubahjumlah(gadgetData, consumableData)
+            print("="*62)
         elif perintah == "riwayatpinjam":
             print("="*23 + " RIWAYAT PINJAM " + "="*23)  # (46 + 2 + 14) characters
             lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,userData,1,0)
@@ -80,7 +106,9 @@ def main():
             lihatRiwayatKembalikanGadget(gadgetReturnHistoryData,userData,gadgetData,gadgetBorrowHistoryData)
             print("="*62)
         elif perintah == "riwayatambil":
-            pass
+            print("="*23 + " RIWAYAT AMBIL " + "="*23)   # (46 + 2 + 14) characters
+            lihatRiwayatPengambilanConsumable(consumableHistoryData,userData,consumableData)
+            print("="*62)
         elif perintah == "save":
             print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
             newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
@@ -93,9 +121,6 @@ def main():
             }
             saveMain(newDatas,folderData)
             print("="*62)
-        elif perintah == "gacha":
-            print("="*28 + " GACHA " + "="*28)           # (56 + 2 + 4) characters
-            tingkatkanRarityConsumables(consumableData,consumableHistoryData,user_status["username"],user_status["id"])
     def userAllowedAction(perintah):
         if perintah == "carirarity":
             print("="*25 + " CARI RARITY " + "="*24)    # (49 + 2 + 11) characters
@@ -107,7 +132,19 @@ def main():
             print("="*62)
         elif perintah == "pinjam":
             print("="*27 + " PINJAM " + "="*27)         # (54 + 2 + 6) characters
-            pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["id"],user_status["username"])
+            pinjamGadget(gadgetData, gadgetBorrowHistoryData, user_status["id"], user_status["username"])
+            print("="*62)
+        elif perintah == "save":
+            print("="*28 + " SAVE " + "="*28)           # (56 + 2 + 4) characters
+            newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
+                "userData": userData,
+                "gadgetData": gadgetData,
+                "consumableData": consumableData,
+                "consumableHistoryData": consumableHistoryData,
+                "gadgetBorrowHistoryData": gadgetBorrowHistoryData,
+                "gadgetReturnHistoryData": gadgetReturnHistoryData
+            }
+            saveMain(newDatas,folderData)
             print("="*62)
         elif perintah == "kembalikan":
             print("="*25 + " KEMBALIKAN " + "="*26)     # (51 + 2 + 9) characters
@@ -117,18 +154,16 @@ def main():
             print("="*27 + " MINTA " + "="*26)          # (55 + 2 + 5) characters
             mintaConsumable(consumableData,consumableHistoryData,user_status["id"],user_status["username"])
             print("="*62)
+        elif perintah == "gacha":
+            tingkatkanRarityConsumables(consumableData,consumableHistoryData,user_status["username"],user_status["id"])
     while kondisi:
-        print("MAIN INI ADALAH MAIN TEST, JANGAN LUPA")
+        print("")
         print("masukkan perintah: (bingung? masukkan 'bantuan')")
         perintah = input(">>> ")
         print("")
         if perintah == "bantuan":
-            print("BANTUAN UNTUK ADMIN  ---Hanya properti tes")
-            bantuan("admin")
-            print("BANTUAN UNTUK USER  ---Hanya properti tes")
-            bantuan("user")
-            print("BANTUAN UNTUK STRANGER  ---Hanya properti tes")
-            bantuan("")
+            role = user_status["role"]
+            bantuan(role)
         elif perintah == "keluar":
             print("="*27 + " KELUAR " + "="*27)          # (54 + 2 + 6) characters
             newDatas = {  # hanya untuk read, tidak bisa mengganti datanya.
@@ -140,8 +175,30 @@ def main():
                 "gadgetReturnHistoryData": gadgetReturnHistoryData
             }
             kondisi = keluar(kondisi, newDatas, folderData)
-        adminAllowedAction(perintah)
-        userAllowedAction(perintah)
+        
+        elif user_status["role"] == "admin":
+            adminAllowedAction(perintah)
+        elif user_status["role"] == "user":
+            userAllowedAction(perintah)
+        else:       # user_status["role"] == ""
+            if perintah == "login":
+                print("="*27 + " LOGIN " + "="*26)      # (55 + 2 + 5) characters
+                user_status = login(userData)
+                print("="*62)
+            else:
+                print("Perintah tersebut tidak tersedia!")
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('folderData', nargs='?')
+    args = parser.parse_args()
+
+    if args.folderData is not None:
+        folderData = args.folderData
+        main(folderData)
+    else:
+        print("Tidak ada nama folder yang diberikan!")
+        print("Pemakaian: python main.py <namafolder>")
+
+

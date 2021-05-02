@@ -81,6 +81,7 @@ def randomize(key, durasi):
     return seed
 
 
+
 def tentukanRange(rarity: dict):
     # range 1 milyar
     # 0 sampai satu milyar
@@ -204,8 +205,7 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat,username, idPencampu
         pengaruhRarityUmum, pengaruhRarityJumlahInventory)
     jumlahBarangDicampur = 0
     while not (siap):
-        existStatus = isIdItemAda( # pylint: disable=E0602, E0603
-            idConsumable, dataConsumable)  # pylint: disable=E0602, E0603
+        existStatus = isIdItemAda( idConsumable, dataConsumable)  # pylint: disable=E0602, E0603
         if existStatus["keberadaan"]:
             indeks = existStatus["indeks"]
             print("{} | rarity: {} | jumlah: {}".format(dataConsumable[indeks]["nama"],dataConsumable[indeks]["rarity"],dataConsumable[indeks]["jumlah"]))

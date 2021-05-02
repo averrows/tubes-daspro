@@ -1,8 +1,11 @@
 from function.csvTools import parseCSV # pylint: disable=import-error
+from function.animation import animation # pylint: disable=import-error
+from function.animation import animationLoad # pylint: disable=import-error
 
 import os 
 def load(folderData):
-    print("Loading...")
+    animationLoad(3,"Loading")
+    print("\n")
     fixingFolderTidakAda(folderData)
     fixingCsvTidakAda(folderData)
     required_csv =  ["user.csv","gadget.csv","consumable.csv","gadget_borrow_history.csv","gadget_return_history.csv","consumable_history.csv"]
@@ -10,7 +13,7 @@ def load(folderData):
     for File in required_csv:
             data.append(parseCSV(os.path.abspath(os.path.join(folderData,File))))
     print("Data berhasil diload dari {}".format(folderData))
-    print("Selamat datang di \"Kantong Ajaib!\"")
+    print('Selamat datang di "Kantong Ajaib!"')
     return tuple(data)
 def createNewFile(fileName):
     newFile = open(fileName,'w')
