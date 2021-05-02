@@ -1,6 +1,6 @@
 from function.urutDataBerdasarTanggal import urutDataBerdasarTanggal # pylint: disable=import-error
 from math import ceil
-def printDataDariAkhir(data, jumlah, currentHalaman, halamanKeseluruhan,dataUser):
+def printDataDariAkhir(data, jumlah, currentHalaman, halamanKeseluruhan,dataUser,dataGadget):
     #KAMUS LOKAL
     #data : array of dictionary
     #jumlah : integer
@@ -12,9 +12,9 @@ def printDataDariAkhir(data, jumlah, currentHalaman, halamanKeseluruhan,dataUser
     headersData = ["ID Peminjaman","Nama Peminjam","Nama Gadget","Tanggal Peminjaman","Jumlah"]
     for i in range(jumlah):
         dataDiPrint = data[len(data)-1-i]
-        print(susunanPrint(dataDiPrint,headersData,headersDariData,dataUser))
+        print(susunanPrint(dataDiPrint,headersData,headersDariData,dataUser,dataGadget))
 
-def susunanPrint(dict,headers,headersDariData,dataUser):
+def susunanPrint(dict,headers,headersDariData,dataUser,dataGadget):
     #Mengembalikan suatu string yang diformat
     panjangHeaderTerpanjang = getPanjangElemenTerpanjang(headers)
     hasil = ""
@@ -26,6 +26,9 @@ def susunanPrint(dict,headers,headersDariData,dataUser):
         if headersDariData[i] == "id_peminjam":
             username = getNameFromId(dataUser,dict["id_peminjam"])
             hasil += username
+        elif headersDariData[i] == "id_gadget":
+            nama = getNameFromId(dataGadget,dict["id_gadget"])
+            hasil += nama
         else:
             hasil += dict[headersDariData[i]]
         hasil += "\n"
@@ -52,7 +55,7 @@ def getPanjangElemenTerpanjang(list):
 
 counterLihatRiwayat = 0
 
-def lihatRiwayatPinjamGadget(dataRiwayat,dataUser,counter,halamanKeseluruhan):
+def lihatRiwayatPinjamGadget(dataRiwayat,dataUser,dataGadget,counter,halamanKeseluruhan):
     dataRiwayat = urutDataBerdasarTanggal(dataRiwayat)
     jumlahDataRiwayat = len(dataRiwayat[1:])
     currentHalaman = counter
@@ -61,18 +64,18 @@ def lihatRiwayatPinjamGadget(dataRiwayat,dataUser,counter,halamanKeseluruhan):
     if jumlahDataRiwayat == 0:
         print("Belum ada peminjaman gadget dilakukan")
     elif jumlahDataRiwayat < 5:
-        printDataDariAkhir(dataRiwayat, jumlahDataRiwayat, currentHalaman, halamanKeseluruhan,dataUser)
+        printDataDariAkhir(dataRiwayat, jumlahDataRiwayat, currentHalaman, halamanKeseluruhan,dataUser,dataGadget)
         counter += 1
         print("Data sudah habis! (o゜▽゜)o☆ Kembali ke menu utama....")
     else:
         print("\n")
-        printDataDariAkhir(dataRiwayat, 5, currentHalaman, halamanKeseluruhan,dataUser)
+        printDataDariAkhir(dataRiwayat, 5, currentHalaman, halamanKeseluruhan,dataUser,dataGadget)
         counter += 1
         printSisa = input("Lihat riwayat selanjutnya?(Yy/Nn)")
         decision = False
         while not decision:
             if printSisa == "Y" or printSisa == "y":
-                lihatRiwayatPinjamGadget(dataRiwayat[:(len(dataRiwayat)-5)],dataUser,counter,halamanKeseluruhan)
+                lihatRiwayatPinjamGadget(dataRiwayat[:(len(dataRiwayat)-5)],dataUser,dataGadget,counter,halamanKeseluruhan)
                 decision = True
             elif printSisa.upper() == "N":
                 print("Okay, kalau begitu kita kembali ke menu utama...")
@@ -81,8 +84,8 @@ def lihatRiwayatPinjamGadget(dataRiwayat,dataUser,counter,halamanKeseluruhan):
                 print("Masukan invalid!")
                 printSisa = input(">>> ")
 
-def getNameFromId(dataUser, id):
-    for item in dataUser[1:]:
+def getNameFromId(data, id):
+    for item in data[1:]:
         if item["id"] == id:
             return item["nama"]
     return ""
