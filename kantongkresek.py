@@ -122,7 +122,7 @@ def main(folderData):
             saveMain(newDatas,folderData)
             print("="*62)
         else:
-            print("Perintah tersebut tidak tersedia untuk user!")
+            print("Perintah tersebut tidak tersedia untuk admin!")
     def userAllowedAction(perintah):
         if perintah == "carirarity":
             print("="*25 + " CARI RARITY " + "="*24)    # (49 + 2 + 11) characters
