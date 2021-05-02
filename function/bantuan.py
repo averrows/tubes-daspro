@@ -22,6 +22,7 @@ def bantuan(role):
         print("pinjam - untuk melakukan peminjaman gadget")
         print("kembalikan - untuk melakukan pengembalian gadget")
         print("minta - untuk meminta consumable")
+        print("gacha - untuk meningkatkan rarity consumables")
         print("save - untuk menyimpan file yang sudah diubah")
         print("bantuan - untuk memunculkan panduan penggunaan sistem")
         print("keluar - untuk keluar dari sistem")
