@@ -121,6 +121,8 @@ def main(folderData):
             }
             saveMain(newDatas,folderData)
             print("="*62)
+        else:
+            print("Perintah tersebut tidak tersedia untuk admin!")
     def userAllowedAction(perintah):
         if perintah == "carirarity":
             print("="*25 + " CARI RARITY " + "="*24)    # (49 + 2 + 11) characters
@@ -156,6 +158,8 @@ def main(folderData):
             print("="*62)
         elif perintah == "gacha":
             tingkatkanRarityConsumables(consumableData,consumableHistoryData,user_status["username"],user_status["id"])
+        else:
+            print("Perintah tersebut tidak tersedia untuk user!")
     while kondisi:
         print("")
         print("masukkan perintah: (bingung? masukkan 'bantuan')")
@@ -180,12 +184,12 @@ def main(folderData):
             adminAllowedAction(perintah)
         elif user_status["role"] == "user":
             userAllowedAction(perintah)
-        else:       # user_status["role"] == ""
-            if perintah == "login":
+            
+        elif perintah == "login":
                 print("="*27 + " LOGIN " + "="*26)      # (55 + 2 + 5) characters
                 user_status = login(userData)
                 print("="*62)
-            else:
+        else:
                 print("Perintah tersebut tidak tersedia!")
 
 if __name__ == "__main__":
