@@ -203,7 +203,7 @@ def cariBendaReturnBenda(key: str, data: list) -> list:
     # return yang list berisi id-nya
     hasil = []
     for item in data[1:]:
-        if key in item["nama"] or key in item["deskripsi"]:
+        if key.lower() in item["nama"].lower() or key.lower() in item["deskripsi"].lower():
             hasil.append(item)
     return hasil
 
