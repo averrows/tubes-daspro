@@ -16,6 +16,7 @@ def hapusitem(gadgetData, consumableData, gadget_borrow_history_Data):
                     validID = True
                 elif IDditemukan(ID, gadgetData) and (isBorrowed(ID, gadget_borrow_history_Data)==True):
                     print("Gadget sedang dipinjam. Minta user kembalikan terlebih dahulu.")
+                    validID = True
                 else:
                     print("Tidak ada item dengan ID tersebut")
                 
