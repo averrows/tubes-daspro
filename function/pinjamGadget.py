@@ -14,6 +14,14 @@ pinjamSkript = """Halo {}, kamu ingin pinjam apa?
         1 "Aku tahu ID gadget yang mau aku pinjam Dora !!!"
         2 "Aku cuma tahu beberapa katanya Dora !!!"
         0 "Gajadi minjem ah" """
+def sedangDipinjam(idItem, dataRiwayat, idUser):
+    for riwayat in dataRiwayat[1:]:
+        if dataRiwayat["id_peminjam"] == idUser and dataRiwayat["is_returned"] in "02":
+            return True
+    return False
+
+
+
 def dapatkanItem(data,username, isOperasiPertama):
     if isOperasiPertama:
         print(pinjamSkript.format(username))
@@ -52,9 +60,9 @@ def dapatkanItem(data,username, isOperasiPertama):
         dapatkanItem(data,username,False)
 
 
-def cekPinjam(idItem, dataRiwayat):
+def cekPinjam(idItem, dataRiwayat,idUser):
     for i in range(1, len(dataRiwayat)):
-        if (idItem == dataRiwayat[i]['id_gadget']) and (dataRiwayat[i]['is_returned'] != "1"):
+        if (idItem == dataRiwayat[i]['id_gadget']) and sedangDipinjam(idItem,dataRiwayat,idUser):
             return False    # Gadget sedang dipinjam user
     return True             # Gadget tidak sedang dipinjam user
 
@@ -154,14 +162,14 @@ def pinjamGadget(dataGadget, dataRiwayat, idPeminjam, username):
         idItem = dapatkanItem(dataGadget,username,True)
         # cek apakah item ada, jika ada, jalankan algoritma
         dataItem = isIdItemAda(idItem, dataGadget)
-        if (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == True):
+        if (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat, idPeminjam) == True):
             jumlahTersedia = int(dataGadget[dataItem["indeks"]]["jumlah"])
             indeksGadget = dataItem["indeks"]
             namaGadget = dataGadget[indeksGadget]["nama"]
             print("Gadget tersebut adalah "+namaGadget)
             print(namaGadget + " tersedia sejumlah " + str(jumlahTersedia))
             prosedurMasukkanJumlahToNext()
-        elif (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat) == False):
+        elif (dataItem["keberadaan"]) and (cekPinjam(idItem, dataRiwayat, idPeminjam) == False):
             print("Gadget tersebut masih kamu pinjam.\nSilahkan kembalikan terlebih dahulu atau pinjam yang lain! ヾ(^▽^*)")
         elif (dataItem["keberadaan"] == False) and (idItem != "0000000") :
             print("Gadget dengan ID tersebut tidak ada")
@@ -198,7 +206,6 @@ def cariBendaReturnBenda(key: str, data: list) -> list:
         if key in item["nama"] or key in item["deskripsi"]:
             hasil.append(item)
     return hasil
-
 
 
 
