@@ -1,14 +1,14 @@
 id;nama;deskripsi;jumlah;rarity;tahun_ditemukan
-G1;Pensil Listrik;Pensil bertenaga listrik untuk menulis otomatis;24;C;2030
-G2;Tubes Solver;Alat untuk menyelesaikan tubes secara auto-pilot sesuai deadline;2;S;2100
+G1;Pensil Listrik;Pensil bertenaga listrik untuk menulis otomatis;21;C;2030
+G2;Tubes Solver;Alat untuk menyelesaikan tubes secara auto-pilot sesuai deadline;1;S;2100
 G3;Gagang Pintu ITB;Pintu yang ditempeli gagang ini akan menuju ke ruang kelas di ITB;15;B;2048
-G4;Gadget Generator;Alat untuk generate gadget di gadget.csv;1;A;2021
-G5;Buku Mathco;Kitab para mahasiswa SKS;12;A;2001
-G6;Alat Penebak Jawaban;Dapat digunakan saat ujian dan butuh capcipcup jawaban;4;S;2250
+G4;Gadget Generator;Alat untuk generate gadget di gadget.csv;0;A;2021
+G5;Buku Mathco;Kitab para mahasiswa SKS;11;A;2001
+G6;Alat Penebak Jawaban;Dapat digunakan saat ujian dan butuh capcipcup jawaban;3;S;2250
 G7;Batu Kerikil;Hanya sebuah batu yang menyedihkan;75;C;1845
 G8;Tisu ITB;Mengelap air mata yang jatuh saat berkuliah di ITB;23;B;1920
-G9;Softcopy File LTSpice;Buat install LTSpice. Bisa dipakai saat mengerjakan PR dan ujian;7;A;1986
-G10;Kalkulator;Alat bantu speed run laporan praktikum fisika dasar;30;B;1636
+G9;Softcopy File LTSpice;Buat install LTSpice. Bisa dipakai saat mengerjakan PR dan ujian;5;A;1986
+G10;Kalkulator;Alat bantu speed run laporan praktikum fisika dasar;26;B;1636
 G11;Jamal Terbang;Jamal yang dapat datang sendiri dan menemukan pemiliknya;7;A;1920
 G12;Algoritmic Translator;Penerjemah bahasa python menjadi bahasa algoritma;100;S;2030
 G13;Laptop;Untuk bermain;5;A;2021
