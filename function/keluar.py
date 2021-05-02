@@ -13,4 +13,18 @@ def keluar(kondisi, newData, folderData):
         saveMain(newData,folderData)
     else:
         pass
+    message = r"""
+     /|
+    / |
+   /__|____
+  |        |    Terima kasih telah
+  |        |    menggunakan Kantong Ajaib!
+  |        |    
+  |      o |    Keluar dari sistem...
+  |        |
+  |        | 
+  |        |
+  |________|
+    """
+    print(message)
     return False
