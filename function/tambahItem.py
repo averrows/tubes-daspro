@@ -37,7 +37,7 @@ def tambahitem(gadgetData,consumableData):
 
 
 def tambahgadget(ID, gadgetData):
-    gadgettambahan = {"id": f"{ID}", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
+    gadgettambahan = {"id": f"{ID}", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun_ditemukan":""}
     gadgettambahan["nama"] = input("Masukkan Nama: ")
     gadgettambahan["deskripsi"] = input("Masukkan Deskripsi: ")
                     
@@ -62,8 +62,8 @@ def tambahgadget(ID, gadgetData):
     # input + validasi tahun
     istahunvalid = False
     while not istahunvalid:
-        gadgettambahan["tahun"] = input("Masukkan tahun: ")
-        if tahunvalid(gadgettambahan["tahun"]):
+        gadgettambahan["tahun_ditemukan"] = input("Masukkan tahun: ")
+        if tahunvalid(gadgettambahan["tahun_ditemukan"]):
             gadgetData.append(gadgettambahan)
             print("Item berhasil ditambahkan ke database.")
             istahunvalid = True
@@ -72,7 +72,7 @@ def tambahgadget(ID, gadgetData):
 
 
 def tambahconsumable(ID, consumableData):
-    consumabletambahan = {"id": f"{ID}", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
+    consumabletambahan = {"id": f"{ID}", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun_ditemukan":""}
     consumabletambahan["nama"] = input("Masukkan nama: ")
     consumabletambahan["deskripsi"] = input("Masukkan Deskripsi: ")
                     
