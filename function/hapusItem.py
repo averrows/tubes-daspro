@@ -80,4 +80,7 @@ def isBorrowed(ID, gadget_borrow_history_Data):
             borrowed = True
         else:
             i += 1
-    return borrowed
+    if borrowed:
+        return True
+    else:
+        return False

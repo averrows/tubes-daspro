@@ -1,107 +1,56 @@
 from function.validasiTahundanJumlah import jumlahbesarkecil # pylint: disable=import-error
 from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
+from function.pinjamGadget import isIdItemAda # pylint: disable=import-error
+from function.kembalikanGadget import validasiAngka # pylint: disable=import-error
+
+
+
 
 def ubahjumlah(gadgetData,consumableData):
-    ID = input("Masukkan ID: ")
-    
     # ALGORITMA
     status = False
     while not status:
+        ID = input("Masukkan ID: ")
         if IDValid(ID):
-            status = True
             if ID[0] == "G":
-                if len(gadgetData) == 1:
-                # validasi data kosong    
-                    print("Maaf data tidak tersedia")
-                else:
-                    ketemu = False
-                    while not ketemu:
-                        if IDditemukan(ID, gadgetData):
-                            ketemu = True
-                            for i in range(1, len(gadgetData)):
-                                if ID == gadgetData[i]["id"]:
-                                    kondisi = True
-                                    kondisijumlah = False
-                                    jumlah = int(input("Masukkan jumlah: "))
-                                    while not kondisijumlah:                   
-                                        if jumlahbesarkecil(jumlah):
-                                            kondisijumlah = True
-                                            jumlahgadget = int(gadgetData[i]["jumlah"])
-                                            if jumlah >= 0:
-                                                jumlahgadget += jumlah
-                                                gadgetData[i]["jumlah"] = jumlahgadget
-                                                print(str(jumlah) + " " + str(gadgetData[i]["nama"]) + " berhasil ditambahkan. Stok sekarang: " + str(gadgetData[i]["jumlah"]))
-                                            else: #jumlah < 0:
-                                                stringjumlah = str(jumlah)
-                                                panjangjumlah = len(stringjumlah)
-                                                jumlahasli = stringjumlah[1:panjangjumlah]
-                                                if jumlahgadget >= int(jumlahasli):
-                                                    jumlahgadget += jumlah
-                                                    gadgetData[i]["jumlah"] = jumlahgadget
-                                                    print(str(jumlahasli) + " " + str(gadgetData[i]["nama"]) + " berhasil diibuang. Stok sekarang: " + str(gadgetData[i]["jumlah"]))
-                                                else:
-                                                    print(str(jumlahasli) + " " + str(gadgetData[i]["nama"]) + " gagal dibuang karena stok kurang. Stok sekarang: " + str(gadgetData[i]["jumlah"]) + "(<" + str(jumlahasli) + ")")
-                                        else:
-                                            print("Masukkan jumlah tidak valid.")
-                                            jumlah = int(input("Masukkan jumlah: "))
-                                    break
-                                else:
-                                    kondisi = False
-                            if kondisi == True:
-                                pass
-                            else:
-                                print("Tidak ada Item dengan ID Tersebut")
-                                ID = input("Masukkan ID: ")
-                        else:
-                            print("Tidak ada Item dengan ID Tersebut")
-                            ID = input("Masukkan ID: ")
-
+                ubahData(ID, gadgetData)
             elif ID[0] == "C":
-                if len(consumableData) == 1:
-                # validasi data kosong
-                    print("Maaf data tidak tersedia")
-                else :
-                    ketemu = False
-                    while not ketemu:
-                        if IDditemukan(ID, consumableData):
-                            ketemu = True
-                            for i in range(1, len(consumableData)):
-                                if ID == consumableData[i]["id"]:
-                                    kondisi = True
-                                    kondisijumlah = False
-                                    jumlah = int(input("Masukkan jumlah: "))
-                                    while not kondisijumlah:
-                                        if jumlahbesarkecil(jumlah):
-                                            kondisijumlah = True
-                                            jumlahconsumable = int(consumableData[i]["jumlah"])
-                                            if jumlah >= 0:
-                                                jumlahconsumable += jumlah
-                                                consumableData[i]["jumlah"] = jumlahconsumable
-                                                print(str(jumlah) + " " + str(consumableData[i]["nama"]) + " berhasil ditambahkan. Stok sekarang: " + str(consumableData[i]["jumlah"]))
-                                            else: #jumlah < 0
-                                                stringjumlah = str(jumlah)
-                                                panjangjumlah = len(stringjumlah)
-                                                jumlahasli = stringjumlah[1:panjangjumlah]
-                                                if jumlahconsumable >= int(jumlahasli): 
-                                                    jumlahconsumable += jumlah
-                                                    consumableData[i]["jumlah"] = jumlahconsumable
-                                                    print(str(jumlah) + " " + str(consumableData[i]["nama"]) + " berhasil dibuang. Stok sekarang: " + str(consumableData[i]["jumlah"]))
-                                                else:
-                                                    print(str(jumlah) + " gagal dibuang karena stok kurang. Stok sekarang: " + str(consumableData[i]["jumlah"]) + "(<" + str(jumlah) + ")")
-                                        else:
-                                            print("Masukkan jumlah tidak valid")
-                                            jumlah = int(input("Masukkan jumlah: "))
-                                    break
-                                else:
-                                    kondisi = False
-                            if kondisi == True:
-                                pass
-                            else:
-                                print("Tidak ada Item dengan ID Tersebut")
-                                ID = input("Masukkan ID: ")
-                        else:
-                            print("Tidak ada Item dengan ID Tersebut")
-                            ID = input("Masukkan ID: ")
+                ubahData(ID, consumableData)
+            status = True
         else:
-            print("Input ID Tidak Valid!")
-            ID = input("Masukkan ID: ")
+            print("Id tidak valid, masukkan ulang")
+            ID = input(">>> ")
+
+def ubahData(id, data):
+    statusItem = isIdItemAda(id, data) #mengembalikan dictionary berisi status keberadaan dan indeks pada data
+    if statusItem["keberadaan"]:
+        jumlahPerubahan = getJumlah()
+        doChange(statusItem["indeks"], jumlahPerubahan, data)
+    else: #statusItem["keberadaan"] == False
+        print("Tidak ada item dengan id tersebut")
+    
+def getJumlah():
+    jumlah = input("Masukkan perubahan jumlah: ")
+
+    # Cek apakah jumlah adalah suatu angka
+    while isinstance(jumlah,int):
+        print("Harap masukkan angka!")
+        jumlah = input(">>> ")
+    
+    return int(jumlah)
+
+def doChange(indeks,jumlahPerubahan, data):
+    jumlahAwal = int(data[indeks]["jumlah"])
+    jumlahAkhir = jumlahAwal + jumlahPerubahan
+    namaItem = data[indeks]["nama"]
+    if jumlahAkhir >= 0:
+        if jumlahAkhir > jumlahAwal:
+            data[indeks]["jumlah"] = str(jumlahAkhir)
+            print(f"{abs(jumlahPerubahan)} {namaItem} berhasil ditambahkan. Stok sekarang: {jumlahAkhir}")
+        elif jumlahAkhir < jumlahAwal:
+            data[indeks]["jumlah"] = str(jumlahAkhir)
+            print(f"{abs(jumlahPerubahan)} {namaItem} berhasil dibuang. Stok sekarang: {jumlahAkhir}")
+        else: #jumlahAkhir == jumlahAwal
+            print(f"Tidak ada perubahan stok {namaItem}")
+    else: #jumlahAkhir < 0
+        print(f"{abs(jumlahPerubahan)} {namaItem} gagal dibuang karena stok kurang. Stok sekarang: {jumlahAwal} (< {abs(jumlahPerubahan)})")
