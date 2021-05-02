@@ -23,14 +23,17 @@ def cariRarity(data):
         rarity = input("Masukkan rarity: ")
         print("Hasil pencarian:\n")
         
-        if isFound(rarity):
-            for i in range(1, len(data)):
-                if data[i]["rarity"] == rarity:
-                    print("ID              :", data[i]["id"])
-                    print("Nama            :", data[i]["nama"])
-                    print("Deskripsi       :", data[i]["deskripsi"])
-                    print("Jumlah          :", data[i]["jumlah"])
-                    print("Rarity          :", data[i]["rarity"])
-                    print("Tahun Ditemukan :", data[i]["tahun_ditemukan"], "\n")
+        if rarity in "SABC":
+            if isFound(rarity):
+                for i in range(1, len(data)):
+                    if data[i]["rarity"] == rarity:
+                        print("ID              :", data[i]["id"])
+                        print("Nama            :", data[i]["nama"])
+                        print("Deskripsi       :", data[i]["deskripsi"])
+                        print("Jumlah          :", data[i]["jumlah"])
+                        print("Rarity          :", data[i]["rarity"])
+                        print("Tahun Ditemukan :", data[i]["tahun_ditemukan"], "\n")
+            else:
+                print(f"Gadget dengan rarity {rarity} tidak ditemukan!")
         else:
-            print(f"Gadget dengan rarity {rarity} tidak ditemukan!")
+            print("Hanya terdapat rarity S/A/B/C !")
