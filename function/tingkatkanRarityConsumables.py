@@ -164,83 +164,91 @@ def rarityPascaPenambahanItem(rarity: str, jumlah: int, pengaruhKeseluruhan: dic
 
 def tingkatkanRarityConsumables(dataConsumable, dataRiwayat,username, idPencampur):
     print("Sebelum main, masukkan tanggal dulu yah hehe.... ")
-    masukkanTanggal = False
-    while not masukkanTanggal:
-        # tanggal
-        day = input("Masukkan tanggal: ")
-        while (validasiAngka(day) == False): # pylint: disable=E0602, E0603
-            print("Masukkan angka! (˘･_･˘)")
+    def prosedurMasukkanTanggal():
+        masukkanTanggal = False
+        while not masukkanTanggal:
+            # tanggal
             day = input("Masukkan tanggal: ")
-        day = int(day)
-        # bulan
-        month = input("Masukkan bulan: ")
-        while (validasiAngka(month) == False):
-            print("Masukkan angka! (˘･_･˘)")
+            while (validasiAngka(day) == False): # pylint: disable=E0602, E0603
+                print("Masukkan angka! (˘･_･˘)")
+                day = input("Masukkan tanggal: ")
+            day = int(day)
+            # bulan
             month = input("Masukkan bulan: ")
-        month = int(month)
-        # tahun
-        year = input("Masukkan tahun: ")
-        while (validasiAngka(year) == False):
-            print("Masukkan angka! (˘･_･˘)")
+            while (validasiAngka(month) == False):
+                print("Masukkan angka! (˘･_･˘)")
+                month = input("Masukkan bulan: ")
+            month = int(month)
+            # tahun
             year = input("Masukkan tahun: ")
-        year = int(year)
-        # validasi
-        masukkanTanggal = validasiTanggal(day, month, year)
-        if masukkanTanggal == False:
-            print(
-                "Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
-    dmy = datetime.datetime(year, month, day)
-    tanggal = dmy.strftime(
-        "%d") + "/" + dmy.strftime("%m") + "/" + dmy.strftime("%Y")
-    
-    idConsumable = dapatkanItem( # pylint: disable=E0602, E0603
-        dataConsumable, username, campurSkript)  
-    siap = False
-    rarityBasis = {"S": 2, "A": 16, "B": 36, "C": 46}
-    pengaruhRarityUmum = {"S": rumusRarityUmum(0.4, -0.4/21, -1.6/21, -6.4/21, dataConsumable), "A": rumusRarityUmum(0.2, 0.4, -0.2, -0.4, dataConsumable),
-                                               "B": rumusRarityUmum(0.1, 0.2, 0., -0.12, dataConsumable), "C": rumusRarityUmum(0.00625, 0.025, 0.1, -0.13125, dataConsumable)}
-    pengaruhRarityJumlahInventory = rumusRarityJumlahInventory(
-        dataConsumable)  # {"S":20}
-    pengaruhRarityKeseluruhan = rumusPengaruhKeseluruhan(
-        pengaruhRarityUmum, pengaruhRarityJumlahInventory)
+            while (validasiAngka(year) == False):
+                print("Masukkan angka! (˘･_･˘)")
+                year = input("Masukkan tahun: ")
+            year = int(year)
+            # validasi
+            masukkanTanggal = validasiTanggal(day, month, year)
+            if masukkanTanggal == False:
+                print(
+                    "Tanggal yang dimasukkan tidak ada, harap masukkan ulang")
+        dmy = datetime.datetime(year, month, day)
+        tanggal = dmy.strftime(
+            "%d") + "/" + dmy.strftime("%m") + "/" + dmy.strftime("%Y")
+        return tanggal
+    tanggal = prosedurMasukkanTanggal()
+    def deklarasiSistemRarity():
+        pengaruhRarityUmum = {"S": rumusRarityUmum(0.4, -0.4/21, -1.6/21, -6.4/21, dataConsumable), "A": rumusRarityUmum(0.2, 0.4, -0.2, -0.4, dataConsumable),
+                                                "B": rumusRarityUmum(0.1, 0.2, 0., -0.12, dataConsumable), "C": rumusRarityUmum(0.00625, 0.025, 0.1, -0.13125, dataConsumable)}
+        pengaruhRarityJumlahInventory = rumusRarityJumlahInventory(
+            dataConsumable)  # {"S":20}
+        pengaruhRarityKeseluruhan = rumusPengaruhKeseluruhan(
+            pengaruhRarityUmum, pengaruhRarityJumlahInventory)
+        return pengaruhRarityKeseluruhan
     jumlahBarangDicampur = 0
-    while not (siap):
-        existStatus = isIdItemAda( idConsumable, dataConsumable)  # pylint: disable=E0602, E0603
-        if existStatus["keberadaan"] and idConsumable != "0000000":
-            indeks = existStatus["indeks"]
-            print("{} | rarity: {} | jumlah: {}".format(dataConsumable[indeks]["nama"],dataConsumable[indeks]["rarity"],dataConsumable[indeks]["jumlah"]))
-            jumlah = getJumlahPermintaan( # pylint: disable=E0602, E0603
-                "campur")  
-            while jumlah > int(dataConsumable[indeks]["jumlah"]):
-                print("Jumlah yang kamu masukkan berlebih!")
+    rarityBasis = {}
+    def prosedurPencampuran():
+        rarityBasis = {"S": 2, "A": 16, "B": 36, "C": 46}
+        pengaruhRarityKeseluruhan=deklarasiSistemRarity()
+        jumlahBarangDicampur = 0
+        idConsumable = dapatkanItem( # pylint: disable=E0602, E0603
+            dataConsumable, username, campurSkript)  
+        siap = False
+        while not (siap):
+            existStatus = isIdItemAda( idConsumable, dataConsumable)  # pylint: disable=E0602, E0603
+            if existStatus["keberadaan"] and idConsumable != "0000000":
+                indeks = existStatus["indeks"]
+                print("{} | rarity: {} | jumlah: {}".format(dataConsumable[indeks]["nama"],dataConsumable[indeks]["rarity"],dataConsumable[indeks]["jumlah"]))
                 jumlah = getJumlahPermintaan( # pylint: disable=E0602, E0603
                     "campur")  
-            rarityBasis = rarityPascaPenambahanItem(
-                dataConsumable[indeks]["rarity"], jumlah, pengaruhRarityKeseluruhan, rarityBasis)
-            dataConsumable[indeks]["jumlah"] = str(int(dataConsumable[indeks]["jumlah"]) - jumlah)
-            idMinta = len(dataRiwayat)
+                while jumlah > int(dataConsumable[indeks]["jumlah"]):
+                    print("Jumlah yang kamu masukkan berlebih!")
+                    jumlah = getJumlahPermintaan( # pylint: disable=E0602, E0603
+                        "campur")  
+                rarityBasis = rarityPascaPenambahanItem(
+                    dataConsumable[indeks]["rarity"], jumlah, pengaruhRarityKeseluruhan, rarityBasis)
+                dataConsumable[indeks]["jumlah"] = str(int(dataConsumable[indeks]["jumlah"]) - jumlah)
+                idMinta = len(dataRiwayat)
 
-            consumableHistoryDataBaru = {
-                "id": str(idMinta),
-                "id_pengambil": idPencampur,
-                "id_consumable": idConsumable,
-                "tanggal_pengambilan": tanggal,
-                "jumlah": jumlah,
-            }
-            dataRiwayat.append(consumableHistoryDataBaru)
-            jumlahBarangDicampur += 1
-        elif not existStatus["keberadaan"] and idConsumable != "0000000" :
-            print("item tersebut tidak ada")
-        # campur lagi?
-        lagi = input("Campur yang lain?(Yy)")
-        if lagi.upper() == "Y":
-            idConsumable = dapatkanItem(dataConsumable, username, campurSkript)  # pylint: disable=E0602, E0603
-            siap = False
-        else:
-            siap = True
-    else:
-        pass
+                consumableHistoryDataBaru = {
+                    "id": str(idMinta),
+                    "id_pengambil": idPencampur,
+                    "id_consumable": idConsumable,
+                    "tanggal_pengambilan": tanggal,
+                    "jumlah": jumlah,
+                }
+                dataRiwayat.append(consumableHistoryDataBaru)
+                jumlahBarangDicampur += 1
+            elif not existStatus["keberadaan"] and idConsumable != "0000000" :
+                print("item tersebut tidak ada")
+            # campur lagi?
+            lagi = input("Campur yang lain?(Yy)")
+            if lagi.upper() == "Y":
+                idConsumable = dapatkanItem(dataConsumable, username, campurSkript)  # pylint: disable=E0602, E0603
+                siap = False
+            else:
+                siap = True
     
+    deklarasiSistemRarity()
+    prosedurPencampuran()
     # PROSES PENGOCOKAN SETELAH PENCAMPURAN
     if jumlahBarangDicampur > 0:
         rangeDistribusi = tentukanRange(rarityBasis)
