@@ -96,7 +96,7 @@ def main(folderData):
             print("="*62)
         elif perintah == "riwayatpinjam":
             print("="*23 + " RIWAYAT PINJAM " + "="*23)  # (46 + 2 + 14) characters
-            lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,0,1)
+            lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,userData,1,0)
             print("="*62)
         elif perintah == "riwayatkembali":
             print("="*23 + " RIWAYAT KEMBALI " + "="*22)   # (45 + 2 + 15) characters
@@ -152,7 +152,12 @@ def main(folderData):
             mintaConsumable(consumableData,consumableHistoryData,user_status["id"],user_status["username"])
             print("="*62)
         elif perintah == "gacha":
-            tingkatkanRarityConsumables(consumableData,consumableHistoryData,user_status["username"],user_status["id"])
+            bonus = {"S": [{"nama":"Air Mata Helmi Hibatullah","deskripsi":"QWERTY"},{"nama":"Air Mata Fayza Nadya","deskripsi":"QWERTY"},{"nama":"Air Mata Hilman Mubarok","deskripsi":"QWERTY"},{"nama":"Air Mata Averrous Saloom","deskripsi":"QWERTY"}],
+            "A":[{"nama":"Air Susu Strawberry","deskripsi":"QWERTY"},{"nama":"Snack Pembunuh","deskripsi":"QWERTY"},{"nama":"Astor Baru (yang ada astor dalam plastik dan harus ditarik itu lho)","deskripsi":"QWERTY"},{"nama":"Siomay Kok Jadi Takjil","deskripsi":"QWERTY"}],
+            "B":[{"nama":"lays","deskripsi":"QWERTY"},{"nama":"chitato","deskripsi":"QWERTY"},{"nama":"sari roti","deskripsi":"QWERTY"},{"nama":"cheetos","deskripsi":"QWERTY"}],
+            "C":[{"nama":"mie sakura","deskripsi":"QWERTY"},{"nama":"ciki magnum","deskripsi":"QWERTY"},{"nama":"ciki zeky","deskripsi":"QWERTY"},{"nama":"Momogi","deskripsi":"QWERTY"}]
+        }
+            tingkatkanRarityConsumables(consumableData,consumableHistoryData,bonus,user_status["username"],user_status["id"])
     while kondisi:
         print("")
         print("masukkan perintah: (bingung? masukkan 'bantuan')")
