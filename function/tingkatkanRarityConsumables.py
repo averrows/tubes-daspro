@@ -206,7 +206,7 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat,username, idPencampu
     jumlahBarangDicampur = 0
     while not (siap):
         existStatus = isIdItemAda( idConsumable, dataConsumable)  # pylint: disable=E0602, E0603
-        if existStatus["keberadaan"]:
+        if existStatus["keberadaan"] and idConsumable != "0000000":
             indeks = existStatus["indeks"]
             print("{} | rarity: {} | jumlah: {}".format(dataConsumable[indeks]["nama"],dataConsumable[indeks]["rarity"],dataConsumable[indeks]["jumlah"]))
             jumlah = getJumlahPermintaan( # pylint: disable=E0602, E0603
@@ -229,7 +229,7 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat,username, idPencampu
             }
             dataRiwayat.append(consumableHistoryDataBaru)
             jumlahBarangDicampur += 1
-        else:
+        elif not existStatus["keberadaan"] and idConsumable != "0000000" :
             print("item tersebut tidak ada")
         # campur lagi?
         lagi = input("Campur yang lain?(Yy)")
