@@ -19,6 +19,8 @@ def hapusitem(gadgetData, consumableData, gadget_borrow_history_Data):
                     validID = True
                 else:
                     print("Tidak ada item dengan ID tersebut")
+                    validID = True
+
                 
         elif IDValid(ID) and ID[0] == "C":  # hapus consumable
             if len(consumableData) == 1:    # jika data consumable hanya header
@@ -30,7 +32,7 @@ def hapusitem(gadgetData, consumableData, gadget_borrow_history_Data):
                     validID = True
                 else:
                     print("Tidak ada item dengan ID tersebut")
-
+                    validID = True
         else:
             print("Input ID tidak valid!")
 
