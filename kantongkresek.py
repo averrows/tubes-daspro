@@ -99,7 +99,7 @@ def main(folderData):
             print("="*62)
         elif perintah == "riwayatpinjam":
             print("="*23 + " RIWAYAT PINJAM " + "="*23)  # (46 + 2 + 14) characters
-            lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,userData,1,0)
+            lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,userData,gadgetData,1,0)
             print("="*62)
         elif perintah == "riwayatkembali":
             print("="*23 + " RIWAYAT KEMBALI " + "="*22)   # (45 + 2 + 15) characters
