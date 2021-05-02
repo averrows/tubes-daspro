@@ -1,10 +1,6 @@
-from function.validasiTahundanJumlah import jumlahbesarkecil # pylint: disable=import-error
-from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
+from function.validasiID import IDValid # pylint: disable=import-error
 from function.pinjamGadget import isIdItemAda # pylint: disable=import-error
 from function.kembalikanGadget import validasiAngka # pylint: disable=import-error
-
-
-
 
 def ubahjumlah(gadgetData,consumableData):
     # ALGORITMA
