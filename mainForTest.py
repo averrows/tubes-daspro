@@ -68,7 +68,7 @@ def main():
             tambahitem(gadgetData, consumableData)
             print("="*62)
         elif perintah == "hapusitem":
-            hapusitem(gadgetData,consumableData)
+            hapusitem(gadgetData,consumableData, gadgetBorrowHistoryData)
         elif perintah == "ubahjumlah":
             pass
         elif perintah == "riwayatpinjam":

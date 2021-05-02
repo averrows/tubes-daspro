@@ -1,64 +1,83 @@
 from function.validasiID import IDValid, IDditemukan #pylint: disable=import-error
 
-def hapusitem(gadgetData,consumableData):
-    ID = input("Masukkan ID: ")
-    tidakada = False
+def hapusitem(gadgetData, consumableData, gadget_borrow_history_Data):
     # ALGORITMA
-    while not tidakada:
-        if IDValid(ID):
-            tidakada = True
-            if ID[0] == "G":
-                if len(gadgetData) == 1:
-                    print("Maaf data tidak tersedia")
+    validID = False
+    while not validID:
+        ID = input("Masukkan ID: ")
+
+        if IDValid(ID) and ID[0] == "G":    # hapus gadget
+            if len(gadgetData) == 1:        # jika data gadget hanya header
+                print("Maaf data tidak tersedia")
+                validID = True
+            else:
+                if IDditemukan(ID, gadgetData) and not isBorrowed(ID, gadget_borrow_history_Data):
+                    hapusGadget(ID, gadgetData)
+                    validID = True
+                elif IDditemukan(ID, gadgetData) and isBorrowed(ID, gadget_borrow_history_Data):
+                    print("Gadget sedang dipinjam. Minta user kembalikan terlebih dahulu.")
                 else:
-                    ketemu = False
-                    while not ketemu:
-                        if IDditemukan(ID, gadgetData):
-                            ketemu = True
-                            for i in range(1, len(gadgetData)):
-                                if gadgetData[i]["id"] == ID:
-                                    print("Apakah anda ingin menghapus " + gadgetData[i]["nama"] + "?(Yy/Nn)")
-                                    op = input(">>> ")
-                                    yakin = False
-                                    while not yakin:
-                                        if op == "Y" or op == "y":
-                                            del gadgetData[i]
-                                            yakin = True
-                                            print("Item telah berhasil dihapus")
-                                        elif op == "n" or op == "N" :
-                                            yakin = True
-                                            print("Penghapusan tidak jadi dilakukan, kamu akan kembali ke menu")
-                                        else:
-                                            op = input(">>> ")
-                        else:
-                            print("Tidak ada item dengan ID tersebut")
-                            ID = input("Masukkan ID: ")
-            else: #ID[0] == "C":
-                if len(consumableData) == 1:
-                    print("maaf data tidak tersedia")
+                    print("Tidak ada item dengan ID tersebut")
+                
+        elif IDValid(ID) and ID[0] == "C":  # hapus consumable
+            if len(consumableData) == 1:    # jika data consumable hanya header
+                print("Maaf data tidak tersedia")
+                validID = True
+            else:
+                if IDditemukan(ID, consumableData):
+                    hapusConsumable(ID, consumableData)
+                    validID = True
                 else:
-                    ketemu = False
-                    while not ketemu:
-                        if IDditemukan(ID, consumableData):
-                            ketemu = True
-                            for i in range(1, len(consumableData)):
-                                if consumableData[i]["id"] == ID:
-                                    print("Apakah anda ingin menghapus " + consumableData[i]["nama"] + "?(Yy/Nn)")
-                                    op = input(">>> ")
-                                    yakin = False
-                                    while not yakin:
-                                        if op == "Y" or op == "y":
-                                            del consumableData[i]
-                                            yakin = True
-                                            print("Item telah berhasil dihapus")
-                                        elif op == "n" or op == "N" :
-                                            yakin = True
-                                            print("Penghapusan tidak jadi dilakukan, kamu akan kembali ke menu")
-                                        else:
-                                            op = input(">>> ")
-                        else:
-                            print("Tidak ada item dengan ID tersebut")
-                            ID = input("Masukkan ID: ")
+                    print("Tidak ada item dengan ID tersebut")
+
         else:
             print("Input ID tidak valid!")
-            ID = input("Masukkan ID: ")
+
+
+def hapusGadget(ID, gadgetData):
+    # mencari gadget
+    gadget_will_delete = {}
+    for i in range(1, len(gadgetData)):
+        if gadgetData[i]["id"] == ID:
+            gadget_will_delete = gadgetData[i]
+
+    # tanya user
+    tanya = input("Apakah anda ingin menghapus " + gadget_will_delete["nama"] + "?(Yy/Nn) ")
+    while tanya not in "YyNn":
+        tanya = input("Apakah anda ingin menghapus " + gadget_will_delete["nama"] + "?(Yy/Nn) ")
+    
+    if tanya in "Yy":
+        gadgetData.remove(gadget_will_delete)
+        print("Item telah berhasil dihapus")
+    else:
+        print("Penghapusan tidak jadi dilakukan, kamu akan kembali ke menu")
+
+
+def hapusConsumable(ID, consumableData):
+    # mencari comsumable
+    consumable_will_delete = {}
+    for i in range(1, len(consumableData)):
+        if consumableData[i]["id"] == ID:
+            consumable_will_delete = consumableData[i]
+
+    # tanya user
+    tanya = input("Apakah anda ingin menghapus " + consumable_will_delete["nama"] + "?(Yy/Nn) ")
+    while tanya not in "YyNn":
+        tanya = input("Apakah anda ingin menghapus " + consumable_will_delete["nama"] + "?(Yy/Nn) ")
+    
+    if tanya in "Yy":
+        consumableData.remove(consumable_will_delete)
+        print("Item telah berhasil dihapus")
+    else:
+        print("Penghapusan tidak jadi dilakukan, kamu akan kembali ke menu")
+        
+
+def isBorrowed(ID, gadget_borrow_history_Data):
+    borrowed = False
+    i = 1
+    while not borrowed and i < len(gadget_borrow_history_Data):
+        if gadget_borrow_history_Data[i]["id"] == ID and gadget_borrow_history_Data[i]["is_returned"] in "02":
+            borrowed = True
+        else:
+            i += 1
+    return borrowed
