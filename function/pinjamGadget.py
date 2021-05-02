@@ -16,7 +16,7 @@ pinjamSkript = """Halo {}, kamu ingin pinjam apa?
         0 "Gajadi minjem ah" """
 def sedangDipinjam(idItem, dataRiwayat, idUser):
     for riwayat in dataRiwayat[1:]:
-        if dataRiwayat["id_peminjam"] == idUser and dataRiwayat["is_returned"] in "02":
+        if riwayat["id_peminjam"] == idUser and riwayat["is_returned"] in "02":
             return True
     return False
 
