@@ -1,1 +1,14 @@
-id;nama;deskripsi;jumlah;rarity
+id,nama,deskripsi,jumlah,rarity
+C1,Permen Bodoh,Selama 15 menit membuat bodoh yang memakannya,1100,B
+C2,Kertas Laprak,Kertas yang dapat menyelesaikan laporannya sendiri,5,C
+C3,Kopi Super,Kopi dengan kafein khusus untuk mengerjakan tubes 24/7,25,B
+C4,Free Pass Jurusan,Tidak perlu khawatir terhadap IP. Memilih jurusan semudah membalikkan telapak tangan,3,S
+C5,Karcis Parkir,"Jangan diambil, punya Mobita ntar gabisa pulang",1,B
+C6,Tumblr Kuning,"Jangan diambil, punya Mobita buat buka puasa ntar",1,C
+C7,Indomie Goreng,Makanan paling enak,2,S
+C8,Cemilan pengubah identitas,Cemilan yang sangat cocok dimakan saat diteror oleh dosen,20,A
+C9,Bunga Tidur,Bunga yang penahan kantuk yang sangat cocok digunakan ketika mengantuk pada saat kelas,13,C
+C10,Redemption Question,Kesempatan untuk mengulangi menjawab soal yang salah saat ujian,5,S
+C11,Kupon Spotify 3 Bulan,Redeem agar dapat konser malam-malam saat stress belajar,35,B
+C12,Kupon Netflix 1 bulan,Mengalihkan perhatian dari belajar. Cocok diberikan ke pesaing,17,A
+C100,Pil A 100,"Nilai Kuis, Ujian, dan Indeks auto 100 dan A",16,B
