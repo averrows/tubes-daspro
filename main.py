@@ -17,6 +17,7 @@ from function.hapusItem import hapusitem
 from function.lihatRiwayatPengambilanConsumable import lihatRiwayatPengambilanConsumable
 from function.ubahJumlah import ubahjumlah
 from function.tingkatkanRarityConsumables import tingkatkanRarityConsumables
+from function.hapusItem import hapusitem
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV

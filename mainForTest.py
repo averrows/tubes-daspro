@@ -15,6 +15,7 @@ from function.hapusItem import hapusitem
 from function.bantuan import bantuan
 from function.mintaConsumable import mintaConsumable
 from function.lihatRiwayatKembalikanGadget import lihatRiwayatKembalikanGadget
+from function.ubahJumlah import ubahjumlah
 import os
 clear = lambda: os.system('cls')
 # from function.CsvTools import parseCSV
@@ -70,7 +71,7 @@ def main():
         elif perintah == "hapusitem":
             hapusitem(gadgetData,consumableData)
         elif perintah == "ubahjumlah":
-            pass
+            ubahjumlah(gadgetData,consumableData)
         elif perintah == "riwayatpinjam":
             print("="*23 + " RIWAYAT PINJAM " + "="*23)  # (46 + 2 + 14) characters
             lihatRiwayatPinjamGadget(gadgetBorrowHistoryData,userData,1,0)
