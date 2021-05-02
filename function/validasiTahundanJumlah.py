@@ -2,16 +2,19 @@ def tahunvalid(tahun):
     tahuninteger = False
     tahunstring = str(tahun)
     panjangtahun = len(tahun)
-    i = 0
-    while i < panjangtahun and not tahuninteger:
-        if tahun[i] not in "1234567890":
-            tahuninteger = True
+    if panjangtahun<=4:
+        i = 0
+        while i < panjangtahun and not tahuninteger:
+            if tahun[i] not in "1234567890":
+                tahuninteger = True
+            else:
+                i += 1
+        if tahuninteger:
+            return False
         else:
-            i += 1
-    if tahuninteger:
-        return False
+            return True
     else:
-        return True
+        return False
 
 def jumlahvalid(jumlah):
     jumlahinteger = False
