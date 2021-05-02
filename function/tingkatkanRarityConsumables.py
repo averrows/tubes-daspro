@@ -5,6 +5,8 @@ import os
 from function.mintaConsumable import *  # pylint: disable=import-error
 from function.kembalikanGadget import validasiTanggal  # pylint: disable=import-error
 from function.kembalikanGadget import validasiAngka  # pylint: disable=import-error
+from function.validasiTahundanJumlah import tahunvalid, jumlahvalid # pylint: disable=import-error
+from function.validasiID import IDValid, IDditemukan # pylint: disable=import-error
 # from mintaConsumable import *
 campurSkript = """
 Halo {}, kamu ingin campur apa?
@@ -156,7 +158,7 @@ def rarityPascaPenambahanItem(rarity: str, jumlah: int, pengaruhKeseluruhan: dic
     return rarityBaru  # dictionary of integer
 
 
-def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, username, idPencampur):
+def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, dataBonus, username, idPencampur):
     print("Sebelum main, masukkan tanggal dulu yah hehe.... ")
     masukkanTanggal = False
     while not masukkanTanggal:
@@ -235,12 +237,18 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, username, idPencamp
             siap = True
     else:
         pass
-
+    
+    # PROSES PENGOCOKAN SETELAH PENCAMPURAN
     if jumlahBarangDicampur > 0:
         rangeDistribusi = tentukanRange(rarityBasis)
-        angkaRandom = randomize(jumlahBarangDicampur, 1)
+        angkaRandom = randomize(jumlahBarangDicampur, 1,)
         rarityHasil = hasilRandomRarity(rangeDistribusi, angkaRandom)
-        print("Selamat kamu mendapatkan rarity baru {}".format(rarityHasil))
+        kemungkinanHasil = dataBonus[rarityHasil]
+        indeksHasil = angkaRandom % len(kemungkinanHasil)
+        print("Yeeay, kamu mendapatkan {}. Rarity: {}".format(kemungkinanHasil[indeksHasil]["nama"],rarityHasil))
+        print("Selanjutnya, kamu perlu memilih id consumable untuk dia")
+        tambahitem(dataConsumable,kemungkinanHasil[indeksHasil],rarityHasil)
+
     else:
         print("Kamu tidak mencampur apa-apa")
 
@@ -251,5 +259,40 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, username, idPencamp
     # rarity = input(">>> ")
     # jumlah = int(input(">>> "))
 
-
-bonus = {"S": "Okeh siap aing guys wkwkwk"}
+def tambahitem(consumableData,itemBaru,rarity):
+    ID = input("Masukkan ID: ")
+    
+# ALGORITMA
+    ada = False
+    while not ada:
+        if IDValid(ID):
+            if ID[0] == "C":
+                ada = True
+                if len(consumableData) == 1:
+                    consumabletambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
+                    consumabletambahan["id"] = ID
+                    consumabletambahan["nama"] = itemBaru["nama"]
+                    consumabletambahan["deskripsi"] = itemBaru["deskripsi"]
+                    consumabletambahan["jumlah"] = "1"
+                    consumabletambahan["rarity"] = rarity
+                    consumableData.append(consumabletambahan)
+                else:
+                    ketemu = False
+                    while not ketemu:
+                        if IDditemukan(ID, consumableData):
+                            ID = input("Masukkan ID: ")
+                        else:
+                            ketemu = True
+                            consumabletambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":""}
+                            consumabletambahan["id"] = ID
+                            consumabletambahan["nama"] = itemBaru["nama"]
+                            consumabletambahan["deskripsi"] = itemBaru["deskripsi"]
+                            consumabletambahan["jumlah"] = "1"
+                            consumabletambahan["rarity"] = rarity
+                            consumableData.append(consumabletambahan)
+            else:
+                print("Masukkan hanya dalam format (C<bilangan> contoh: C24,C45)")
+                ID = input("Masukkan ID: ") 
+        else:
+            print("Gagal menambahkan item karena ID tidak valid.")
+            ID = input("Masukkan ID: ")
