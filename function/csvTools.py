@@ -53,18 +53,20 @@ def parseCSV(csv_file):
         if len(dataPerBaris) == 1:
             pass
         else:
+            line = 1
             for data in dataPerBaris[1:]:
                 dictData = {}
                 data = pisah(data, ';')
                 i = 0
                 for header in onlyHeader:
                     if i > len(data)-1:
-                        print(f"Terdapat kesalahan isi csv file {csv_file}. Data yang terload hanya header saja")
+                        print(f"Terdapat kesalahan isi csv file {csv_file} pada line {line+1}. Data yang terload hanya header saja")
                         return [onlyHeader]
                     else:
                         dictData[header] = data[i]
                     i += 1
                 hasil.append(dictData)
+                line +=1
     return hasil
 
 

@@ -127,7 +127,10 @@ def fraksiJumlah(rarity, dataConsumable):
         jumlahKeseluruhan += int(item["jumlah"])
         if item["rarity"] == rarity:
             jumlah += int(item["jumlah"])
-    return jumlah/jumlahKeseluruhan
+    if jumlahKeseluruhan == 0:
+        return 0
+    else:
+        return jumlah/jumlahKeseluruhan
 
 
 def rumusRarityJumlahInventory(dataConsumable):
@@ -158,7 +161,7 @@ def rarityPascaPenambahanItem(rarity: str, jumlah: int, pengaruhKeseluruhan: dic
     return rarityBaru  # dictionary of integer
 
 
-def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, dataBonus, username, idPencampur):
+def tingkatkanRarityConsumables(dataConsumable, dataRiwayat,username, idPencampur):
     print("Sebelum main, masukkan tanggal dulu yah hehe.... ")
     masukkanTanggal = False
     while not masukkanTanggal:
@@ -243,12 +246,10 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, dataBonus, username
         rangeDistribusi = tentukanRange(rarityBasis)
         angkaRandom = randomize(jumlahBarangDicampur, 1,)
         rarityHasil = hasilRandomRarity(rangeDistribusi, angkaRandom)
-        kemungkinanHasil = dataBonus[rarityHasil]
+        kemungkinanHasil = getDataBonus(dataConsumable,rarityHasil)
         indeksHasil = angkaRandom % len(kemungkinanHasil)
         print("Yeeay, kamu mendapatkan {}. Rarity: {}".format(kemungkinanHasil[indeksHasil]["nama"],rarityHasil))
-        print("Selanjutnya, kamu perlu memilih id consumable untuk dia")
-        tambahitem(dataConsumable,kemungkinanHasil[indeksHasil],rarityHasil)
-
+        tambahJumlahBonus(kemungkinanHasil[indeksHasil]["id"],1,dataConsumable)
     else:
         print("Kamu tidak mencampur apa-apa")
 
@@ -259,40 +260,24 @@ def tingkatkanRarityConsumables(dataConsumable, dataRiwayat, dataBonus, username
     # rarity = input(">>> ")
     # jumlah = int(input(">>> "))
 
-def tambahitem(consumableData,itemBaru,rarity):
-    ID = input("Masukkan ID: ")
-    
-# ALGORITMA
-    ada = False
-    while not ada:
-        if IDValid(ID):
-            if ID[0] == "C":
-                ada = True
-                if len(consumableData) == 1:
-                    consumabletambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":"", "tahun ditemukan":""}
-                    consumabletambahan["id"] = ID
-                    consumabletambahan["nama"] = itemBaru["nama"]
-                    consumabletambahan["deskripsi"] = itemBaru["deskripsi"]
-                    consumabletambahan["jumlah"] = "1"
-                    consumabletambahan["rarity"] = rarity
-                    consumableData.append(consumabletambahan)
-                else:
-                    ketemu = False
-                    while not ketemu:
-                        if IDditemukan(ID, consumableData):
-                            ID = input("Masukkan ID: ")
-                        else:
-                            ketemu = True
-                            consumabletambahan = {"id":"", "nama":"", "deskripsi":"", "jumlah":"", "rarity":""}
-                            consumabletambahan["id"] = ID
-                            consumabletambahan["nama"] = itemBaru["nama"]
-                            consumabletambahan["deskripsi"] = itemBaru["deskripsi"]
-                            consumabletambahan["jumlah"] = "1"
-                            consumabletambahan["rarity"] = rarity
-                            consumableData.append(consumabletambahan)
-            else:
-                print("Masukkan hanya dalam format (C<bilangan> contoh: C24,C45)")
-                ID = input("Masukkan ID: ") 
-        else:
-            print("Gagal menambahkan item karena ID tidak valid.")
-            ID = input("Masukkan ID: ")
+def tambahJumlahBonus(id,jumlah, dataConsumable):
+    i = 1
+    for x in dataConsumable[1:]:
+        if x["id"] == id:
+            dataConsumable[i]["jumlah"] =  str(int(dataConsumable[i]["jumlah"]) + jumlah)
+        i += 1
+def getDataBonus(dataConsumable,rarity):
+    hasil = []
+    jumlahItemBonus = 0
+    for item in dataConsumable[1:]:
+        if item["id"][1:3] == "CB":
+            jumlahItemBonus += 1
+            if item["rarity"] == rarity:
+                hasil.append(item)
+    if len(hasil) == 0:
+        bonus = [{"id":"CB1","nama":"Air Mata Helmi Hibatullah","deskripsi":"QWERTY","jumlah":"0","rarity":"S"},{"id":"CB2","nama":"Otak Marcho","deskripsi":"QWERTY","jumlah":"0","rarity":"A"},{"id":"CB3","nama":"lays","deskripsi":"QWERTY","jumlah":"0","rarity":"B"},{"id":"CB4","nama":"Makanan Gaenak","deskripsi":"QWERTY","jumlah":"0","rarity":"C"}]
+        for x in bonus:
+            dataConsumable.append(x)
+            if x["rarity"] == rarity:
+                hasil.append(x)
+    return hasil
