@@ -11,4 +11,5 @@ id;id_peminjaman;tanggal_pengembalian;jumlah_pengembalian;sisa_pengembalian;last
 10;2;06/12/2020;3;0;True
 11;4;01/01/2000;2;0;True
 12;8;05/06/0210;1;1;True
-13;9;01/01/1001;1;5;True
+13;9;01/01/1001;1;5;False
+14;9;15/04/2000;1;4;True
